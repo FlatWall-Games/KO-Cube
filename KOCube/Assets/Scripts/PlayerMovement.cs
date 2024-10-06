@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     CharacterController characterController;
 
@@ -20,8 +21,19 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
     }
+
+    void Start()
+    {
+        if (IsOwner)
+        {
+            GetComponent<PlayerInput>().enabled = true;
+        }
+    }
+
     private void Update()
     {
+        if (!IsServer) return;
+
         if (!characterController.isGrounded)
         {
             yMovement = -9.81f / speed;
@@ -37,9 +49,16 @@ public class Player : MonoBehaviour
         }
         
     }
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        xMovement = context.ReadValue<Vector2>()[0];
-        zMovement = context.ReadValue<Vector2>()[1];
+        OnMoveServerRpc(context.ReadValue<Vector2>());
+    }
+
+    [ServerRpc]
+    public void OnMoveServerRpc(Vector2 context)
+    {
+        xMovement = context[0];
+        zMovement = context[1];
     }
 }
