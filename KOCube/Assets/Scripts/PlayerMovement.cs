@@ -24,7 +24,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         characterController = GetComponent<CharacterController>();
         basicShoot = GetComponent<BasicShoot>();
-        if (IsOwner) GameObject.FindObjectOfType<CinemachineVirtualCamera>().Follow = this.transform;
     }
 
     void Start()
@@ -32,6 +31,7 @@ public class PlayerMovement : NetworkBehaviour
         if (IsOwner)
         {
             GetComponent<PlayerInput>().enabled = true;
+            this.tag = "Player";
         }
     }
 

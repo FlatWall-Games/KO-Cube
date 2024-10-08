@@ -17,8 +17,8 @@ public class BasicProjectile : MonoBehaviour
         Destroy(this.gameObject, timeToDestroy);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(this.gameObject);
+        if(!other.CompareTag("Player")) Destroy(this.gameObject);
     }
 }
