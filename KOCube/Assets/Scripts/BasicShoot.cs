@@ -16,23 +16,29 @@ public class BasicShoot : NetworkBehaviour
 
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (!canShoot) return;
-        canShoot = false;
-        shooting = true;
-        RotatePlayer();
-        anim.SetTrigger("Shoot");
-    }
-
-    private void RotatePlayer()
-    {
         //Se lanza un rayo desde la cámara que pasa por el ratón. Se rota al jugador para que mire hacia ese punto
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit))
         {
-            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(hit.point.x-transform.position.x, 0, hit.point.z-transform.position.z));
-            transform.rotation = lookRotation;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(hit.point.x - transform.position.x, 0, hit.point.z - transform.position.z));
+            ShootServerRpc(lookRotation);
         }
+    }
+
+    [ServerRpc]
+    private void ShootServerRpc(Quaternion lookRotation)
+    {
+        if (!canShoot) return;
+        canShoot = false;
+        shooting = true;
+        RotatePlayer(lookRotation);
+        anim.SetTrigger("Shoot");
+    }
+
+    private void RotatePlayer(Quaternion lookRotation)
+    {
+        transform.rotation = lookRotation;
     }
 
     public void ShootSingleBullet()

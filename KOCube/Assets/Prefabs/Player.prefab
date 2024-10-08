@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -6052377101830335847}
   - component: {fileID: 571336068098503327}
   - component: {fileID: 6742419832762531967}
+  - component: {fileID: 7550814244392496253}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -281,6 +282,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4150131388132305550, guid: 33377b21ecb18a741a9e77ee9a21f8a8,
     type: 3}
+--- !u!114 &7550814244392496253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345367470636222976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 753088835
+    DestinationState: 1095371188
+    TransitionDuration: 0
+    TriggerNameHash: -1316629574
+    TransitionIndex: 0
+  m_Animator: {fileID: 571336068098503327}
 --- !u!1 &5375303902051367666
 GameObject:
   m_ObjectHideFlags: 0
