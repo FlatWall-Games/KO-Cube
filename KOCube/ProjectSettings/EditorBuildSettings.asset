@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/MPNetworkTest.unity
     guid: e4ecd130fd72b8c488661e331114193e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 5649cef5862fd76499d001caa4ac53c2,
+      type: 2}
