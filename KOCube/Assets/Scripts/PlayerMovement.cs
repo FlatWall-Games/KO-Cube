@@ -28,10 +28,10 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
+        this.tag = "Player";
         if (IsOwner)
         {
             GetComponent<PlayerInput>().enabled = true;
-            this.tag = "Player";
         }
     }
 
