@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 3764132138304378946}
   - component: {fileID: 4548215784583124585}
   - component: {fileID: -6052377101830335847}
+  - component: {fileID: 571336068098503327}
+  - component: {fileID: 6742419832762531967}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -101,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 868684278
+  GlobalObjectIdHash: 4235631485
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -165,6 +167,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2ac66675-cd84-4192-981b-60f27d1f7446
     m_ActionName: Movement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6742419832762531967}
+        m_TargetAssemblyTypeName: BasicShoot, Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bc831775-f4ee-4a8b-bba9-92e5dd02ef10
+    m_ActionName: Movement/Shoot[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -228,6 +246,41 @@ MonoBehaviour:
   Interpolate: 0
   SlerpPosition: 1
   StaleDataHandling: 1
+--- !u!95 &571336068098503327
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345367470636222976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d9506dfb82cd84cb69d8566c2b0ac5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6742419832762531967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345367470636222976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66b2dc42e220c444a0f2a96c5cbaf92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4150131388132305550, guid: 33377b21ecb18a741a9e77ee9a21f8a8,
+    type: 3}
 --- !u!1 &5375303902051367666
 GameObject:
   m_ObjectHideFlags: 0

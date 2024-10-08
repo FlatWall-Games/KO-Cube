@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
+using Cinemachine;
 
 public class PlayerMovement : NetworkBehaviour
 {
     CharacterController characterController;
+    BasicShoot basicShoot;
 
     float yMovement = 0;
     float xMovement = 0;
@@ -20,6 +23,8 @@ public class PlayerMovement : NetworkBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        basicShoot = GetComponent<BasicShoot>();
+        if (IsOwner) GameObject.FindObjectOfType<CinemachineVirtualCamera>().Follow = this.transform;
     }
 
     void Start()
@@ -41,7 +46,7 @@ public class PlayerMovement : NetworkBehaviour
         Vector3 movement = new Vector3(xMovement, yMovement, zMovement);
         movement *= speed * Time.deltaTime;
         characterController.Move(movement);
-        if (xMovement != 0 || zMovement != 0)
+        if ((xMovement != 0 || zMovement != 0) && !basicShoot.IsShooting())
         {
             movement.y = 0f;
             rotation = Quaternion.LookRotation(movement);
