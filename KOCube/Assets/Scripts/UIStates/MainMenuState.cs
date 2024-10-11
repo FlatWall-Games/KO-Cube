@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartMenuState : AUIState
+public class MainMenuState : AUIState
 {
-    GameObject startMenu;
+    GameObject mainScreen;
 
-    public StartMenuState(IUI context) : base(context)
+    public MainMenuState(IUI context) : base(context)
     {
     }
 
     public override void Enter()
     {
-        startMenu = contextUI.Canvas.transform.Find("StartMenu").gameObject;
-        startMenu.SetActive(true);
+        mainScreen = contextUI.Canvas.transform.Find("MainScreenMenu").gameObject;
+        mainScreen.SetActive(true);
     }
 
     public override void Exit()
     {
-        startMenu.SetActive(false);
+        mainScreen.SetActive(false);
     }
 
     public override void FixedUpdate()
