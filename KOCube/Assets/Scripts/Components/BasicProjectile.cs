@@ -9,6 +9,7 @@ public class BasicProjectile : MonoBehaviour, IAttack
     [SerializeField] private float timeToDestroy;
     [SerializeField] private float damage;
     [SerializeField] private float healing;
+    private PlayerMovement attacker;
     private Rigidbody rb;
 
     void Awake()
@@ -55,5 +56,15 @@ public class BasicProjectile : MonoBehaviour, IAttack
     public void SetTag(string tag)
     {
         this.tag = tag;
+    }
+
+    public void SetAttacker(PlayerMovement attacker)
+    {
+        this.attacker = attacker;
+    }
+
+    public PlayerMovement GetAttacker()
+    {
+        return attacker;
     }
 }

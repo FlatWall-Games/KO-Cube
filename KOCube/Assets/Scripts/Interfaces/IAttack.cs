@@ -14,4 +14,8 @@ public interface IAttack
     public string GetTag();
 
     public void SetTag(string tag);
+
+    public void SetAttacker(PlayerMovement attacker);
+
+    public PlayerMovement GetAttacker();
 }

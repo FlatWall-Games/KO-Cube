@@ -43,6 +43,7 @@ public class BasicShoot : NetworkBehaviour
     {
         IAttack projectile = GameObject.Instantiate(bulletPrefab, transform).GetComponent<IAttack>();
         projectile.SetTag(this.tag);
+        projectile.SetAttacker(GetComponent<PlayerMovement>());
     }
 
     public bool IsShooting() //Llamado desde PlayerMovement para saber si rotar el jugador hacia donde mira o no

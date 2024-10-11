@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
+using UnityEditor.Experimental.GraphView;
 
 public class HealthManager : NetworkBehaviour
 {
@@ -24,10 +25,11 @@ public class HealthManager : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!IsServer) return;
+        if (!IsServer) return; //Sólo calcula daños el servidor
         IAttack attack = other.GetComponent<IAttack>();
         if (attack != null)
         {
+            if (attack.GetAttacker() == GetComponent<PlayerMovement>()) return;
             if (attack.GetTag().Equals(this.tag))
             {
                 currentHealth += attack.GetHealing();
@@ -38,12 +40,12 @@ public class HealthManager : NetworkBehaviour
                 currentHealth -= attack.GetDamage();
                 if (currentHealth <= 0) Debug.Log("MUERTO");
             }
-            DamagedClientRpc(currentHealth);
+            UpdateHealthClientRpc(currentHealth);
         }
     }
 
     [ClientRpc]
-    private void DamagedClientRpc(float newHealth)
+    private void UpdateHealthClientRpc(float newHealth)
     {
         currentHealth = newHealth;
         float value = currentHealth / maxHealth;
