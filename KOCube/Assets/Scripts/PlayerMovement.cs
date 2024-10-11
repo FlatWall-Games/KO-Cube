@@ -28,7 +28,7 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
-        this.tag = "Player";
+        this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerMovement>().Length%2+1).ToString();
         if (IsOwner)
         {
             GetComponent<PlayerInput>().enabled = true;

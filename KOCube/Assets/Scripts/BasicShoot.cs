@@ -35,21 +35,17 @@ public class BasicShoot : NetworkBehaviour
         if (!canShoot) return;
         canShoot = false;
         shooting = true;
-        RotatePlayer(lookRotation);
-        anim.SetTrigger("Shoot");
-    }
-
-    private void RotatePlayer(Quaternion lookRotation)
-    {
         transform.rotation = lookRotation;
+        anim.SetTrigger("Shoot"); //Compartido entre todos los clientes, lo que hace que el disparo aparezca para todo el mundo
     }
 
-    public void ShootSingleBullet()
+    public void ShootSingleBullet() //Llamado desde la animación de disparo
     {
-        GameObject.Instantiate(bulletPrefab, transform);
+        IAttack projectile = GameObject.Instantiate(bulletPrefab, transform).GetComponent<IAttack>();
+        projectile.SetTag(this.tag);
     }
 
-    public bool IsShooting()
+    public bool IsShooting() //Llamado desde PlayerMovement para saber si rotar el jugador hacia donde mira o no
     {
         return shooting;
     }
