@@ -8,14 +8,21 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Relay.Models;
 using Unity.Services.Relay;
+using System.Runtime.InteropServices.WindowsRuntime;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IUI
 {
     const int maxConnections = 5; //Número máximo de conexiones de cada cliente sin contarle.
 
     //Texto por defecto para las áreas de texto en las que introducir el código de sala y el nombre del jugador.
     string joinCode = "Enter room code...";
     public string playerName = "Enter player name...";
+
+    private IState _currentState;
+    private GameObject _canvas;
+
+    public IState State { get { return _currentState; } set { _currentState = value; } }
+    public GameObject Canvas { get { return _canvas; } set { _canvas = value; } }
 
     //Método encargado de inicializar un runtime como host de una partida del juego.
     async void StartHost()
