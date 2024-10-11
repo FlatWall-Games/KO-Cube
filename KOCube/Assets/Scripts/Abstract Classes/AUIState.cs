@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AUIState : IState
 {
-    IUI contextUI;
+    protected IUI contextUI;
 
     public AUIState(IUI context)
     {

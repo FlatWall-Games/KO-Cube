@@ -21,8 +21,33 @@ public class UIManager : MonoBehaviour, IUI
     private IState _currentState;
     private GameObject _canvas;
 
-    public IState State { get { return _currentState; } set { _currentState = value; } }
+    public IState State 
+    { 
+        get { return _currentState; } 
+        set 
+        {
+            if (_currentState != null) _currentState.Exit();
+            _currentState = value;
+            _currentState.Enter();
+        } 
+    }
     public GameObject Canvas { get { return _canvas; } set { _canvas = value; } }
+
+    void Start()
+    {
+        Canvas = GameObject.Find("Canvas");
+        State = new StartMenuState(this);
+    }
+
+    void Update()
+    {
+        State.Update();
+    }
+
+    void FixedUpdate()
+    {
+        State.FixedUpdate();
+    }
 
     //Método encargado de inicializar un runtime como host de una partida del juego.
     async void StartHost()
