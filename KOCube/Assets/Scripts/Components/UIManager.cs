@@ -10,7 +10,7 @@ using Unity.Services.Relay.Models;
 using Unity.Services.Relay;
 using System.Runtime.InteropServices.WindowsRuntime;
 
-public class UIManager : MonoBehaviour, IUI
+public class UIManager : Singleton<UIManager>, IUI
 {
     const int maxConnections = 5; //Número máximo de conexiones de cada cliente sin contarle.
 
