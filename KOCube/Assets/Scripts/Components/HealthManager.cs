@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 public class HealthManager : NetworkBehaviour
 {
     [SerializeField] private float maxHealth; //Máximo de vida que tiene el jugador
+    [SerializeField] private Image healthBar; //Imagen de la barra de vida
+    private Camera cam; //Cámara principal
     private float currentHealth; //Vida actual
 
     void Awake()
     {
         currentHealth = maxHealth;
+        cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+    }
+
+    private void Update()
+    {
+        healthBar.transform.forward = healthBar.transform.position - cam.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +46,8 @@ public class HealthManager : NetworkBehaviour
     private void DamagedClientRpc(float newHealth)
     {
         currentHealth = newHealth;
-        Debug.Log(currentHealth);
+        float value = currentHealth / maxHealth;
+        healthBar.color = new Color(1 - value, value, 0, 1);
+        healthBar.fillAmount = value;
     }
 }
