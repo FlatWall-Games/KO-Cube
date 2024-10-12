@@ -47,9 +47,10 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         {
             //Si no hay datos guardados, se crean con los valores iniciales
             Debug.Log("No hay datos guardados para este jugador. Creando estructura por defecto...");
-
-            SetNameData("jugador"); //Aqui habria que poner el nombre que escriba el jugador
-            SetCoinsData(10000);
+            username = "jugador";
+            coins = 10000;
+            SetNameData(username); //Aqui habria que poner el nombre que escriba el jugador
+            SetCoinsData(coins);
             SetSkinsData("0");
             SaveData();
         }
@@ -131,6 +132,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         }
         else
         {
+            characterSkins[charCode].Add(skinCode);
             PlayerPrefs.SetString("Character" + charCode, CreateStringSkins(characterSkins[charCode]));
         }
     }
