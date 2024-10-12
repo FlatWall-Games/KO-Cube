@@ -9,18 +9,11 @@ public class HealthManager : NetworkBehaviour
 {
     [SerializeField] private float maxHealth; //Máximo de vida que tiene el jugador
     [SerializeField] private Image healthBar; //Imagen de la barra de vida
-    private Camera cam; //Cámara principal
     private float currentHealth; //Vida actual
 
     void Awake()
     {
         currentHealth = maxHealth;
-        cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-    }
-
-    private void Update()
-    {
-        healthBar.transform.forward = healthBar.transform.position - cam.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,18 +22,18 @@ public class HealthManager : NetworkBehaviour
         IAttack attack = other.GetComponent<IAttack>();
         if (attack != null)
         {
-            if (attack.GetAttacker() == GetComponent<PlayerMovement>()) return;
-            if (attack.GetTag().Equals(this.tag))
+            if (attack.GetAttacker() == GetComponent<PlayerMovement>()) return; //Los propios básicos no afectan a uno mismo
+            if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
             {
                 currentHealth += attack.GetHealing();
                 if (currentHealth > maxHealth) currentHealth = maxHealth;
             }
-            else
+            else //Si no dañan
             {
                 currentHealth -= attack.GetDamage();
                 if (currentHealth <= 0) Debug.Log("MUERTO");
             }
-            UpdateHealthClientRpc(currentHealth);
+            UpdateHealthClientRpc(currentHealth); //Se actualiza la vida en todos los clientes
         }
     }
 
