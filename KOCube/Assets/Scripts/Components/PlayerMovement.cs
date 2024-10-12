@@ -57,7 +57,6 @@ public class PlayerMovement : NetworkBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("entrada recibida");
         OnMoveServerRpc(context.ReadValue<Vector2>());
     }
 

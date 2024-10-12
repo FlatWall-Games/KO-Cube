@@ -22,6 +22,24 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ShootController",
+                    "type": "Button",
+                    "id": "8cf4184a-7d22-4f06-a628-9a50950d135b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AimController",
+                    "type": "Value",
+                    "id": "9b4a4416-6471-4011-a3d5-9f86ac243019",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -115,12 +133,23 @@
                 },
                 {
                     "name": "",
-                    "id": "0c6870d2-18a8-4013-9029-6f4e66a2530a",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "69a1fd1c-1dd9-42f8-984b-eddb9ffb0961",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "ShootController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebd7e1cf-7088-4782-9eef-b1e1e03168f3",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimController",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
