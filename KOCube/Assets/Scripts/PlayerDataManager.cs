@@ -41,7 +41,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
                 characterSkins[i] = skinList;
             }
 
-            Debug.Log("Datos recuperados:" + username + " " + coins + " " + characterSkins.ToString());
+            Debug.Log("Datos recuperados con exito");
         }
         else
         {
@@ -56,11 +56,24 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         }
 
         Debug.Log("Ruta de PlayerPrefs en este sistema operativo: " + Application.persistentDataPath);
-        //Decomentar esta linea para borrar los datos (esto solo esta aqui para pruebas)
+        //Descomentar esta linea para borrar los datos (esto solo esta aqui para pruebas)
         //DeleteData();
+        PrintSkins();
     }
 
     //////////////////////// Metodos publicos para modificar datos desde otros scripts //////////////////////// 
+
+    //Metodo para comprobar que se recupera bien la estructura
+    public void PrintSkins()
+    {
+        foreach (List<string> skins in characterSkins) 
+        { 
+            foreach (string skin in skins)
+            {
+                Debug.Log(skin);
+            }
+        }
+    }
     public void SetName(string name)
     {
         username = name;
@@ -132,13 +145,12 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         }
         else
         {
-            characterSkins[charCode].Add(skinCode);
             PlayerPrefs.SetString("Character" + charCode, CreateStringSkins(characterSkins[charCode]));
         }
     }
 
     string CreateStringSkins(List<string> skinList)
     {
-        return string.Join(".", skinList.ToString());
+        return string.Join(".", skinList);
     }
 }
