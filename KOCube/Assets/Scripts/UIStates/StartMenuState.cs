@@ -12,8 +12,8 @@ public class StartMenuState : AUIState
 
     public override void Enter()
     {
-        startMenu = contextUI.Canvas.transform.Find("StartMenu").gameObject;
-        startMenu.SetActive(true);
+        //startMenu = contextUI.Canvas.transform.Find("StartMenu").gameObject;
+        //startMenu.SetActive(true);
     }
 
     public override void Exit()
