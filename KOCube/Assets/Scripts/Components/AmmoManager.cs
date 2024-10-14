@@ -8,7 +8,7 @@ public class AmmoManager : MonoBehaviour
     [SerializeField] private RectTransform singleBar; //Barra de munición
     [SerializeField] private int maxAmmo; //Munición máxima
     [SerializeField] private float reloadTime; //Tiempo para recargar
-    [SerializeField] private BasicShoot basicShoot; //Script de disparo gestionado por este AmmoManager
+    [SerializeField] private AttackManager basicShoot; //Script de disparo gestionado por este AmmoManager
     private float timer = 0;
     private int currentAmmo; //Munición actual
     private Image[] bars; //Todas las barras de munición
@@ -60,5 +60,10 @@ public class AmmoManager : MonoBehaviour
             bar.anchoredPosition3D = new Vector3(bar.anchoredPosition3D.x - barOffset * i, bar.anchoredPosition3D.y, bar.anchoredPosition3D.z);
             bars[i] = bar.GetComponent<Image>(); //Se añade al array
         }
+    }
+
+    public void HideBars()
+    {
+        transform.Find("Background").gameObject.SetActive(false);
     }
 }

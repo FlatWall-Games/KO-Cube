@@ -9,7 +9,7 @@ using Cinemachine;
 public class PlayerMovement : NetworkBehaviour
 {
     CharacterController characterController;
-    BasicShoot basicShoot;
+    AttackManager basicShoot;
 
     float xMovement = 0;
     float yMovement = 0;
@@ -23,7 +23,7 @@ public class PlayerMovement : NetworkBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        basicShoot = GetComponent<BasicShoot>();
+        basicShoot = GetComponent<AttackManager>();
     }
 
     void Start()

@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ShootUlt",
+                    "type": "Button",
+                    "id": "f0c34d1a-ea46-44a8-b0a7-e4fe6dacb0ec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ShootController",
                     "type": "Button",
                     "id": "8cf4184a-7d22-4f06-a628-9a50950d135b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShootUltController",
+                    "type": "Button",
+                    "id": "90628e7b-cb74-47d6-925d-87352b573ce8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
@@ -133,12 +151,56 @@
                 },
                 {
                     "name": "",
+                    "id": "e77b92ca-af94-4a4f-a057-27a63b87f5f9",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootUlt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "69a1fd1c-1dd9-42f8-984b-eddb9ffb0961",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ShootController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4fcf993a-d3b6-4d22-bca2-aef57b375afd",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "737a0025-3d50-47dc-9d3a-855db9ab9f3f",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootUltController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2834d241-32b6-4dd0-ab20-be684353a19d",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootUltController",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
