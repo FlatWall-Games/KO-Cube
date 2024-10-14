@@ -80,7 +80,7 @@ public class UIManager : Singleton<UIManager>, IUI
         Debug.Log(PlayerDataManager.Instance.GetName());
         if (PlayerDataManager.Instance.GetName() != null)
         {
-            State = new MainMenuState(this);
+            GoMainMenu();
         }
         else
         {
@@ -88,14 +88,14 @@ public class UIManager : Singleton<UIManager>, IUI
         }
     }
 
-    public void SignUp()
-    {
-        State = new MainMenuState(this);
-    }
-
     public void Play()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void GoMainMenu()
+    {
+        State = new MainMenuState(this);
     }
 
     public void StartGameAsHost()
@@ -117,7 +117,7 @@ public class UIManager : Singleton<UIManager>, IUI
         _joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
         NetworkManager.Singleton.StartHost();
-
+        State = new GameState(this);
     }
 
     public void StartGameAsClient()
@@ -140,6 +140,8 @@ public class UIManager : Singleton<UIManager>, IUI
             var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
             NetworkManager.Singleton.StartClient();
+
+            State = new GameState(this);
         }
         catch (RelayServiceException e)
         {

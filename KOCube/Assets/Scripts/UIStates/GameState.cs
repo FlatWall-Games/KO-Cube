@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LobbyState : AUIState
+public class GameState : AUIState
 {
-    GameObject matchSearchMenu;
+    GameObject gameUI;
 
-    public LobbyState(IUI context) : base(context)
+    public GameState(IUI context) : base(context)
     {
     }
 
     public override void Enter()
     {
-        matchSearchMenu = contextUI.Canvas.transform.Find("MatchSearchMenu").gameObject;
-        matchSearchMenu.SetActive(true);
+        gameUI = contextUI.Canvas.transform.Find("GameInterface").gameObject;
+        gameUI.SetActive(true);
     }
 
     public override void Exit()
     {
-        matchSearchMenu.SetActive(false);
+        gameUI.SetActive(false);
     }
 
     public override void FixedUpdate()
