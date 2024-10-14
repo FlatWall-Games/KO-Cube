@@ -9,14 +9,16 @@ using Unity.Services.Core;
 using Unity.Services.Relay.Models;
 using Unity.Services.Relay;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
+using System;
+using System.Net.Http;
+using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>, IUI
 {
-    const int maxConnections = 5; //Número máximo de conexiones de cada cliente sin contarle.
+    const int _maxConnections = 5; //Número máximo de conexiones de cada lobby sin contar al host.
 
-    //Texto por defecto para las áreas de texto en las que introducir el código de sala y el nombre del jugador.
-    string joinCode = "Enter room code...";
-    public string playerName = "Enter player name...";
+    string _joinCode; //Código de la sala.
 
     private IState _currentState;
     private GameObject _canvas;
@@ -49,61 +51,14 @@ public class UIManager : Singleton<UIManager>, IUI
         State.FixedUpdate();
     }
 
-    //Método encargado de inicializar un runtime como host de una partida del juego.
-    async void StartHost()
-    {
-
-        await UnityServices.InitializeAsync();
-        if (!AuthenticationService.Instance.IsSignedIn)
-        {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        }
-        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
-        joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-
-        NetworkManager.Singleton.StartHost();
-
-    }
-
-    //Método encargado de inicializar un runtime como cliente de una partida de juego que tiene de código "joinCode".
-    async void StartClient(string joinCode)
-    {
-
-        await UnityServices.InitializeAsync();
-        if (!AuthenticationService.Instance.IsSignedIn)
-        {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        }
-
-        var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
-
-        NetworkManager.Singleton.StartClient();
-
-    }
-
     void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10, 10, 300, 300));
-        if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
-        {
-            StartButtons();
-        }
-        else
+        if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsServer)
         {
             StatusLabels();
         }
-
         GUILayout.EndArea();
-    }
-
-    void StartButtons()
-    {
-        if (GUILayout.Button("Host")) StartHost();
-        if (GUILayout.Button("Client")) StartClient(joinCode);
-        playerName = GUILayout.TextArea(playerName);
-        joinCode = GUILayout.TextArea(joinCode);
     }
 
     void StatusLabels()
@@ -114,6 +69,81 @@ public class UIManager : Singleton<UIManager>, IUI
         GUILayout.Label("Transport: " +
             NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
         GUILayout.Label("Mode: " + mode);
-        GUILayout.Label("Room: " + joinCode);
+        GUILayout.Label("Room: " + _joinCode);
+    }
+
+    public void StartGame()
+    {
+        Debug.Log(PlayerDataManager.Instance.GetName());
+        if (PlayerDataManager.Instance.GetName() != null)
+        {
+            State = new MainMenuState(this);
+        }
+        else
+        {
+            State = new UserSetupState(this);
+        }
+    }
+
+    public void SignUp()
+    {
+        State = new MainMenuState(this);
+    }
+
+    public void Play()
+    {
+        State = new LobbyHostJoinState(this);
+    }
+
+    public void StartGameAsHost()
+    {
+        StartHost();
+    }
+
+    //Método encargado de inicializar un runtime como host de una partida del juego.
+    async void StartHost()
+    {
+
+        await UnityServices.InitializeAsync();
+        if (!AuthenticationService.Instance.IsSignedIn)
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        }
+        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(_maxConnections);
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
+        _joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+
+        NetworkManager.Singleton.StartHost();
+
+    }
+
+    public void StartGameAsClient()
+    {
+        _joinCode = Canvas.transform.Find("MatchSearchMenu/Panel/CodeInput/TextArea/Text").gameObject.GetComponent<TextMeshProUGUI>().text;
+
+        StartClient(_joinCode);
+    }
+
+    //Método encargado de inicializar un runtime como cliente de una partida de juego que tiene de código "joinCode".
+    async void StartClient(string joinCode)
+    {
+        try
+        {
+            await UnityServices.InitializeAsync();
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            }
+            var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
+            NetworkManager.Singleton.StartClient();
+        }
+        catch (RelayServiceException e)
+        {
+            // Maneja la excepción aquí
+            Debug.LogError($"Error al intentar unirse a la partida: {e.Message}");
+            // Aquí podrías agregar lógica adicional para notificar al usuario, por ejemplo:
+            Canvas.transform.Find("MatchSearchMenu/Panel/ErrorText").gameObject.SetActive(true);
+        }
     }
 }
