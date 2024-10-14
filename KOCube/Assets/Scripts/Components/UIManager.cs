@@ -39,6 +39,9 @@ public class UIManager : Singleton<UIManager>, IUI
     {
         Canvas = GameObject.Find("Canvas");
         State = new StartMenuState(this);
+        //Suscribimos un método que se encargará de que se cambie el estado correctamente cuando se cargue una nueva escena
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        DontDestroyOnLoad(Canvas);
     }
 
     void Update()
@@ -92,7 +95,7 @@ public class UIManager : Singleton<UIManager>, IUI
 
     public void Play()
     {
-        State = new LobbyHostJoinState(this);
+        SceneManager.LoadScene(1);
     }
 
     public void StartGameAsHost()
@@ -144,6 +147,15 @@ public class UIManager : Singleton<UIManager>, IUI
             Debug.LogError($"Error al intentar unirse a la partida: {e.Message}");
             // Aquí podrías agregar lógica adicional para notificar al usuario, por ejemplo:
             Canvas.transform.Find("MatchSearchMenu/Panel/ErrorText").gameObject.SetActive(true);
+        }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //OJO SI SE CAMBIA EL NOMBRE DE LA ESCENA
+        if (SceneManager.GetActiveScene().name == "MPNetworkTest")
+        {
+            State = new LobbyHostJoinState(this);
         }
     }
 }
