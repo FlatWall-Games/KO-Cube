@@ -118,8 +118,30 @@
                 },
                 {
                     "name": "",
+                    "id": "4d7d840a-c8d5-4d4a-ac41-396c9d353104",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cb8293b0-8720-49a8-a868-902ab413f2df",
                     "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f28ce8dd-32c2-4341-89e5-4a17ef119309",
+                    "path": "<Touchscreen>/Press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -142,6 +164,17 @@
                     "name": "",
                     "id": "da88188b-3387-421a-a938-4973f19374f7",
                     "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9dbe3037-8977-4fe6-b8e1-1b2204ab6e9c",
+                    "path": "<Touchscreen>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

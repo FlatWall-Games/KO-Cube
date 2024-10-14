@@ -122,8 +122,8 @@ public class UIManager : Singleton<UIManager>, IUI
 
     public void StartGameAsClient()
     {
-        _joinCode = Canvas.transform.Find("MatchSearchMenu/Panel/CodeInput/TextArea/Text").gameObject.GetComponent<TextMeshProUGUI>().text;
-
+        _joinCode = Canvas.transform.Find("MatchSearchMenu/Panel/CodeInput/TextArea/Text").gameObject.GetComponent<TextMeshProUGUI>().text.Replace("\0", "").Trim();
+        _joinCode = _joinCode.Remove(_joinCode.Length - 1);
         StartClient(_joinCode);
     }
 
