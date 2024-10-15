@@ -1060,7 +1060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4383242258505275230}
   m_Layer: 0
-  m_Name: BlockingCaptureTheFlagMap
+  m_Name: BlockOutCaptureTheFlagMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
