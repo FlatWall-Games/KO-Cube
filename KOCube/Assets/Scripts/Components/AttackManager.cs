@@ -117,14 +117,12 @@ public class AttackManager : NetworkBehaviour
         if (attackType.Equals("BASIC"))
         {
             if (!ammoManager.ShootRequested()) return; //Si el AmmoManager no deja disparar la función acaba aquí
-            shooting = true;
             transform.rotation = lookRotation; //Se rota al jugador hacia donde dispara
             anim.SetTrigger("ShootBasic"); //Compartido entre todos los clientes, lo que hace que el disparo aparezca para todo el mundo
         }
         else
         {
             if (!ultManager.RequestShoot()) return;
-            shooting = true;
             transform.rotation = lookRotation;
             anim.SetTrigger("ShootUlt");
         }
@@ -136,6 +134,7 @@ public class AttackManager : NetworkBehaviour
     private void UpdateBarsClientRpc(string attackType)
     {
         Debug.Log(attackType);
+        shooting = true;
         if (attackType.Equals("BASIC")) ammoManager.UpdateAmmoBar();
         else ultManager.UpdateBar();
     }
