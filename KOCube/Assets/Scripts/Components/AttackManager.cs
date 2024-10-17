@@ -8,7 +8,8 @@ public class AttackManager : NetworkBehaviour
     private Animator anim; //Animador del personaje
     private Vector3 controllerAimDirection = Vector3.zero; //Dirección de apuntado con el mando
     [SerializeField] private GameObject aimIndicator; //Indica la dirección hacia la que se apunta con el mando para que sea más fácil apuntar
-    
+    private bool hideAfterShooting = false; //Indica si el indicador se debe apagar tras disparar con el mando
+
     [Header("Basic attack:")]
     [SerializeField] private AmmoManager ammoManager; //Controlador de los básicos que posibilita o no el disparo
     [SerializeField] GameObject basicPrefab; //Prefab del básico
@@ -36,8 +37,14 @@ public class AttackManager : NetworkBehaviour
 
     private void Update()
     {
+        if (!IsOwner) return; //No hacemos las operaciones para los demás jugadores al ser innecesarias e ineficientes
         //La posición del indicador es la del jugador (a nivel de suelo) más el vector de entrada del joystick derecho del mando
         aimIndicator.transform.position = new Vector3(transform.position.x, transform.position.y - 0.95f, transform.position.z) + controllerAimDirection * 1.5f;
+        if (hideAfterShooting && !shooting)
+        {
+            hideAfterShooting = false;
+            aimIndicator.SetActive(false);
+        }
     }
 
     public void ShootBasic(InputAction.CallbackContext context) //Básico con el ratón
@@ -71,9 +78,10 @@ public class AttackManager : NetworkBehaviour
     public void Aim(InputAction.CallbackContext context) //Apuntado con el mando
     {
         Vector2 aimVector = context.ReadValue<Vector2>();
-        controllerAimDirection = new Vector3(aimVector.x, 0, aimVector.y); //Dirección a la que disparará el jugador
-        if (aimVector != Vector2.zero) aimIndicator.SetActive(true); //Si está apuntado se activa el indicador, si no se desactiva
-        else aimIndicator.SetActive(false);
+        if(!shooting) controllerAimDirection = new Vector3(aimVector.x, 0, aimVector.y); //Dirección a la que disparará el jugador
+        if (aimVector != Vector2.zero) aimIndicator.SetActive(true); //Si está apuntado se activa el indicador
+        else if (shooting) hideAfterShooting = true; //Si se deja de apuntar pero se está disparando se activa el booleano que lo desactiva tras disparar
+        else aimIndicator.SetActive(false); //Si se deja de apuntar sin disparar desaparece el indicador
     }
 
     public void ShootBasicController(InputAction.CallbackContext context) //Básico con mando
@@ -120,6 +128,16 @@ public class AttackManager : NetworkBehaviour
             transform.rotation = lookRotation;
             anim.SetTrigger("ShootUlt");
         }
+
+        UpdateBarsClientRpc(attackType);
+    }
+
+    [ClientRpc]
+    private void UpdateBarsClientRpc(string attackType)
+    {
+        Debug.Log(attackType);
+        if (attackType.Equals("BASIC")) ammoManager.UpdateAmmoBar();
+        else ultManager.UpdateBar();
     }
 
     public void ShootSingleBasicProjectile() //Llamado desde la animación de disparo

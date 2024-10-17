@@ -36,6 +36,11 @@ public class AmmoManager : MonoBehaviour
     public bool ShootRequested() //Cuando se le da al botón de disparar esta función comprueba si se puede o no y da el visto bueno
     {
         if (basicShoot.IsShooting() || currentAmmo <= 0) return false;
+        return true;
+    }
+
+    public void UpdateAmmoBar()
+    {
         float reloadedAmount = 0;
         if (currentAmmo != maxAmmo)
         {
@@ -44,7 +49,6 @@ public class AmmoManager : MonoBehaviour
         }
         currentAmmo--;
         bars[currentAmmo].fillAmount = reloadedAmount;
-        return true;
     }
 
     private void InitializeAmmoBars()

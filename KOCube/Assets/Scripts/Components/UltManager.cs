@@ -29,15 +29,16 @@ public class UltManager : MonoBehaviour
 
     public bool RequestShoot()
     {
-        if (canShoot)
-        {
-            timer = 0;
-            ultBar.fillAmount = 0;
-            ultBar.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            canShoot = false;
-            return true;
-        }
+        if (canShoot) return true;
         return false;
+    }
+
+    public void UpdateBar()
+    {
+        timer = 0;
+        ultBar.fillAmount = 0;
+        ultBar.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        canShoot = false;
     }
 
     public void HideBar()

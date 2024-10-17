@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
-using Cinemachine;
 
 public class PlayerMovement : NetworkBehaviour
 {
     CharacterController characterController;
     AttackManager basicShoot;
+    public Renderer rend;
+    private static string ownerTag = "Untagged";
 
     float xMovement = 0;
     float yMovement = 0;
@@ -24,11 +23,14 @@ public class PlayerMovement : NetworkBehaviour
     {
         characterController = GetComponent<CharacterController>();
         basicShoot = GetComponent<AttackManager>();
+        rend = GetComponent<Renderer>();
+        rend.material = new Material(rend.material); //Desvinculamos el material del objeto del original para que los cambios no afecten al resto
     }
 
     void Start()
     {
-        this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerMovement>().Length%2+1).ToString(); //Se le asigna un equipo al entrar a la partida
+        if (IsServer) this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerMovement>().Length % 2 + 1).ToString(); //Se le asigna un equipo al entrar a la partida
+        RequestTagServerRpc();
         if (IsOwner)
         {
             GetComponent<PlayerInput>().enabled = true;
@@ -65,5 +67,31 @@ public class PlayerMovement : NetworkBehaviour
     {
         xMovement = context[0];
         zMovement = context[1];
+    }
+
+    [ServerRpc (RequireOwnership = false)]
+    private void RequestTagServerRpc()
+    {
+        AssignTagClientRpc(this.tag);
+    }
+
+    [ClientRpc]
+    private void AssignTagClientRpc(string tag)
+    {
+        this.tag = tag;
+        if(IsOwner) ownerTag = tag;
+        if(!ownerTag.Equals("Untagged")) InitializePlayersShaders();
+    }
+
+    private void InitializePlayersShaders()
+    {
+        PlayerMovement[] players = GameObject.FindObjectsOfType<PlayerMovement>();
+        foreach(PlayerMovement player in players)
+        {
+            if (!player.tag.Equals(ownerTag))
+            {
+                player.rend.material.SetColor("_color", Color.red);
+            }
+        }
     }
 }
