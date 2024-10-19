@@ -40,7 +40,7 @@ public class UIManager : Singleton<UIManager>, IUI
         Canvas = GameObject.Find("Canvas");
         State = new StartMenuState(this);
         //Suscribimos un método que se encargará de que se cambie el estado correctamente cuando se cargue una nueva escena
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
         DontDestroyOnLoad(Canvas);
     }
 
@@ -90,7 +90,7 @@ public class UIManager : Singleton<UIManager>, IUI
 
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        State = new LobbyHostJoinState(this);
     }
 
     public void GoMainMenu()
@@ -152,12 +152,12 @@ public class UIManager : Singleton<UIManager>, IUI
         }
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        //OJO SI SE CAMBIA EL NOMBRE DE LA ESCENA
-        if (SceneManager.GetActiveScene().name == "MPNetworkTest")
-        {
-            State = new LobbyHostJoinState(this);
-        }
-    }
+    //void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    //OJO SI SE CAMBIA EL NOMBRE DE LA ESCENA
+    //    if (SceneManager.GetActiveScene().name == "MPNetworkTest")
+    //    {
+
+    //    }
+    //}
 }
