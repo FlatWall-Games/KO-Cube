@@ -133,7 +133,6 @@ public class AttackManager : NetworkBehaviour
     [ClientRpc]
     private void UpdateBarsClientRpc(string attackType)
     {
-        Debug.Log(attackType);
         shooting = true;
         if (attackType.Equals("BASIC")) ammoManager.UpdateAmmoBar();
         else ultManager.UpdateBar();
@@ -159,6 +158,13 @@ public class AttackManager : NetworkBehaviour
     }
 
     public void OnShootEnded() //Llamado desde la animación
+    {
+        shooting = false;
+        if (IsServer) OnShootEndedClientRpc();
+    }
+
+    [ClientRpc]
+    private void OnShootEndedClientRpc()
     {
         shooting = false;
     }
