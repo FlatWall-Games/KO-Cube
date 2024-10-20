@@ -18,6 +18,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField]
     float speed = 10f;
     float rotationSpeed = 10f;
+    bool canMove = true;
 
     private void Awake()
     {
@@ -45,7 +46,15 @@ public class PlayerMovement : NetworkBehaviour
         {
             yMovement = -9.81f / speed; //Tenemos en cuenta que después se multiplica por la velocidad al vector entero
         }
-        Vector3 movement = new Vector3(xMovement, yMovement, zMovement);
+        Vector3 movement = Vector3.zero;
+        if (canMove)
+        {
+            movement = new Vector3(xMovement, yMovement, zMovement);
+        }
+        else
+        {
+            movement = new Vector3(0f, yMovement, 0f);
+        }
         movement *= speed * Time.deltaTime;
         characterController.Move(movement);
         if ((xMovement != 0 || zMovement != 0) && !basicShoot.IsShooting()) //Si se mueve y no está disparando mira hacia donde se mueve
@@ -59,14 +68,16 @@ public class PlayerMovement : NetworkBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        
         OnMoveServerRpc(context.ReadValue<Vector2>());
+        
     }
 
     [ServerRpc]
     public void OnMoveServerRpc(Vector2 context)
     {
-        xMovement = context[0];
-        zMovement = context[1];
+            xMovement = context[0];
+            zMovement = context[1];
     }
 
     [ServerRpc (RequireOwnership = false)]
@@ -93,5 +104,14 @@ public class PlayerMovement : NetworkBehaviour
                 player.rend.material.SetColor("_color", Color.red);
             }
         }
+    }
+
+    public void CanMove()
+    {
+        canMove = true;
+    }
+    public void NotMove()
+    {
+        canMove = false;
     }
 }
