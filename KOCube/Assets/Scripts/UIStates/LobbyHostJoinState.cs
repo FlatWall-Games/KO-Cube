@@ -24,7 +24,6 @@ public class LobbyHostJoinState : AUIState
     {
         matchSearchMenu.SetActive(false);
         mainScreen.SetActive(false);
-        contextUI.Canvas.transform.Find("Background").gameObject.SetActive(false);
     }
 
     public override void FixedUpdate()

@@ -57,6 +57,7 @@ public class UIManager : Singleton<UIManager>, IUI
     void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10, 10, 300, 300));
+        GUI.skin.label.fontSize = 25;
         if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsServer)
         {
             StatusLabels();
