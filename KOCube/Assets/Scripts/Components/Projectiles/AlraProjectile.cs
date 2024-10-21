@@ -24,8 +24,9 @@ public class AlraProjectile : AProjectile
     }
 
 
-    public override void CheckDestroy(string otherTag) //Cada proyectil tiene sus condiciones de destrucción
+    public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
+        string otherTag = other.tag;
         Debug.Log("choqué con algo");
         //En este caso, el proyectil se destruye al chocar con un jugador del otro equipo o con un objeto del mapa
         if (otherTag.Equals("Team1"))

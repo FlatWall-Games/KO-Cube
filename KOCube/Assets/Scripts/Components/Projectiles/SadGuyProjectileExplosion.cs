@@ -12,7 +12,7 @@ public class SadGuyProjectileExplosion : AProjectile
         this.transform.parent = null; //Se desvincula del padre para que no le afecte su movimiento
     }
 
-    public override void CheckDestroy(string otherTag) //Cada proyectil tiene sus condiciones de destrucción
+    public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
     }
 }

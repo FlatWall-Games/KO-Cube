@@ -18,7 +18,7 @@ public class MachinganUlt : AProjectile
         tag = "Untagged";
     }
 
-    public override void CheckDestroy(string otherTag) //Cada proyectil tiene sus condiciones de destrucción
+    public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
         
     }

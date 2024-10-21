@@ -9,7 +9,7 @@ public class AProjectile : MonoBehaviour, IAttack
     [SerializeField] protected float timeToDestroy; //Tiempo que tarda en destruirse
     [SerializeField] protected float damage; //Daño que hace a enemigos
     [SerializeField] protected float healing; //Vida que cura a aliados
-    protected PlayerMovement attacker; //Jugador que lanzó el ataque
+    protected PlayerBehaviour attacker; //Jugador que lanzó el ataque
     protected Rigidbody rb;
 
     protected virtual void Awake()
@@ -20,10 +20,10 @@ public class AProjectile : MonoBehaviour, IAttack
 
     private void OnTriggerEnter(Collider other)
     {
-        CheckDestroy(other.tag);
+        CheckDestroy(other);
     }
 
-    public virtual void CheckDestroy(string otherTag) { }
+    public virtual void CheckDestroy(Collider other) { }
 
     public float GetDamage()
     {
@@ -45,12 +45,12 @@ public class AProjectile : MonoBehaviour, IAttack
         this.tag = tag;
     }
 
-    public void SetAttacker(PlayerMovement attacker)
+    public void SetAttacker(PlayerBehaviour attacker)
     {
         this.attacker = attacker;
     }
 
-    public PlayerMovement GetAttacker()
+    public PlayerBehaviour GetAttacker()
     {
         return attacker;
     }

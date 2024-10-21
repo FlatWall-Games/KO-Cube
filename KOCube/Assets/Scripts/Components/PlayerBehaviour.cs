@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerBehaviour : NetworkBehaviour
 {
     CharacterController characterController;
     AttackManager basicShoot;
@@ -30,7 +30,7 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
-        if (IsServer) this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerMovement>().Length % 2 + 1).ToString(); //Se le asigna un equipo al entrar a la partida
+        if (IsServer) this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerBehaviour>().Length % 2 + 1).ToString(); //Se le asigna un equipo al entrar a la partida
         RequestTagServerRpc();
         if (IsOwner)
         {
@@ -96,8 +96,8 @@ public class PlayerMovement : NetworkBehaviour
 
     private void InitializePlayersShaders()
     {
-        PlayerMovement[] players = GameObject.FindObjectsOfType<PlayerMovement>();
-        foreach(PlayerMovement player in players)
+        PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
+        foreach(PlayerBehaviour player in players)
         {
             if (!player.tag.Equals(ownerTag))
             {

@@ -22,7 +22,7 @@ public class HealthManager : NetworkBehaviour
         IAttack attack = other.GetComponent<IAttack>();
         if (attack != null)
         {
-            if (attack.GetAttacker() == GetComponent<PlayerMovement>()) return; //Los propios básicos no afectan a uno mismo
+            if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
             if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
             {
                 currentHealth += attack.GetHealing();

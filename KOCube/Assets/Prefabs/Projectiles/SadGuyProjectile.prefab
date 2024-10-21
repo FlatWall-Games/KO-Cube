@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2423371258440396712}
   - component: {fileID: 6525354655148241558}
   - component: {fileID: 4673477978996258473}
-  - component: {fileID: 4518199671140688526}
+  - component: {fileID: 786369518409219200}
+  - component: {fileID: 3305610448685123181}
   m_Layer: 6
-  m_Name: SadGuyProjectileExplossion
+  m_Name: SadGuyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: adef0e6316f013045812600736cbe98a, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +107,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4518199671140688526
+--- !u!54 &786369518409219200
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7032379458201584044}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3305610448685123181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,10 +143,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7032379458201584044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d325972c101f448a9028a8a65e0fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 39cdbdc0c0b13914ea676a4e566754bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  timeToDestroy: 0.1
-  damage: 10
-  healing: 10
+  speed: 20
+  timeToDestroy: 120
+  damage: 50
+  healing: 50
+  explosionPrefab: {fileID: 7032379458201584044, guid: 2e5d306abf862c847ac1850886637f4b,
+    type: 3}
+  upwardForce: 0.5

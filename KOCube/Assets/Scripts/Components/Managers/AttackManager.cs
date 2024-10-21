@@ -11,7 +11,7 @@ public class AttackManager : NetworkBehaviour
     private bool hideAfterShooting = false; //Indica si el indicador se debe apagar tras disparar con el mando
 
     [Header("Basic attack:")]
-    [SerializeField] private AmmoManager ammoManager; //Controlador de los básicos que posibilita o no el disparo
+    [SerializeField] private BasicAmmoManager ammoManager; //Controlador de los básicos que posibilita o no el disparo
     [SerializeField] GameObject basicPrefab; //Prefab del básico
     [SerializeField] private Transform basicOrigin; //Posición desde la que salen los básicos
 
@@ -142,14 +142,14 @@ public class AttackManager : NetworkBehaviour
     {
         IAttack projectile = GameObject.Instantiate(basicPrefab, basicOrigin).GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
-        projectile.SetAttacker(GetComponent<PlayerMovement>()); //Se configura para que sepa quién lanzó el ataque
+        projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
     }
 
     public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
     {
         IAttack projectile = GameObject.Instantiate(ultPrefab, ultOrigin).GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
-        projectile.SetAttacker(GetComponent<PlayerMovement>()); //Se configura para que sepa quién lanzó el ataque
+        projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
     }
 
     public bool IsShooting() //Llamado desde PlayerMovement para saber si rotar el jugador hacia donde mira o no

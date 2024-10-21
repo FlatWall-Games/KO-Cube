@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AmmoManager : MonoBehaviour
+public class BasicAmmoManager : MonoBehaviour
 {
     [SerializeField] private RectTransform singleBar; //Barra de munición
     [SerializeField] private int maxAmmo; //Munición máxima

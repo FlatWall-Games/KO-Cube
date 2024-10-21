@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public interface IAttack
 {
-    public void CheckDestroy(string otherTag);
+    public void CheckDestroy(Collider other);
 
     public float GetDamage();
 
@@ -15,7 +15,7 @@ public interface IAttack
 
     public void SetTag(string tag);
 
-    public void SetAttacker(PlayerMovement attacker);
+    public void SetAttacker(PlayerBehaviour attacker);
 
-    public PlayerMovement GetAttacker();
+    public PlayerBehaviour GetAttacker();
 }
