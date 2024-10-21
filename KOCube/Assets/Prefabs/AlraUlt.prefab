@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3179800134787666039}
   - component: {fileID: 4043158026836034993}
   - component: {fileID: 5417979819674989570}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AlraUlt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
