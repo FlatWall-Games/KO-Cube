@@ -31,20 +31,43 @@ public class HealthManager : NetworkBehaviour
 
     public void ManageDamageAndHeal(IAttack attack)
     {
+        string type;
+        float amount;
+
         if (attack != null)
         {
             if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
             if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
             {
                 currentHealth += attack.GetHealing();
-                if (currentHealth > maxHealth) currentHealth = maxHealth;
+                amount = attack.GetHealing();
+                if (currentHealth > maxHealth) 
+                { 
+                    amount = attack.GetHealing() - (currentHealth - maxHealth);
+                    currentHealth = maxHealth; 
+                }
+
+                type = "heal";
             }
-            else //Si no dañan
+            else //Si no, dañan
             {
                 currentHealth -= attack.GetDamage();
-                if (currentHealth <= 0) Debug.Log("MUERTO");
+                amount = attack.GetDamage();
+                if (currentHealth <= 0) 
+                {
+                    amount = attack.GetDamage() + currentHealth;
+                    currentHealth = 0; 
+                    Debug.Log("MUERTO"); 
+                }
+
+                type = "damage";
             }
             UpdateHealthClientRpc(currentHealth); //Se actualiza la vida en todos los clientes
+
+            HealthTank sadGuy = attack.GetAttacker().gameObject.GetComponent<HealthTank>();
+            if (sadGuy == null) return;
+
+            sadGuy.UpdateHealthTank(type, amount);
         }
     }
 
