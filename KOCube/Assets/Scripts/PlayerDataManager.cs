@@ -15,7 +15,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     List<List<string>> characterSkins = new List<List<string>>(numberOfCharacters);
     //Por cada personaje se almacena una lista con el codigo de las skisn que posee, siendo 0 la skin por defecto.
     //Los codigos de los personajes (su orden en la lista) son:
-    //Ma "Xing" Gan 0, Judy 1, Cleo 2, Bale 3, Sadguy 4, Alra 5
+    //VER EL ORDEN EN EL NETWORK MANAGER
 
 
     void Start()
