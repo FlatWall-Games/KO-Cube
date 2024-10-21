@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc0b3178c897f048a066d52ed7b3942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadTime: 5
+  loadTime: 25
   ultBar: {fileID: 5417474825978315546}
 --- !u!1 &1422328645456135570
 GameObject:
@@ -1037,14 +1037,14 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: 753088835
     DestinationState: 1095371188
-    TransitionDuration: 0.6153364
+    TransitionDuration: 0
     TriggerNameHash: 621681159
     TransitionIndex: 0
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 753088835
     DestinationState: 691898233
-    TransitionDuration: 0.25
+    TransitionDuration: 0
     TriggerNameHash: -199737661
     TransitionIndex: 1
   m_Animator: {fileID: 571336068098503327}
