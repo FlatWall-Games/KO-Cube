@@ -1276,7 +1276,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3345367470636222976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b483246a91c3b48808349c8bcbdc3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 872753bcdca8e13469d449f509fc9cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tankBar: {fileID: 6194954838727081205}
