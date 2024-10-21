@@ -37,7 +37,7 @@ public class HealthManager : NetworkBehaviour
         if (attack != null)
         {
             HealthTankManager sadGuy = attack.GetAttacker().gameObject.GetComponent<HealthTankManager>();
-
+            Debug.Log(sadGuy);
             if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
             if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
             {

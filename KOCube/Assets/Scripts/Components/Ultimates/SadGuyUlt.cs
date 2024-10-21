@@ -36,6 +36,13 @@ public class SadGuyUlt : AProjectile
         {
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, hitPoint);
+            StartCoroutine(HideRayAfterTime(0.1f));
         }
+    }
+
+    IEnumerator HideRayAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        lineRenderer.positionCount = 0; // Ocultar el rayo
     }
 }
