@@ -1,26 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelection : NetworkBehaviour
 {
-    public GameObject[] playerPrefabs; // Lista de prefabs de personajes (Por si acaso, que su orden coincida con el de la lista del NetworkManager)
-    private bool characterSpawned = false; //Booleano para que solo pueda instanciar 1 personaje en tu runtime
-    public void SelectCharacter(int characterIndex)
+    //Variables de la interfaz
+    public Sprite[] uiCharacterImages;
+    public TextMeshProUGUI[] uiCharacterNames;
+    public TextMeshProUGUI[] uiCharacterDescriptions;
+    private int arrayIndex = 0;
+
+    private Image uiCharacterPortrait;
+    private TextMeshProUGUI uiCharacterName;
+    private TextMeshProUGUI uiCharacterDescription;
+
+    public GameObject[] playerPrefabs; //Lista de prefabs de persooajes (Por si acaso, que su orden coincida con el de la lista del NetworkManager)
+
+    private void Awake()
+    {
+        uiCharacterPortrait = transform.Find("UI/CharacterImage").GetComponent<Image>();
+        uiCharacterName = transform.Find("UI/CharacterNamePanel/CharacterName").GetComponent<TextMeshProUGUI>();
+        uiCharacterDescription = transform.Find("UI/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
+    }
+    //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje
+    public void ChangeCharacterUI(int value)
+    {
+        arrayIndex += value;
+
+        //Controlamos que el indice que accede a los arrays no se salga
+        //Si llega a valer la misma longitud que el array, igualamos el indice a cero
+        //Si llega a valer menos de 0, lo igualamos al indice del ultimo elemento
+        if( arrayIndex == uiCharacterImages.Length) arrayIndex = 0;
+        else if( arrayIndex < 0) arrayIndex = uiCharacterImages.Length - 1;
+
+        //Actualizamos la imagen, el nombre y la descripcion
+        ChangeCharacterImage(arrayIndex);
+        ChangeCharacterName(arrayIndex);
+        ChangeCharacterDescription(arrayIndex);
+    }
+
+    //Metodo que cambia la imagen del personaje
+    private void ChangeCharacterImage(int index)
+    {
+        uiCharacterPortrait.sprite = uiCharacterImages[index];
+    }
+
+    //Metodo que cambia el nombre del personaje
+    private void ChangeCharacterName(int index)
+    {
+        uiCharacterName.text = uiCharacterNames[index].text;
+    }
+
+    //Metodo que cambia la descripcion del personaje
+    private void ChangeCharacterDescription(int index)
+    {
+        uiCharacterDescription.text = uiCharacterDescriptions[index].text;
+    }
+
+    /////// Metodos Multijugador ///////
+    
+    //Este metodo habria que modificarlo para que el servidor compruebe si puede usar ese personaje y tal
+    public void SelectCharacter()
     {
         if (IsServer)
         {
             // Si es el servidor, instanciamos el personaje directamente
-            SpawnCharacterServer(characterIndex);
+            SpawnCharacterServer(arrayIndex);
         }
         else
         {
             // Si es un cliente, enviamos la solicitud al servidor
-            SpawnCharacterRequestServerRpc(characterIndex);
+            SpawnCharacterRequestServerRpc(arrayIndex);
         }
 
-        characterSpawned = true;
+        UIManager.Instance.State = new GameState(UIManager.Instance);
     }
 
     // ServerRpc para que el servidor reciba la solicitud del cliente
@@ -41,11 +97,11 @@ public class CharacterSelection : NetworkBehaviour
         }
         else
         {
-            Debug.LogWarning("Índice de personaje inválido");
+            Debug.LogWarning("Índice de personaje inválido ");
         }
     }
 
-    private void SpawnCharacterServer(int characterIndex) 
+    private void SpawnCharacterServer(int characterIndex)
     {
         // Asegurarse de que el índice es válido
         if (characterIndex >= 0 && characterIndex < playerPrefabs.Length)
@@ -62,35 +118,8 @@ public class CharacterSelection : NetworkBehaviour
             Debug.LogWarning("Índice de personaje inválido");
         }
     }
-    //Hasta que no haya interfaz, el personaje se escoge con numeros
-
     private void Update()
     {
-        if (characterSpawned) return;
 
-        //Al pulsar la tecla, se llama a SelectCharacter pasandole su indice del array
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            Debug.Log("Tecla 0 pulsada");
-            SelectCharacter(0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("Tecla 0 pulsada");
-            SelectCharacter(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("Tecla 0 pulsada");
-            SelectCharacter(2);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("Tecla 0 pulsada");
-            SelectCharacter(3);
-        }
     }
 }

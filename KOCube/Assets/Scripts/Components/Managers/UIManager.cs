@@ -118,7 +118,7 @@ public class UIManager : Singleton<UIManager>, IUI
         _joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
         NetworkManager.Singleton.StartHost();
-        State = new GameState(this);
+        State = new CharacterSelectMenuState(this);
     }
 
     public void StartGameAsClient()
@@ -142,7 +142,7 @@ public class UIManager : Singleton<UIManager>, IUI
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "wss"));
             NetworkManager.Singleton.StartClient();
 
-            State = new GameState(this);
+            State = new CharacterSelectMenuState(this);
         }
         catch (RelayServiceException e)
         {
