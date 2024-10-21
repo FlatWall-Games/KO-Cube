@@ -293,7 +293,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1143,14 +1143,14 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: -1006551434
     DestinationState: 1095371188
-    TransitionDuration: 0.25
+    TransitionDuration: 0
     TriggerNameHash: 621681159
     TransitionIndex: 0
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: -1006551434
     DestinationState: -184995698
-    TransitionDuration: 0.25
+    TransitionDuration: 0
     TriggerNameHash: -199737661
     TransitionIndex: 1
   m_Animator: {fileID: 571336068098503327}

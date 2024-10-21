@@ -9,6 +9,8 @@ public class AlraUlt : AProjectile
     //Escala maxima que alcanzara la esfera
     [SerializeField] float maxScale = 20f;
 
+    [SerializeField] float healingInterval;
+
     float scaleRatio;
     protected override void Awake()
     {
@@ -16,22 +18,30 @@ public class AlraUlt : AProjectile
         //Calculamos la diferencia de escala de la esfera
         float scaleChange = maxScale - inicialScale;
         //Calculamos cuanto hay que escalar la esfera por segundo aplicando (maxScale - initialScale) / duracion del escalada (en nuestro caso, el tiempo que dura viva la esfera)
-        scaleRatio = scaleChange / this.timeToDestroy;
-        Debug.Log("Esfera creada");
+        scaleRatio = (scaleChange / this.timeToDestroy) * 4;
+
+        StartCoroutine(ResetTrigger());
     }
 
     protected void Update()
     {
-        transform.localScale += new Vector3(scaleRatio, scaleRatio, scaleRatio) * Time.deltaTime;
+        if (transform.localScale.x < maxScale)
+        {
+            transform.localScale += new Vector3(scaleRatio, scaleRatio, scaleRatio) * Time.deltaTime;
+        }
+        if(transform.localScale.x > maxScale)
+        {
+            transform.localScale = new Vector3(maxScale, maxScale, maxScale);
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    IEnumerator ResetTrigger()
     {
-        
-    }
-
-    public override void CheckDestroy(string otherTag) //Cada proyectil tiene sus condiciones de destrucción
-    {
-       
+        while (true)
+        {
+            yield return new WaitForSeconds(healingInterval);
+            GetComponent<Collider>().enabled = false;
+            GetComponent<Collider>().enabled = true;
+        }
     }
 }

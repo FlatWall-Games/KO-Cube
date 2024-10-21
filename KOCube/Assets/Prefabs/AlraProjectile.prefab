@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   timeToDestroy: 0.6
-  damage: 1
+  damage: 5
   healing: 0
 --- !u!54 &-8159086349638844745
 Rigidbody:
