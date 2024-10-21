@@ -27,11 +27,11 @@ public class AlraUlt : AProjectile
     {
         if (transform.localScale.x < maxScale)
         {
-            transform.localScale += new Vector3(scaleRatio, scaleRatio, scaleRatio) * Time.deltaTime;
+            transform.localScale += new Vector3(scaleRatio, 0, scaleRatio) * Time.deltaTime;
         }
         if(transform.localScale.x > maxScale)
         {
-            transform.localScale = new Vector3(maxScale, maxScale, maxScale);
+            transform.localScale = new Vector3(maxScale, 1, maxScale);
         }
     }
 

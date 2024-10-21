@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3179800134787666039}
   - component: {fileID: 4043158026836034993}
   - component: {fileID: 5417979819674989570}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: AlraUlt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,10 +52,10 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4150131388132305550}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: adef0e6316f013045812600736cbe98a, type: 2}
+  - {fileID: 2100000, guid: 534a66fb95d73404281f528bdef39a82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
