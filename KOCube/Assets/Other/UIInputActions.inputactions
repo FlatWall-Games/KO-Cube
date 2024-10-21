@@ -162,6 +162,17 @@
                 },
                 {
                     "name": "",
+                    "id": "2bd613cb-1b91-4873-a669-7f4a57401d4f",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "de2d28ae-49bc-4581-bcb4-1b1d09c41f10",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",

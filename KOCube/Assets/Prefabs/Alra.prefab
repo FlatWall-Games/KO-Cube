@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3676693948
+  GlobalObjectIdHash: 3092957235
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1123,7 +1123,7 @@ MonoBehaviour:
     type: 3}
   basicOrigin: {fileID: 4654073436472853692}
   ultManager: {fileID: 8644784596198557345}
-  ultPrefab: {fileID: 4150131388132305550, guid: 16bb50c9281f826419a747847e2b0d48,
+  ultPrefab: {fileID: 4150131388132305550, guid: a9cd1607b6fc475428c45aacd70b458a,
     type: 3}
   ultOrigin: {fileID: 3939189910528843887}
 --- !u!114 &7550814244392496253
@@ -1146,6 +1146,13 @@ MonoBehaviour:
     TransitionDuration: 0.25
     TriggerNameHash: 621681159
     TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1006551434
+    DestinationState: -184995698
+    TransitionDuration: 0.25
+    TriggerNameHash: -199737661
+    TransitionIndex: 1
   m_Animator: {fileID: 571336068098503327}
 --- !u!114 &7442144102207965242
 MonoBehaviour:
@@ -1303,7 +1310,7 @@ Transform:
   m_GameObject: {fileID: 5506573187448384290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.98, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
