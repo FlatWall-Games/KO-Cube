@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthTank : NetworkBehaviour
+public class HealthTankManager : NetworkBehaviour
 {
     [SerializeField] Image tankBar;
     [SerializeField] float maxEnergy = 600;
@@ -12,6 +12,14 @@ public class HealthTank : NetworkBehaviour
 
     public float Energy { get { return _energy; } set { _energy = value; } }
     public float MaxEnergy { get { return _energy; } }
+
+    private void Start()
+    {
+        if (!IsOwner)
+        {
+            tankBar.transform.gameObject.SetActive(false);
+        }
+    }
 
     public void UpdateHealthTank(string type, float amount)
     {
