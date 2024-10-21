@@ -20,6 +20,17 @@ public class HealthManager : NetworkBehaviour
     {
         if (!IsServer) return; //Sólo calcula daños el servidor
         IAttack attack = other.GetComponent<IAttack>();
+        ManageDamageAndHeal(attack);
+    }
+
+    public void OnRaycastHit(IAttack attack)
+    {
+        if (!IsServer) return; //Sólo calcula daños el servidor
+        ManageDamageAndHeal(attack);
+    }
+
+    public void ManageDamageAndHeal(IAttack attack)
+    {
         if (attack != null)
         {
             if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo

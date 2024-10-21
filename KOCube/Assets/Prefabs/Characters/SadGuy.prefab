@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc0b3178c897f048a066d52ed7b3942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadTime: 10
+  loadTime: 3
   ultBar: {fileID: 5417474825978315546}
 --- !u!1 &1422328645456135570
 GameObject:
@@ -1017,7 +1017,7 @@ MonoBehaviour:
     type: 3}
   basicOrigin: {fileID: 4654073436472853692}
   ultManager: {fileID: 8644784596198557345}
-  ultPrefab: {fileID: 4150131388132305550, guid: 16bb50c9281f826419a747847e2b0d48,
+  ultPrefab: {fileID: 4150131388132305550, guid: cc5c7f4ab07c98f498848eeebbae346f,
     type: 3}
   ultOrigin: {fileID: 3939189910528843887}
 --- !u!114 &7550814244392496253
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 753088835
-    DestinationState: 319337876
+    DestinationState: 258041446
     TransitionDuration: 0
     TriggerNameHash: -199737661
     TransitionIndex: 1
@@ -1182,7 +1182,7 @@ Transform:
   m_GameObject: {fileID: 5506573187448384290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.96}
+  m_LocalPosition: {x: 0, y: 0, z: 0.549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
