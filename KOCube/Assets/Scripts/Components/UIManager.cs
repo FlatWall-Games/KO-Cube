@@ -143,7 +143,6 @@ public class UIManager : Singleton<UIManager>, IUI
             NetworkManager.Singleton.StartClient();
 
             State = new GameState(this);
-            Canvas.transform.Find("PingPanel").gameObject.GetComponent<HUD_Ping>().CanStartWorking();
         }
         catch (RelayServiceException e)
         {
