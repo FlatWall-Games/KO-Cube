@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  timeToDestroy: 0.5
+  timeToDestroy: 5
   damage: 200
   healing: 0
   lineRenderer: {fileID: 3498692300258138334}

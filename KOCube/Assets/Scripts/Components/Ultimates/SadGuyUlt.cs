@@ -9,6 +9,7 @@ public class SadGuyUlt : AProjectile
     protected override void Awake()
     {
         base.Awake();
+        SetAttacker(transform.parent.parent.GetComponent<PlayerBehaviour>()); //Se fuerza la asignación del responsable del ataque en el awake, pues el rayo se lanza demasiado rápido.
         RayShoot();
     }
 
