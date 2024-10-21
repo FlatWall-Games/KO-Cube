@@ -17,7 +17,7 @@ public class HealthTankManager : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            tankBar.transform.gameObject.SetActive(false);
+            tankBar.transform.parent.gameObject.SetActive(false);
         }
     }
 

@@ -34,14 +34,15 @@ public class HealthManager : NetworkBehaviour
         string type;
         float amount;
 
-        HealthTankManager sadGuy = attack.GetAttacker().gameObject.GetComponent<HealthTankManager>();
-
         if (attack != null)
         {
+            HealthTankManager sadGuy = attack.GetAttacker().gameObject.GetComponent<HealthTankManager>();
+
             if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
             if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
             {
                 float finalHealing = attack.GetHealing();
+
                 if(sadGuy != null)
                 {
                     if (attack.GetHealing() > sadGuy.Energy)
@@ -49,8 +50,10 @@ public class HealthManager : NetworkBehaviour
                         finalHealing = sadGuy.Energy;
                     }
                 }
+
                 currentHealth += finalHealing;
                 amount = finalHealing;
+
                 if (currentHealth > maxHealth) 
                 { 
                     amount = attack.GetHealing() - (currentHealth - maxHealth);
@@ -63,6 +66,7 @@ public class HealthManager : NetworkBehaviour
             {
                 currentHealth -= attack.GetDamage();
                 amount = attack.GetDamage();
+
                 if (currentHealth <= 0) 
                 {
                     amount = attack.GetDamage() + currentHealth;
