@@ -5164,24 +5164,28 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d838d5ee769724442b3afcab8c84fa0d, type: 3}
   - {fileID: 21300000, guid: 367874b79a8a5cc4fa297a79420f58c2, type: 3}
   - {fileID: 21300000, guid: 120f2e5afb8e8444fb0305cc10484a9c, type: 3}
+  - {fileID: 21300000, guid: 43c2f77c2f654e044b2349e4e6744152, type: 3}
   uiCharacterNames:
   - {fileID: 321962933529451624, guid: 3abdc19cbc8a65942b359bdd232006ac, type: 3}
   - {fileID: 321962933529451624, guid: edee3284770a8b7488142d806228b3b7, type: 3}
   - {fileID: 321962933529451624, guid: d10c598049f66714eb52d136a5b0dadf, type: 3}
   - {fileID: 321962933529451624, guid: 9e3e065f3c89fa345a40113237093836, type: 3}
   - {fileID: 321962933529451624, guid: 013d0c080db6c584ba78b0762dc3716c, type: 3}
+  - {fileID: 321962933529451624, guid: b7b34636af33ff8459f356f2700b3d93, type: 3}
   uiCharacterDescriptions:
   - {fileID: 321962933529451624, guid: a43cfefa419cf1c43819caeb91c41f5a, type: 3}
   - {fileID: 321962933529451624, guid: 8d85e4c736097ea43a6f8c71d1be84ac, type: 3}
   - {fileID: 321962933529451624, guid: c28c4a9b633fa0944ab944ccdbd721c2, type: 3}
   - {fileID: 321962933529451624, guid: f804b91e80b95cb49b5be0e49d4e0131, type: 3}
   - {fileID: 321962933529451624, guid: d3c4d667ee1d6ae4e95d8fec8017d6d3, type: 3}
+  - {fileID: 321962933529451624, guid: 331ea921b861fc94f9a15af9bc22d230, type: 3}
   playerPrefabs:
   - {fileID: 3345367470636222976, guid: cffd50d27e5b9eb48b955f8f09d3a3c6, type: 3}
   - {fileID: 3345367470636222976, guid: 63ed74ab02d40af48a40db23c738507f, type: 3}
   - {fileID: 3345367470636222976, guid: 38d613c0625cb184e8577a2bff1e3a01, type: 3}
   - {fileID: 3345367470636222976, guid: 5ed41b3e79e36ee48b2f9477d27f19fe, type: 3}
   - {fileID: 3345367470636222976, guid: a1ec49cceef9abc4e820c1a9032e75d3, type: 3}
+  - {fileID: 3345367470636222976, guid: 47ddfa7d21103c647813e941c41def60, type: 3}
 --- !u!114 &557278623
 MonoBehaviour:
   m_ObjectHideFlags: 0
