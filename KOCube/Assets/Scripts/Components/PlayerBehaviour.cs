@@ -81,11 +81,11 @@ public class PlayerBehaviour : NetworkBehaviour
     ClientNetworkTransform clientNetworkTransform;
     float reconciliationCooldownTime = 1f;
     float reconciliationThreshold = 50f;
-    CountdownTimer reconciliationTimer;
+    CountdownTimer reconciliationCooldown;
 
     //Extrapolacion
     StatePayload extrapolationState;
-    CountdownTimer extrapolationTimer;
+    CountdownTimer extrapolationCooldown;
     float extrapolationLimit = 0.5f; // 500 ms
     float extrapolationMultiplier = 1.2f;
 
@@ -104,22 +104,22 @@ public class PlayerBehaviour : NetworkBehaviour
         serverStateBuffer = new CircularBuffer<StatePayload>(k_bufferSize);
         serverInputQueue = new Queue<InputPayload>();
 
-        reconciliationTimer = new CountdownTimer(reconciliationCooldownTime);
+        reconciliationCooldown = new CountdownTimer(reconciliationCooldownTime);
 
         clientNetworkTransform = GetComponent<ClientNetworkTransform>();
-        extrapolationTimer = new CountdownTimer(extrapolationLimit);
+        extrapolationCooldown = new CountdownTimer(extrapolationLimit);
 
-        reconciliationTimer.OnTimerStart += () =>
+        reconciliationCooldown.OnTimerStart += () =>
         {
-            extrapolationTimer.Stop();
+            extrapolationCooldown.Stop();
         };
-        extrapolationTimer.OnTimerStart += () =>
+        extrapolationCooldown.OnTimerStart += () =>
         {
-            reconciliationTimer.Stop();
+            reconciliationCooldown.Stop();
             SwitchAuthorityMode(AuthorityMode.Server);
         };
 
-        extrapolationTimer.OnTimerStop += () =>
+        extrapolationCooldown.OnTimerStop += () =>
         {
             extrapolationState = default;
             SwitchAuthorityMode(AuthorityMode.Client);
@@ -148,8 +148,8 @@ public override void OnNetworkSpawn()
     private void Update()
     {
         networkTimer.Update(Time.deltaTime);
-        reconciliationTimer.Tick(Time.deltaTime);
-        extrapolationTimer.Tick(Time.deltaTime);
+        reconciliationCooldown.Tick(Time.deltaTime);
+        extrapolationCooldown.Tick(Time.deltaTime);
 
         Extrapolate();
     }
@@ -230,7 +230,7 @@ public override void OnNetworkSpawn()
 
     void Extrapolate()
     {
-        if(IsServer && extrapolationTimer.IsRunning)
+        if(IsServer && extrapolationCooldown.IsRunning)
         {
             transform.position += extrapolationState.position.With(y: 0);
         }
@@ -240,8 +240,8 @@ public override void OnNetworkSpawn()
     {
         if (latency < extrapolationLimit && latency > Time.fixedDeltaTime)
         {
-            //float axisLength = latency * latest.position.magnitude; //no se si falta multiplicar por algo, minuto 12:04
-            //Quaternion angularRotation = Quaternion.AngleAxis(axisLength, latest.position);
+            float axisLength = latency * latest.position.magnitude; //no se si falta multiplicar por algo, minuto 12:04
+            Quaternion angularRotation = Quaternion.AngleAxis(axisLength, latest.position);
             if (extrapolationState.position != default)
             {
                 latest = extrapolationState;
@@ -249,12 +249,12 @@ public override void OnNetworkSpawn()
 
             var posAjustment = latest.position * (1 + latency * extrapolationMultiplier);
             extrapolationState.position = posAjustment;
-            //extrapolationState.rotation = angularRotation * latest.rotation;
-            extrapolationTimer.Start();
+            extrapolationState.rotation = angularRotation * latest.rotation;
+            extrapolationCooldown.Start();
         }
         else 
         {
-            extrapolationTimer.Stop();
+            extrapolationCooldown.Stop();
         }
     }
 
@@ -288,7 +288,7 @@ public override void OnNetworkSpawn()
         bool isNewServerState = !lastServerState.Equals(default);
         bool isLastStateUndefinedOrDifferent = lastProcessedState.Equals(default) || !lastProcessedState.Equals(lastServerState);
 
-        return isNewServerState && isLastStateUndefinedOrDifferent && !reconciliationTimer.IsRunning && !extrapolationTimer.IsRunning;
+        return isNewServerState && isLastStateUndefinedOrDifferent && !reconciliationCooldown.IsRunning && !extrapolationCooldown.IsRunning;
     }
 
     void HandleServerReconciliation()
@@ -308,7 +308,7 @@ public override void OnNetworkSpawn()
         if (positionError > reconciliationThreshold)
         {
             ReconcileState(rewindState);
-            reconciliationTimer.Start();
+            reconciliationCooldown.Start();
         }
 
         lastProcessedState = rewindState;
