@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Unity.Netcode;
-using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
-using Utilities;
 
 public class PlayerBehaviour : NetworkBehaviour
 {
@@ -14,31 +11,22 @@ public class PlayerBehaviour : NetworkBehaviour
     {
         public int tick;
         public Vector2 inputVector;
-        public DateTime timeStamp;
-        public ulong networkObjectId;
-        public Vector3 position;
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
             serializer.SerializeValue(ref tick);
             serializer.SerializeValue(ref inputVector);
-            serializer.SerializeValue(ref timeStamp);
-            serializer.SerializeValue(ref networkObjectId);
-            serializer.SerializeValue(ref position);
-
         }
     }
 
     public struct StatePayload : INetworkSerializable
     {
         public int tick;
-        public ulong networkObjectId;
         public Vector3 position;
         public Quaternion rotation;
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
             serializer.SerializeValue(ref tick);
-            serializer.SerializeValue(ref networkObjectId);
             serializer.SerializeValue(ref position);
             serializer.SerializeValue(ref rotation);
         }
@@ -62,7 +50,7 @@ public class PlayerBehaviour : NetworkBehaviour
     bool canMove = true;
 
     //Netcode General:
-    NetworkTimer networkTimer;
+    NetworkTimer timer;
     const float k_serverTickRate = 60f; //60 FPS
     const int k_bufferSize = 1024;
 
@@ -76,19 +64,7 @@ public class PlayerBehaviour : NetworkBehaviour
     //Netcode Servidor:
     CircularBuffer<StatePayload> serverStateBuffer;
     Queue<InputPayload> serverInputQueue;
-
-    //Reconciliacion
-    ClientNetworkTransform clientNetworkTransform;
-    float reconciliationCooldownTime = 1f;
-    float reconciliationThreshold = 50f;
-    CountdownTimer reconciliationCooldown;
-
-    //Extrapolacion
-    StatePayload extrapolationState;
-    CountdownTimer extrapolationCooldown;
-    float extrapolationLimit = 0.5f; // 500 ms
-    float extrapolationMultiplier = 1.2f;
-
+    float reconciliationThreshold = 10f;
 
     private void Awake()
     {
@@ -97,45 +73,15 @@ public class PlayerBehaviour : NetworkBehaviour
         rend = GetComponent<Renderer>();
         rend.material = new Material(rend.material); //Desvinculamos el material del objeto del original para que los cambios no afecten al resto
 
-        networkTimer = new NetworkTimer(k_serverTickRate);
+        timer = new NetworkTimer(k_serverTickRate);
         clientStateBuffer = new CircularBuffer<StatePayload>(k_bufferSize);
         clientInputBuffer = new CircularBuffer<InputPayload>(k_bufferSize);
 
-        serverStateBuffer = new CircularBuffer<StatePayload>(k_bufferSize);
-        serverInputQueue = new Queue<InputPayload>();
-
-        reconciliationCooldown = new CountdownTimer(reconciliationCooldownTime);
-
-        clientNetworkTransform = GetComponent<ClientNetworkTransform>();
-        extrapolationCooldown = new CountdownTimer(extrapolationLimit);
-
-        reconciliationCooldown.OnTimerStart += () =>
-        {
-            extrapolationCooldown.Stop();
-        };
-        extrapolationCooldown.OnTimerStart += () =>
-        {
-            reconciliationCooldown.Stop();
-            SwitchAuthorityMode(AuthorityMode.Server);
-        };
-
-        extrapolationCooldown.OnTimerStop += () =>
-        {
-            extrapolationState = default;
-            SwitchAuthorityMode(AuthorityMode.Client);
-        };
+        serverStateBuffer = new CircularBuffer<StatePayload> (k_bufferSize);
+        serverInputQueue = new Queue<InputPayload> ();
     }
 
-    void SwitchAuthorityMode(AuthorityMode mode)
-        {
-            clientNetworkTransform.authorityMode = mode;
-        bool shouldSync = mode == AuthorityMode.Client;
-            clientNetworkTransform.SyncPositionX = shouldSync;
-            clientNetworkTransform.SyncPositionY = shouldSync;
-            clientNetworkTransform.SyncPositionZ = shouldSync;
-        }
-
-public override void OnNetworkSpawn()
+    public override void OnNetworkSpawn()
     {
         if (IsServer) this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerBehaviour>().Length % 2 + 1).ToString(); //Se le asigna un equipo al entrar a la partida
         RequestTagServerRpc();
@@ -147,22 +93,17 @@ public override void OnNetworkSpawn()
 
     private void Update()
     {
-        networkTimer.Update(Time.deltaTime);
-        reconciliationCooldown.Tick(Time.deltaTime);
-        extrapolationCooldown.Tick(Time.deltaTime);
-
-        Extrapolate();
+        timer.Update(Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         //if (!IsOwner) return;
-        while (networkTimer.ShouldTick())
+        while (timer.ShouldTick())
         {
             HandleClientTick(input);
             HandleServerTick();
         }
-        Extrapolate();
     }
 
     void HandleServerTick()
@@ -197,7 +138,6 @@ public override void OnNetworkSpawn()
         if (bufferIndex == -1) return;
 
         SendToClientRpc(serverStateBuffer.Get(bufferIndex));
-        HandleExtrapolation(serverStateBuffer.Get(bufferIndex), CalculateLatencyInMillis(inputPayload));
     }
 
     StatePayload SimulateMovement(InputPayload inputPayload)
@@ -216,11 +156,6 @@ public override void OnNetworkSpawn()
         };
     }
 
-    static float CalculateLatencyInMillis(InputPayload inputPayload)
-    {
-        return (DateTime.Now - inputPayload.timeStamp).Milliseconds / 1000f;
-    }
-
     [ClientRpc]
     void SendToClientRpc(StatePayload statePayload)
     {
@@ -228,49 +163,16 @@ public override void OnNetworkSpawn()
         lastServerState = statePayload;
     }
 
-    void Extrapolate()
-    {
-        if(IsServer && extrapolationCooldown.IsRunning)
-        {
-            transform.position += extrapolationState.position.With(y: 0);
-        }
-    }
-
-    void HandleExtrapolation(StatePayload latest, float latency)
-    {
-        if (latency < extrapolationLimit && latency > Time.fixedDeltaTime)
-        {
-            float axisLength = latency * latest.position.magnitude; //no se si falta multiplicar por algo, minuto 12:04
-            Quaternion angularRotation = Quaternion.AngleAxis(axisLength, latest.position);
-            if (extrapolationState.position != default)
-            {
-                latest = extrapolationState;
-            }
-
-            var posAjustment = latest.position * (1 + latency * extrapolationMultiplier);
-            extrapolationState.position = posAjustment;
-            extrapolationState.rotation = angularRotation * latest.rotation;
-            extrapolationCooldown.Start();
-        }
-        else 
-        {
-            extrapolationCooldown.Stop();
-        }
-    }
-
     void HandleClientTick(Vector2 input)
     {
         if (!IsClient || !IsOwner) return;
 
-        int currentTick = networkTimer.CurrentTick;
+        int currentTick = timer.CurrentTick;
         int bufferIndex = currentTick % k_bufferSize;
 
         InputPayload inputPayload = new InputPayload()
         {
             tick = currentTick,
-            timeStamp = DateTime.Now,
-            networkObjectId = NetworkObjectId,
-            position = transform.position,
             inputVector = input
         };
 
@@ -288,7 +190,7 @@ public override void OnNetworkSpawn()
         bool isNewServerState = !lastServerState.Equals(default);
         bool isLastStateUndefinedOrDifferent = lastProcessedState.Equals(default) || !lastProcessedState.Equals(lastServerState);
 
-        return isNewServerState && isLastStateUndefinedOrDifferent && !reconciliationCooldown.IsRunning && !extrapolationCooldown.IsRunning;
+        return isNewServerState && isLastStateUndefinedOrDifferent;
     }
 
     void HandleServerReconciliation()
@@ -308,7 +210,6 @@ public override void OnNetworkSpawn()
         if (positionError > reconciliationThreshold)
         {
             ReconcileState(rewindState);
-            reconciliationCooldown.Start();
         }
 
         lastProcessedState = rewindState;
@@ -326,7 +227,7 @@ public override void OnNetworkSpawn()
         //Reproducimos todos los inputs desde el rewindState hasta el estado actual.
         int tickToReplay = lastServerState.tick;
 
-        while (tickToReplay < networkTimer.CurrentTick)
+        while (tickToReplay < timer.CurrentTick)
         {
             int bufferIndex = tickToReplay % k_bufferSize;
             StatePayload statePayload = ProcessMovement(clientInputBuffer.Get(bufferIndex));
@@ -347,7 +248,6 @@ public override void OnNetworkSpawn()
 
         return new StatePayload()
         {
-            networkObjectId = input.networkObjectId,
             tick = input.tick,
             position = transform.position,
             rotation = transform.rotation,
