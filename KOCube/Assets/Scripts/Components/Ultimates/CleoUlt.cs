@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CleoUlt : AProjectile
+public class JudyUlt : AProjectile
 {
     protected override void Awake()
     {
