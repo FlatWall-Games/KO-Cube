@@ -17,8 +17,14 @@ public class JudyniUlt : AProjectile
     {
         string otherTag = other.tag;
 
-        Debug.Log("ENDERPELLLL");
-        this.attacker.SetPosition(this.transform.position);
+        //this.attacker.SetPosition(this.transform.position);
+        //public void SetPosition(Vector3 pos)
+        //{
+        //    if (!IsServer) return;
+        //    Debug.Log($"TP hacia {pos} desde {this.transform.position}");
+        //    this.transform.position = pos;
+        //}
+
         //En este caso, el proyectil se destruye al chocar con un jugador del otro equipo o con un objeto del mapa
         if (otherTag.Equals("Team1"))
         {
