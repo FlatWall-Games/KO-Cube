@@ -16,4 +16,4 @@ public static class Vector3Extensions {
         return new Vector3(vector.x + (x ?? 0), vector.y + (y ?? 0), vector.z + (z ?? 0));
     }
 }
-}
+
