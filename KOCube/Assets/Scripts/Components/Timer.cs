@@ -89,4 +89,4 @@ public class StopwatchTimer : Timer
 
     public float GetTime() => Time;
 }
-
+}
