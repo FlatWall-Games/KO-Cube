@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,34 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerBehaviour : NetworkBehaviour
 {
+    //Variables de red:
+    public struct InputPayload : INetworkSerializable
+    {
+        public int tick;
+        public Vector3 inputVector;
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            serializer.SerializeValue(ref tick);
+            serializer.SerializeValue(ref inputVector);
+        }
+    }
+
+    public struct StatePayload : INetworkSerializable
+    {
+        public int tick;
+        public Vector3 position;
+        public Quaternion rotation;
+        public Vector3 velocity;
+
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            serializer.SerializeValue(ref tick);
+            serializer.SerializeValue(ref position);
+            serializer.SerializeValue(ref rotation);
+            serializer.SerializeValue(ref velocity);
+        }
+    }
+
     CharacterController characterController;
     AttackManager basicShoot;
     public Renderer rend;
@@ -20,12 +49,35 @@ public class PlayerBehaviour : NetworkBehaviour
     float rotationSpeed = 10f;
     bool canMove = true;
 
+    //Netcode General:
+    NetworkTimer timer;
+    const float k_serverTickRate = 60f; //60 FPS
+    const int k_bufferSize = 1024;
+
+    //Netcode Cliente:
+    CircularBuffer<StatePayload> clientStateBuffer;
+    CircularBuffer<InputPayload> clientInputBuffer;
+
+    StatePayload lastServerState;
+    StatePayload lastProcessedState;
+
+    //Netcode Servidor:
+    CircularBuffer<StatePayload> serverStateBuffer;
+    Queue<InputPayload> serverInputQueue;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         basicShoot = GetComponent<AttackManager>();
         rend = GetComponent<Renderer>();
         rend.material = new Material(rend.material); //Desvinculamos el material del objeto del original para que los cambios no afecten al resto
+
+        timer = new NetworkTimer(k_serverTickRate);
+        clientStateBuffer = new CircularBuffer<StatePayload>(k_bufferSize);
+        clientInputBuffer = new CircularBuffer<InputPayload>(k_bufferSize);
+
+        serverStateBuffer = new CircularBuffer<StatePayload> (k_bufferSize);
+        serverInputQueue = new Queue<InputPayload> ();
     }
 
     void Start()
@@ -40,6 +92,8 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void Update()
     {
+        timer.Update(Time.deltaTime);
+
         if (!IsServer) return; //El servidor es el único que calcula las posiciones y rotación
 
         if (!characterController.isGrounded) //Simulamos gravedad ya que el CharacterController no la tiene de forma nativa
