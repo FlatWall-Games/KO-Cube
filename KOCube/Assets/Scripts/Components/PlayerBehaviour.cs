@@ -10,7 +10,7 @@ public class PlayerBehaviour : NetworkBehaviour
     public struct InputPayload : INetworkSerializable
     {
         public int tick;
-        public Vector3 inputVector;
+        public Vector2 inputVector;
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
             serializer.SerializeValue(ref tick);
@@ -23,14 +23,12 @@ public class PlayerBehaviour : NetworkBehaviour
         public int tick;
         public Vector3 position;
         public Quaternion rotation;
-        public Vector3 velocity;
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
             serializer.SerializeValue(ref tick);
             serializer.SerializeValue(ref position);
             serializer.SerializeValue(ref rotation);
-            serializer.SerializeValue(ref velocity);
         }
     }
 
@@ -39,14 +37,16 @@ public class PlayerBehaviour : NetworkBehaviour
     public Renderer rend;
     private static string ownerTag = "Untagged";
 
+    Vector2 input;
+
     float xMovement = 0;
     float yMovement = 0;
     float zMovement = 0;
     Quaternion rotation;
 
     [SerializeField]
-    float speed = 10f;
-    float rotationSpeed = 10f;
+    float speed = 5f;
+    float rotationSpeed = 5f;
     bool canMove = true;
 
     //Netcode General:
@@ -64,6 +64,7 @@ public class PlayerBehaviour : NetworkBehaviour
     //Netcode Servidor:
     CircularBuffer<StatePayload> serverStateBuffer;
     Queue<InputPayload> serverInputQueue;
+    float reconciliationThreshold = 10f;
 
     private void Awake()
     {
@@ -93,9 +94,154 @@ public class PlayerBehaviour : NetworkBehaviour
     private void Update()
     {
         timer.Update(Time.deltaTime);
+    }
 
-        if (!IsServer) return; //El servidor es el único que calcula las posiciones y rotación
+    private void FixedUpdate()
+    {
+        if (!IsOwner) return;
+        while (timer.ShouldTick())
+        {
+            HandleClientTick(input);
+            HandleServerTick();
+        }
+    }
 
+    void HandleServerTick()
+    {
+        if (!IsServer) return;
+
+        int bufferIndex = -1;
+        while (serverInputQueue.Count > 0)
+        {
+            InputPayload inputPayload = serverInputQueue.Dequeue();
+
+            bufferIndex = inputPayload.tick % k_bufferSize;
+
+            StatePayload statePayload = SimulateMovement(inputPayload);
+            serverStateBuffer.Add(statePayload, bufferIndex);
+        }
+
+        if (bufferIndex == -1) return;
+
+        SendToClientRpc(serverStateBuffer.Get(bufferIndex));
+    }
+
+    StatePayload SimulateMovement(InputPayload inputPayload)
+    {
+        Physics.simulationMode = SimulationMode.Script;
+
+        Move(inputPayload.inputVector);
+        Physics.Simulate(Time.fixedDeltaTime);
+        Physics.simulationMode = SimulationMode.FixedUpdate;
+
+        return new StatePayload()
+        {
+            tick = inputPayload.tick,
+            position = transform.position,
+            rotation = transform.rotation,
+        };
+    }
+
+    [ClientRpc]
+    void SendToClientRpc(StatePayload statePayload)
+    {
+        if (!IsOwner) return;
+        lastServerState = statePayload;
+    }
+
+    void HandleClientTick(Vector2 input)
+    {
+        if (!IsClient) return;
+
+        int currentTick = timer.CurrentTick;
+        int bufferIndex = currentTick % k_bufferSize;
+
+        InputPayload inputPayload = new InputPayload()
+        {
+            tick = currentTick,
+            inputVector = input
+        };
+
+        clientInputBuffer.Add(inputPayload, bufferIndex);
+        SendToServerRpc(inputPayload);
+
+        StatePayload statePayload = ProcessMovement(inputPayload);
+        clientStateBuffer.Add(statePayload, bufferIndex);
+
+        HandleServerReconciliation();
+    }
+
+    bool ShouldReconcile()
+    {
+        bool isNewServerState = !lastServerState.Equals(default);
+        bool isLastStateUndefinedOrDifferent = lastProcessedState.Equals(default) || !lastProcessedState.Equals(lastServerState);
+
+        return isNewServerState && isLastStateUndefinedOrDifferent;
+    }
+
+    void HandleServerReconciliation()
+    {
+        if (!ShouldReconcile()) return;
+
+        float positionError;
+        int bufferIndex;
+        StatePayload rewindState = default;
+
+        bufferIndex = lastServerState.tick % k_bufferSize;
+        if (bufferIndex - 1 < 0) return; //No hay suficiente información para reconciliar
+
+        rewindState = IsHost ? serverStateBuffer.Get(bufferIndex - 1) : lastServerState; //Host RPCs se ejecutan inmediatamente, por lo que podemos usar el último estado del servidor.
+        positionError = Vector3.Distance(rewindState.position, clientStateBuffer.Get(bufferIndex).position);
+
+        if (positionError > reconciliationThreshold)
+        {
+            ReconcileState(rewindState);
+        }
+
+        lastProcessedState = lastServerState;
+    }
+
+    void ReconcileState(StatePayload rewindState)
+    {
+        transform.position = rewindState.position;
+        transform.rotation = rewindState.rotation;
+
+        if (!rewindState.Equals(lastServerState)) return;
+
+        clientStateBuffer.Add(rewindState, rewindState.tick);
+
+        //Reproducimos todos los inputs desde el rewindState hasta el estado actual.
+        int tickToReplay = lastServerState.tick;
+
+        while (tickToReplay < timer.CurrentTick)
+        {
+            int bufferIndex = tickToReplay % k_bufferSize;
+            StatePayload statePayload = ProcessMovement(clientInputBuffer.Get(bufferIndex));
+            clientStateBuffer.Add(statePayload, bufferIndex);
+            tickToReplay++;
+        }
+    }
+
+    [ServerRpc]
+    void SendToServerRpc(InputPayload input)
+    {
+        serverInputQueue.Enqueue(input);
+    }
+
+    StatePayload ProcessMovement(InputPayload input)
+    {
+        Move(input.inputVector);
+
+        return new StatePayload()
+        {
+            tick = input.tick,
+            position = transform.position,
+            rotation = transform.rotation,
+        };
+    }
+
+    void Move(Vector2 inputVector)
+    {
         if (!characterController.isGrounded) //Simulamos gravedad ya que el CharacterController no la tiene de forma nativa
         {
             yMovement = -9.81f / speed; //Tenemos en cuenta que después se multiplica por la velocidad al vector entero
@@ -103,7 +249,7 @@ public class PlayerBehaviour : NetworkBehaviour
         Vector3 movement = Vector3.zero;
         if (canMove)
         {
-            movement = new Vector3(xMovement, yMovement, zMovement);
+            movement = new Vector3(inputVector[0], yMovement, inputVector[1]);
         }
         else
         {
@@ -111,27 +257,17 @@ public class PlayerBehaviour : NetworkBehaviour
         }
         movement *= speed * Time.deltaTime;
         characterController.Move(movement);
-        if ((xMovement != 0 || zMovement != 0) && !basicShoot.IsShooting()) //Si se mueve y no está disparando mira hacia donde se mueve
+        if ((inputVector[0] != 0 || inputVector[1] != 0) && !basicShoot.IsShooting()) //Si se mueve y no está disparando mira hacia donde se mueve
         {
             movement.y = 0f; //Anulamos el eje y del movimiento para que rote en el eje deseado
             rotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
         }
-
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        
-        OnMoveServerRpc(context.ReadValue<Vector2>());
-        
-    }
-
-    [ServerRpc]
-    public void OnMoveServerRpc(Vector2 context)
-    {
-            xMovement = context[0];
-            zMovement = context[1];
+        input = context.ReadValue<Vector2>();
     }
 
     [ServerRpc (RequireOwnership = false)]
