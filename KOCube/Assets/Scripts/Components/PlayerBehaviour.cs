@@ -2,6 +2,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using Cinemachine;
 
 public class PlayerBehaviour : NetworkBehaviour
 {
@@ -30,7 +31,16 @@ public class PlayerBehaviour : NetworkBehaviour
 
     void Start()
     {
-        if (IsServer) this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerBehaviour>().Length % 2 + 1).ToString(); //Se le asigna un equipo al entrar a la partida
+        if (IsServer)
+        {
+            this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerBehaviour>().Length % 2 + 1).ToString(); //Se le asigna un equipo al entrar a la partida
+            InitializePosition();
+            if (this.tag.Equals("Team1"))
+            {
+                CinemachineTransposer t = GameObject.FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
+                t.m_FollowOffset = new Vector3(t.m_FollowOffset.x, t.m_FollowOffset.y, -t.m_FollowOffset.z);
+            }
+        }
         RequestTagServerRpc();
         if (IsOwner)
         {
@@ -76,8 +86,9 @@ public class PlayerBehaviour : NetworkBehaviour
     [ServerRpc]
     public void OnMoveServerRpc(Vector2 context)
     {
-            xMovement = context[0];
-            zMovement = context[1];
+        if(this.tag.Equals("Team1")) context *= -1; //Se invierte el vector de entrada, pues la cámara está girada
+        xMovement = context[0];
+        zMovement = context[1];
     }
 
     [ServerRpc (RequireOwnership = false)]
@@ -113,5 +124,14 @@ public class PlayerBehaviour : NetworkBehaviour
     public void NotMove()
     {
         canMove = false;
+    }
+
+    public void InitializePosition()
+    {
+        Transform initTransform = GameObject.FindObjectOfType<InitPosManager>().RequestPos(this.tag);
+        GetComponent<CharacterController>().enabled = false;
+        this.transform.position = initTransform.position;
+        this.transform.rotation = initTransform.rotation;
+        GetComponent<CharacterController>().enabled = true;
     }
 }

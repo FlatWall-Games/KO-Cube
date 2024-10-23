@@ -78,6 +78,7 @@ public class AttackManager : NetworkBehaviour
     public void Aim(InputAction.CallbackContext context) //Apuntado con el mando
     {
         Vector2 aimVector = context.ReadValue<Vector2>();
+        if (this.tag.Equals("Team1")) aimVector *= -1; //Igual que el movimiento, se invierte para que se apunte bien desde el otro equipo
         if(!shooting) controllerAimDirection = new Vector3(aimVector.x, 0, aimVector.y); //Dirección a la que disparará el jugador
         if (aimVector != Vector2.zero) aimIndicator.SetActive(true); //Si está apuntado se activa el indicador
         else if (shooting) hideAfterShooting = true; //Si se deja de apuntar pero se está disparando se activa el booleano que lo desactiva tras disparar
@@ -140,38 +141,22 @@ public class AttackManager : NetworkBehaviour
 
     public void ShootSingleBasicProjectile() //Llamado desde la animación de disparo
     {
-        IAttack projectile = GameObject.Instantiate(basicPrefab, basicOrigin).GetComponent<IAttack>();
+        if (basicPrefab.GetComponent<IAttack>().IsNetworkObject() && !IsServer) return;
+        GameObject projectileInstance = GameObject.Instantiate(basicPrefab, basicOrigin);
+        IAttack projectile = projectileInstance.GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
         projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+        if (IsServer && basicPrefab.GetComponent<IAttack>().IsNetworkObject()) projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
     }
-
-    /*public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
-    {
-        IAttack projectile = GameObject.Instantiate(ultPrefab, ultOrigin).GetComponent<IAttack>();
-        projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
-        projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
-    }*/
 
     public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
     {
-        if (ultPrefab.name == "MachinganUlt") //La habilida de Ma Xin es la unica que se instancia solo en el servidor
-        {
-            if (!IsServer) return;
-
-            GameObject projectileInstance;
-            projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
-            IAttack projectile = projectileInstance.GetComponent<IAttack>();
-            projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
-            projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
-            projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
-        }
-        else
-        {
-            GameObject projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
-            IAttack projectile = projectileInstance.GetComponent<IAttack>();
-            projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
-            projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
-        }
+        if (ultPrefab.GetComponent<IAttack>().IsNetworkObject() && !IsServer) return;
+        GameObject projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
+        IAttack projectile = projectileInstance.GetComponent<IAttack>();
+        projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
+        projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+        if(IsServer && ultPrefab.GetComponent<IAttack>().IsNetworkObject()) projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
     }
 
     public bool IsShooting() //Llamado desde PlayerMovement para saber si rotar el jugador hacia donde mira o no

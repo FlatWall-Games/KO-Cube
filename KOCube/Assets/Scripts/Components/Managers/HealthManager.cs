@@ -70,8 +70,8 @@ public class HealthManager : NetworkBehaviour
                 if (currentHealth <= 0) 
                 {
                     amount = attack.GetDamage() + currentHealth;
-                    currentHealth = 0; 
-                    Debug.Log("MUERTO"); 
+                    currentHealth = maxHealth;
+                    GetComponent<PlayerBehaviour>().InitializePosition();
                 }
 
                 type = "damage";

@@ -18,4 +18,6 @@ public interface IAttack
     public void SetAttacker(PlayerBehaviour attacker);
 
     public PlayerBehaviour GetAttacker();
+
+    public bool IsNetworkObject();
 }

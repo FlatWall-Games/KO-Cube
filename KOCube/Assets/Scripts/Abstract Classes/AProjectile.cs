@@ -9,6 +9,7 @@ public class AProjectile : MonoBehaviour, IAttack
     [SerializeField] protected float timeToDestroy; //Tiempo que tarda en destruirse
     [SerializeField] protected float damage; //Daño que hace a enemigos
     [SerializeField] protected float healing; //Vida que cura a aliados
+    [SerializeField] private bool isNetworkObject = false; //Si debe ser compartido como NetworkObject
     protected PlayerBehaviour attacker; //Jugador que lanzó el ataque
     protected Rigidbody rb;
 
@@ -53,5 +54,10 @@ public class AProjectile : MonoBehaviour, IAttack
     public PlayerBehaviour GetAttacker()
     {
         return attacker;
+    }
+
+    public bool IsNetworkObject()
+    {
+        return isNetworkObject;
     }
 }

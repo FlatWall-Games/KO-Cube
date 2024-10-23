@@ -131,6 +131,7 @@ MonoBehaviour:
   timeToDestroy: 120
   damage: 0
   healing: 0
+  isNetworkObject: 1
 --- !u!65 &354945128864687016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -192,9 +193,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
