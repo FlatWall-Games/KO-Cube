@@ -12,8 +12,8 @@ public class InitPosManager : MonoBehaviour
 
     public Transform RequestPos(string tag)
     {
-        if (numP1 == 3) numP1 = 0;
-        if (numP2 == 3) numP1 = 0;
+        if (numP1 >= 3) numP1 = 0;
+        if (numP2 >= 3) numP1 = 0;
         if (tag.Equals("Team1")) return team1Transforms[numP1++];
         else return team2Transforms[numP2++];
     }

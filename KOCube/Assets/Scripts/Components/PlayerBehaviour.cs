@@ -37,8 +37,7 @@ public class PlayerBehaviour : NetworkBehaviour
             InitializePosition();
             if (this.tag.Equals("Team1"))
             {
-                CinemachineTransposer t = GameObject.FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
-                t.m_FollowOffset = new Vector3(t.m_FollowOffset.x, t.m_FollowOffset.y, -t.m_FollowOffset.z);
+                UpdateCameraOffsetClientRpc();
             }
         }
         RequestTagServerRpc();
@@ -133,5 +132,12 @@ public class PlayerBehaviour : NetworkBehaviour
         this.transform.position = initTransform.position;
         this.transform.rotation = initTransform.rotation;
         GetComponent<CharacterController>().enabled = true;
+    }
+
+    [ClientRpc]
+    private void UpdateCameraOffsetClientRpc()
+    {
+        CinemachineTransposer t = GameObject.FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
+        t.m_FollowOffset = new Vector3(t.m_FollowOffset.x, t.m_FollowOffset.y, -t.m_FollowOffset.z);
     }
 }
