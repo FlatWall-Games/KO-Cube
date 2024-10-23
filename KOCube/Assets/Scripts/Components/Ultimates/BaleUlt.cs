@@ -9,7 +9,7 @@ public class BaleUlt : AProjectile
 
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         rb.velocity = this.transform.forward * speed;
@@ -18,7 +18,7 @@ public class BaleUlt : AProjectile
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         string otherTag = other.tag;
         if (otherTag.Equals(this.tag))

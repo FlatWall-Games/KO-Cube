@@ -9,7 +9,7 @@ public class SadGuyProjectileExplosion : AProjectile
 
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         this.transform.parent = null; //Se desvincula del padre para que no le afecte su movimiento
@@ -17,6 +17,6 @@ public class SadGuyProjectileExplosion : AProjectile
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
     }
 }

@@ -9,7 +9,7 @@ public class JudyniUlt : AProjectile
     [SerializeField] bool activateTp = false;
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         Transform parent = transform.parent;
@@ -19,7 +19,7 @@ public class JudyniUlt : AProjectile
     }
     private void FixedUpdate()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+       // if (!NetworkManager.Singleton.IsServer) return;
 
         if (activateTp)
         {
@@ -32,7 +32,7 @@ public class JudyniUlt : AProjectile
     }
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         string otherTag = other.tag;
         if (other != this.attacker)

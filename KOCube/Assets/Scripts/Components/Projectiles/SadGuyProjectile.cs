@@ -12,7 +12,7 @@ public class SadGuyProjectile : AProjectile
 
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         characterVelocity = transform.parent.parent.GetComponent<CharacterController>().velocity;
@@ -22,7 +22,7 @@ public class SadGuyProjectile : AProjectile
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         PlayerBehaviour receiver = other.GetComponent<PlayerBehaviour>();
         if (receiver != GetAttacker())

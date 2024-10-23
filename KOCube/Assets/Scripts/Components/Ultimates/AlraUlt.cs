@@ -15,7 +15,7 @@ public class AlraUlt : AProjectile
     float scaleRatio;
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         //Calculamos la diferencia de escala de la esfera
@@ -28,7 +28,7 @@ public class AlraUlt : AProjectile
 
     protected void Update()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         if (transform.localScale.x < maxScale)
         {

@@ -10,7 +10,7 @@ public class AlraProjectile : AProjectile
     float maxAngleDeviation = 10f;
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         //Calculamos un angulo de desviacion entre -maxAngleDeviation y maxAngleDeviation
@@ -29,7 +29,7 @@ public class AlraProjectile : AProjectile
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+       // if (!NetworkManager.Singleton.IsServer) return;
 
         string otherTag = other.tag;
         Debug.Log("choqué con algo");

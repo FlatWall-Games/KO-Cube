@@ -71,6 +71,9 @@ public class AttackManager : NetworkBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(hit.point.x - transform.position.x, 0, hit.point.z - transform.position.z));
+            //Prediccion en el cliente.
+            //Si el cliente sabe que no esta disparando y tiene balas, rota al jugador y pone el booelano en true para que se fije hacia donde mira
+            if (!IsShooting() && ammoManager.ShootRequested() && !IsServer) { transform.rotation = lookRotation; shooting = true; }
             ShootServerRpc(lookRotation, attackType);
         }
     }
@@ -106,6 +109,9 @@ public class AttackManager : NetworkBehaviour
         //Si no se está apuntando hay autoapuntado
         if (controllerAimDirection == Vector3.zero) lookRotation = Quaternion.LookRotation(transform.forward);
         else lookRotation = Quaternion.LookRotation(controllerAimDirection);
+        //Prediccion en el cliente.
+        //Si el cliente sabe que no esta disparando y tiene balas, rota al jugador y pone el booelano en true para que se fije hacia donde mira
+        if (!IsShooting() && ammoManager.ShootRequested() && !IsServer) { transform.rotation = lookRotation; shooting = true; }
         ShootServerRpc(lookRotation, attackType);
     }
 
@@ -133,9 +139,9 @@ public class AttackManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void SendClientRotationClientRpc(Quaternion clientRotation)
+    private void SendClientRotationClientRpc(Quaternion rotation)
     {
-        transform.rotation = clientRotation;
+        transform.rotation = rotation;
     }
 
     [ClientRpc]
@@ -148,10 +154,10 @@ public class AttackManager : NetworkBehaviour
 
     public void ShootSingleBasicProjectile() //Llamado desde la animación de disparo
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         GameObject projectileInstance = GameObject.Instantiate(basicPrefab, basicOrigin);
-        projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+        //projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
 
         IAttack projectile = projectileInstance.GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
@@ -160,14 +166,24 @@ public class AttackManager : NetworkBehaviour
 
     public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        if (ultPrefab.name == "MachinganUlt")
+        {
+            if (!IsServer) return;
 
-        GameObject projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
-        projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
-
-        IAttack projectile = projectileInstance.GetComponent<IAttack>();
-        projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
-        projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+            GameObject projectileInstance;
+            projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin); 
+            IAttack projectile = projectileInstance.GetComponent<IAttack>();
+            projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
+            projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+            projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+        }
+        else
+        {
+            GameObject projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
+            IAttack projectile = projectileInstance.GetComponent<IAttack>();
+            projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
+            projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+        }
     }
 
     public bool IsShooting() //Llamado desde PlayerMovement para saber si rotar el jugador hacia donde mira o no

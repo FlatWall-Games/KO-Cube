@@ -7,7 +7,7 @@ public class JudyUlt : AProjectile
 {
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         Transform parent = transform.parent;
@@ -18,7 +18,7 @@ public class JudyUlt : AProjectile
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         string otherTag = other.tag;
         

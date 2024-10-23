@@ -9,7 +9,7 @@ public class CleoProjectile : AProjectile
     CleoThreeHitsBehaviour cleoThreeHits;
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         Transform parent = transform.parent;

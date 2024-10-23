@@ -9,7 +9,7 @@ public class SadGuyUlt : AProjectile
 
     protected override void Awake()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         base.Awake();
         SetAttacker(transform.parent.parent.GetComponent<PlayerBehaviour>()); //Se fuerza la asignación del responsable del ataque en el awake, pues el rayo se lanza demasiado rápido.
@@ -18,13 +18,13 @@ public class SadGuyUlt : AProjectile
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
     }
 
     void RayShoot()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit))
@@ -40,7 +40,7 @@ public class SadGuyUlt : AProjectile
 
     void DrawRay(Vector3 hitPoint)
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        //if (!NetworkManager.Singleton.IsServer) return;
 
         if (lineRenderer != null)
         {
