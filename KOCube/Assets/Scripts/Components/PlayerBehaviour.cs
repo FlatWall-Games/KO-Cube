@@ -81,7 +81,7 @@ public class PlayerBehaviour : NetworkBehaviour
         serverInputQueue = new Queue<InputPayload> ();
     }
 
-    public override void OnNetworkSpawn()
+    void Start()
     {
         if (IsServer) this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerBehaviour>().Length % 2 + 1).ToString(); //Se le asigna un equipo al entrar a la partida
         RequestTagServerRpc();
@@ -98,7 +98,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        //if (!IsOwner) return;
+        if (!IsOwner) return;
         while (timer.ShouldTick())
         {
             HandleClientTick(input);
@@ -111,28 +111,14 @@ public class PlayerBehaviour : NetworkBehaviour
         if (!IsServer) return;
 
         int bufferIndex = -1;
-        InputPayload inputPayload = default;
         while (serverInputQueue.Count > 0)
         {
-            inputPayload = serverInputQueue.Dequeue();
+            InputPayload inputPayload = serverInputQueue.Dequeue();
 
             bufferIndex = inputPayload.tick % k_bufferSize;
 
-            if (IsHost)
-            {
-                StatePayload statePayload1 = new StatePayload()
-                {
-                    tick = inputPayload.tick,
-                    position = transform.position,
-                    rotation = transform.rotation
-                };
-                serverStateBuffer.Add(statePayload1, bufferIndex);
-                SendToClientRpc(statePayload1);
-                continue;
-            }
-
-            StatePayload statePayload2 = ProcessMovement(inputPayload);
-            serverStateBuffer.Add(statePayload2, bufferIndex);
+            StatePayload statePayload = SimulateMovement(inputPayload);
+            serverStateBuffer.Add(statePayload, bufferIndex);
         }
 
         if (bufferIndex == -1) return;
@@ -165,7 +151,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     void HandleClientTick(Vector2 input)
     {
-        if (!IsClient || !IsOwner) return;
+        if (!IsClient) return;
 
         int currentTick = timer.CurrentTick;
         int bufferIndex = currentTick % k_bufferSize;
@@ -199,20 +185,20 @@ public class PlayerBehaviour : NetworkBehaviour
 
         float positionError;
         int bufferIndex;
+        StatePayload rewindState = default;
 
         bufferIndex = lastServerState.tick % k_bufferSize;
         if (bufferIndex - 1 < 0) return; //No hay suficiente información para reconciliar
 
-        StatePayload rewindState = IsHost ? serverStateBuffer.Get(bufferIndex - 1) : lastServerState; //Host RPCs se ejecutan inmediatamente, por lo que podemos usar el último estado del servidor.
-        StatePayload clientState = IsHost ? clientStateBuffer.Get(bufferIndex - 1) : clientStateBuffer.Get(bufferIndex);
-        positionError = Vector3.Distance(rewindState.position, clientState.position);
+        rewindState = IsHost ? serverStateBuffer.Get(bufferIndex - 1) : lastServerState; //Host RPCs se ejecutan inmediatamente, por lo que podemos usar el último estado del servidor.
+        positionError = Vector3.Distance(rewindState.position, clientStateBuffer.Get(bufferIndex).position);
 
         if (positionError > reconciliationThreshold)
         {
             ReconcileState(rewindState);
         }
 
-        lastProcessedState = rewindState;
+        lastProcessedState = lastServerState;
     }
 
     void ReconcileState(StatePayload rewindState)
@@ -222,7 +208,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (!rewindState.Equals(lastServerState)) return;
 
-        clientStateBuffer.Add(rewindState, rewindState.tick % k_bufferSize);
+        clientStateBuffer.Add(rewindState, rewindState.tick);
 
         //Reproducimos todos los inputs desde el rewindState hasta el estado actual.
         int tickToReplay = lastServerState.tick;
