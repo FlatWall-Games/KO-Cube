@@ -14,8 +14,6 @@ public class LobbyHostJoinState : AUIState
 
     public override void Enter()
     {
-        mainScreen = contextUI.Canvas.transform.Find("MainScreenMenu").gameObject;
-        mainScreen.SetActive(true);
         matchSearchMenu = contextUI.Canvas.transform.Find("MatchSearchMenu").gameObject;
         matchSearchMenu.SetActive(true);
     }
@@ -23,7 +21,6 @@ public class LobbyHostJoinState : AUIState
     public override void Exit()
     {
         matchSearchMenu.SetActive(false);
-        mainScreen.SetActive(false);
     }
 
     public override void FixedUpdate()
