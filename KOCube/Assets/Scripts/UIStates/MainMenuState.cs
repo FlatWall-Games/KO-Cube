@@ -15,7 +15,7 @@ public class MainMenuState : AUIState
     {
         mainScreen = contextUI.Canvas.transform.Find("MainScreenMenu").gameObject;
         mainScreen.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(mainScreen.transform.Find("PlayButton").gameObject);
+        //EventSystem.current.SetSelectedGameObject(mainScreen.transform.Find("PlayButton").gameObject);
     }
 
     public override void Exit()
