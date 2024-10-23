@@ -71,6 +71,7 @@ public class HealthManager : NetworkBehaviour
                 {
                     amount = attack.GetDamage() + currentHealth;
                     GetComponent<PlayerBehaviour>().InitializePosition();
+                    GameObject.FindObjectOfType<DeathMatchManager>().PlayerKilled(this.tag);
                     currentHealth = maxHealth;
                 }
 
