@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class SadGuyProjectile : AProjectile
@@ -11,6 +12,8 @@ public class SadGuyProjectile : AProjectile
 
     protected override void Awake()
     {
+        if (!NetworkManager.Singleton.IsServer) return;
+
         base.Awake();
         characterVelocity = transform.parent.parent.GetComponent<CharacterController>().velocity;
         rb.velocity = this.transform.forward * speed + Vector3.up * upwardForce;
@@ -19,6 +22,8 @@ public class SadGuyProjectile : AProjectile
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
+        if (!NetworkManager.Singleton.IsServer) return;
+
         PlayerBehaviour receiver = other.GetComponent<PlayerBehaviour>();
         if (receiver != GetAttacker())
         {

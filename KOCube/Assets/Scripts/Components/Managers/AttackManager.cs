@@ -148,14 +148,24 @@ public class AttackManager : NetworkBehaviour
 
     public void ShootSingleBasicProjectile() //Llamado desde la animación de disparo
     {
-        IAttack projectile = GameObject.Instantiate(basicPrefab, basicOrigin).GetComponent<IAttack>();
+        if (!NetworkManager.Singleton.IsServer) return;
+
+        GameObject projectileInstance = GameObject.Instantiate(basicPrefab, basicOrigin);
+        projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+
+        IAttack projectile = projectileInstance.GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
         projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
     }
 
     public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
     {
-        IAttack projectile = GameObject.Instantiate(ultPrefab, ultOrigin).GetComponent<IAttack>();
+        if (!NetworkManager.Singleton.IsServer) return;
+
+        GameObject projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
+        projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+
+        IAttack projectile = projectileInstance.GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
         projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
     }

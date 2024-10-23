@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class JudyUlt : AProjectile
 {
     protected override void Awake()
     {
+        if (!NetworkManager.Singleton.IsServer) return;
+
         base.Awake();
         Transform parent = transform.parent;
         rb.velocity = this.transform.forward * speed;
@@ -15,6 +18,8 @@ public class JudyUlt : AProjectile
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
+        if (!NetworkManager.Singleton.IsServer) return;
+
         string otherTag = other.tag;
         
             //En este caso, el proyectil se destruye al chocar con un jugador del otro equipo o con un objeto del mapa

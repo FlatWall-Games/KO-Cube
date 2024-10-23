@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class AlraUlt : AProjectile
@@ -14,6 +15,8 @@ public class AlraUlt : AProjectile
     float scaleRatio;
     protected override void Awake()
     {
+        if (!NetworkManager.Singleton.IsServer) return;
+
         base.Awake();
         //Calculamos la diferencia de escala de la esfera
         float scaleChange = maxScale - inicialScale;
@@ -25,6 +28,8 @@ public class AlraUlt : AProjectile
 
     protected void Update()
     {
+        if (!NetworkManager.Singleton.IsServer) return;
+
         if (transform.localScale.x < maxScale)
         {
             transform.localScale += new Vector3(scaleRatio, 0, scaleRatio) * Time.deltaTime;
@@ -37,6 +42,7 @@ public class AlraUlt : AProjectile
 
     IEnumerator ResetTrigger()
     {
+
         while (true)
         {
             yield return new WaitForSeconds(healingInterval);

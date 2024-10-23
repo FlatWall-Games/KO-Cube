@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class CleoProjectile : AProjectile
     CleoThreeHitsBehaviour cleoThreeHits;
     protected override void Awake()
     {
+        if (!NetworkManager.Singleton.IsServer) return;
+
         base.Awake();
         Transform parent = transform.parent;
     }
