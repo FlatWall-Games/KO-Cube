@@ -8140,6 +8140,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d1219a97c65854980e49601d6a2f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team1Transforms:
+  - {fileID: 1564278636}
+  - {fileID: 1797097551}
+  - {fileID: 1655026044}
+  team2Transforms:
+  - {fileID: 1128179004}
+  - {fileID: 945175798}
+  - {fileID: 51108987}
 --- !u!1 &796301390
 GameObject:
   m_ObjectHideFlags: 0
