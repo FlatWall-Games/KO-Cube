@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class TouchInputHandler : MonoBehaviour
 {
@@ -12,12 +13,9 @@ public class TouchInputHandler : MonoBehaviour
     // Método que se llamará cuando el objeto sea clickeado
     public void OnSelect(string s)
     {
-        Debug.Log("me has pulsado");
         // Activar el teclado en pantalla
         keyboard = TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default); // Abre el teclado virtual
         inputField.ActivateInputField();
-        Debug.Log("supuestamente abri el teclado");
-        
     }
 
     private void Update()
