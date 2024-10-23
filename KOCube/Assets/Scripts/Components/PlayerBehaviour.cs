@@ -137,6 +137,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [ClientRpc]
     private void UpdateCameraOffsetClientRpc()
     {
+        if (!IsOwner) return;
         CinemachineTransposer t = GameObject.FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
         t.m_FollowOffset = new Vector3(t.m_FollowOffset.x, t.m_FollowOffset.y, -t.m_FollowOffset.z);
     }
