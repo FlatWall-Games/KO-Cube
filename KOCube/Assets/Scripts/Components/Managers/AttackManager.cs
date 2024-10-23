@@ -118,24 +118,16 @@ public class AttackManager : NetworkBehaviour
         {
             if (!ammoManager.ShootRequested()) return; //Si el AmmoManager no deja disparar la función acaba aquí
             transform.rotation = lookRotation; //Se rota al jugador hacia donde dispara
-            SendClientRotationClientRpc(transform.rotation);
             anim.SetTrigger("ShootBasic"); //Compartido entre todos los clientes, lo que hace que el disparo aparezca para todo el mundo
         }
         else
         {
             if (!ultManager.RequestShoot()) return;
             transform.rotation = lookRotation;
-            SendClientRotationClientRpc(transform.rotation);
             anim.SetTrigger("ShootUlt");
         }
 
         UpdateBarsClientRpc(attackType);
-    }
-
-    [ClientRpc]
-    private void SendClientRotationClientRpc(Quaternion clientRotation)
-    {
-        transform.rotation = clientRotation;
     }
 
     [ClientRpc]
