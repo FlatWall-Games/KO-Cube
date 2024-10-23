@@ -38,7 +38,7 @@
                     "id": "b8489c76-801e-4251-9e09-4cf234220cef",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -47,7 +47,7 @@
                     "id": "903122f7-15fc-41e4-97b9-4f2df82113e7",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
