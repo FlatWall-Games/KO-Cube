@@ -145,11 +145,33 @@ public class AttackManager : NetworkBehaviour
         projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
     }
 
-    public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
+    /*public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
     {
         IAttack projectile = GameObject.Instantiate(ultPrefab, ultOrigin).GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
         projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+    }*/
+
+    public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
+    {
+        if (ultPrefab.name == "MachinganUlt") //La habilida de Ma Xin es la unica que se instancia solo en el servidor
+        {
+            if (!IsServer) return;
+
+            GameObject projectileInstance;
+            projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
+            IAttack projectile = projectileInstance.GetComponent<IAttack>();
+            projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
+            projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+            projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+        }
+        else
+        {
+            GameObject projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
+            IAttack projectile = projectileInstance.GetComponent<IAttack>();
+            projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
+            projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+        }
     }
 
     public bool IsShooting() //Llamado desde PlayerMovement para saber si rotar el jugador hacia donde mira o no
