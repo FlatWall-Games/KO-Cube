@@ -74,20 +74,20 @@ public class PlayerBehaviour : NetworkBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        
+
         OnMoveServerRpc(context.ReadValue<Vector2>());
-        
+
     }
 
     [ServerRpc]
     public void OnMoveServerRpc(Vector2 context)
     {
-        if(this.tag.Equals("Team1")) context *= -1; //Se invierte el vector de entrada, pues la cámara está girada
+        if (this.tag.Equals("Team1")) context *= -1; //Se invierte el vector de entrada, pues la cámara está girada
         xMovement = context[0];
         zMovement = context[1];
     }
 
-    [ServerRpc (RequireOwnership = false)]
+    [ServerRpc(RequireOwnership = false)]
     private void RequestTagServerRpc()
     {
         AssignTagClientRpc(this.tag);
@@ -97,20 +97,28 @@ public class PlayerBehaviour : NetworkBehaviour
     private void AssignTagClientRpc(string tag)
     {
         this.tag = tag;
-        if(IsOwner) ownerTag = tag;
-        if(!ownerTag.Equals("Untagged")) InitializePlayersShaders();
+        if (IsOwner) ownerTag = tag;
+        if (!ownerTag.Equals("Untagged")) InitializePlayersShaders();
     }
 
     private void InitializePlayersShaders()
     {
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
-        foreach(PlayerBehaviour player in players)
+        foreach (PlayerBehaviour player in players)
         {
             if (!player.tag.Equals(ownerTag))
             {
                 player.rend.material.SetColor("_color", Color.red);
             }
         }
+    }
+
+    [ServerRpc]
+    public void TeleportPlayerServerRpc(Vector3 newPos) 
+    { 
+        this.GetComponent<CharacterController>().enabled = false;
+        transform.position = newPos;
+        this.GetComponent<CharacterController>().enabled = true;
     }
 
     public void CanMove()

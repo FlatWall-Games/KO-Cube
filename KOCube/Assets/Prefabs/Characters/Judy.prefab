@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc0b3178c897f048a066d52ed7b3942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadTime: 10
+  loadTime: 2
   ultBar: {fileID: 5417474825978315546}
 --- !u!1 &1422328645456135570
 GameObject:
