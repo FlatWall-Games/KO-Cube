@@ -39,12 +39,9 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 UpdateCameraOffsetClientRpc();
             }
+            GameObject.FindObjectOfType<DeathMatchManager>().EnableButton();
         }
         RequestTagServerRpc();
-        if (IsOwner)
-        {
-            GetComponent<PlayerInput>().enabled = true;
-        }
     }
 
     private void Update()
