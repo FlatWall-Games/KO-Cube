@@ -39,8 +39,6 @@ public class UIManager : Singleton<UIManager>, IUI
     {
         Canvas = GameObject.Find("Canvas");
         State = new StartMenuState(this);
-        //Suscribimos un método que se encargará de que se cambie el estado correctamente cuando se cargue una nueva escena
-        //SceneManager.sceneLoaded += OnSceneLoaded;
         DontDestroyOnLoad(Canvas);
     }
 
@@ -97,6 +95,16 @@ public class UIManager : Singleton<UIManager>, IUI
     public void GoMainMenu()
     {
         State = new MainMenuState(this);
+    }
+
+    public void GoStartGame()
+    {
+        State = new StartMenuState(this);
+    }
+
+    public void GoCreditsMenu()
+    {
+        State = new CreditsMenuState(this);
     }
 
     public void StartGameAsHost()
