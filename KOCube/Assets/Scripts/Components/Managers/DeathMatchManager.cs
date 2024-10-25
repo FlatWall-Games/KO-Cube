@@ -3,6 +3,7 @@ using Unity.Netcode;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DeathMatchManager : NetworkBehaviour
 {
@@ -12,6 +13,7 @@ public class DeathMatchManager : NetworkBehaviour
     [SerializeField] private Button startGameButton;
     [SerializeField] private TextMeshProUGUI timeLeftText;
     [SerializeField] private float timeLeft = 300; //Duración de la partida en segundos
+    
     private int pointsTeam1 = 0;
     private int pointsTeam2 = 0;
     private bool gameStarted = false;
@@ -28,7 +30,12 @@ public class DeathMatchManager : NetworkBehaviour
             timeLeft -= Time.deltaTime;
             int roundedDuration = (int)Mathf.Ceil(timeLeft);
             timeLeftText.text = (roundedDuration / 60).ToString() + ":" + (roundedDuration % 60).ToString();
-            if (IsServer && timeLeft <= 0) StablishPlayersMovementClientRpc(false);
+            if (IsServer && timeLeft <= 0) 
+            { 
+                StablishPlayersMovementClientRpc(false);
+                UIManager.Instance.State = new ResultsState(UIManager.Instance);
+                
+            }
         }
     }
 
