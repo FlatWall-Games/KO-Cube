@@ -26,7 +26,7 @@ public class SadGuyProjectile : AProjectile
         PlayerBehaviour receiver = other.GetComponent<PlayerBehaviour>();
         if (receiver != GetAttacker())
         {
-            IAttack projectile = GameObject.Instantiate(explosionPrefab, transform.position, transform.rotation).GetComponent<IAttack>();
+            IAttack projectile = GameObject.Instantiate(explosionPrefab, transform).GetComponent<IAttack>();
             projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
             projectile.SetAttacker(GetAttacker()); //Se configura para que sepa quién lanzó el ataque
 
