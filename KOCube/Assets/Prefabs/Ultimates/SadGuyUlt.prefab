@@ -49,7 +49,9 @@ MonoBehaviour:
   timeToDestroy: 5
   damage: 200
   healing: 0
+  isNetworkObject: 0
   lineRenderer: {fileID: 3498692300258138334}
+  projectileSize: 1
 --- !u!120 &3498692300258138334
 LineRenderer:
   serializedVersion: 2
