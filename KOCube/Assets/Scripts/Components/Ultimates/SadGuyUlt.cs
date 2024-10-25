@@ -6,6 +6,7 @@ using UnityEngine;
 public class SadGuyUlt : AProjectile
 {
     [SerializeField] LineRenderer lineRenderer;
+    [SerializeField] float projectileSize = 0.5f;
     HealthTankManager healthTank;
 
     protected override void Awake()
@@ -23,7 +24,7 @@ public class SadGuyUlt : AProjectile
     void RayShoot()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        if (Physics.SphereCast(transform.position, projectileSize, transform.forward, out hit))
         {
             HealthManager other = hit.transform.GetComponent<HealthManager>();
             if (other != null)
