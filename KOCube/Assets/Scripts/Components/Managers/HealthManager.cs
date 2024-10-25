@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
+using System;
 
 public class HealthManager : NetworkBehaviour
 {
     [SerializeField] private float maxHealth; //Máximo de vida que tiene el jugador
     [SerializeField] private Image healthBar; //Imagen de la barra de vida
     private float currentHealth; //Vida actual
+    public event Action OnDead;
 
     void Awake()
     {
@@ -48,6 +50,7 @@ public class HealthManager : NetworkBehaviour
 
                 if (currentHealth <= 0) 
                 {
+                    OnDead();
                     GetComponent<PlayerBehaviour>().InitializePosition();
                     GameObject.FindObjectOfType<DeathMatchManager>().PlayerKilled(this.tag);
                     currentHealth = maxHealth;

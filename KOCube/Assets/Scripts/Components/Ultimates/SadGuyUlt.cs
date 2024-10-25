@@ -30,12 +30,9 @@ public class SadGuyUlt : AProjectile
             {
                 other.OnRaycastHit(this);
 
-                if (NetworkManager.Singleton.IsServer)
+                if (!tag.Equals(other.tag))
                 {
-                    if (!tag.Equals(other.tag))
-                    {
-                        healthTank.UpdateHealthTank("damage", GetDamage());
-                    }
+                    healthTank.UpdateHealthTank("damage", GetDamage());
                 }
             }
             DrawRay(hit.point);

@@ -19,10 +19,17 @@ public class HealthTankManager : NetworkBehaviour
         {
             tankBar.transform.parent.gameObject.SetActive(false);
         }
+
+        if (IsServer)
+        {
+            GetComponent<HealthManager>().OnDead += OnPlayerDead;
+        }
     }
 
     public void UpdateHealthTank(string type, float amount)
     {
+        if (!IsServer) return;
+
         if (type == "damage")
         {
             _energy += amount;
@@ -43,5 +50,11 @@ public class HealthTankManager : NetworkBehaviour
         _energy = newEnergy;
         float value = _energy / maxEnergy;
         tankBar.fillAmount = value;
+    }
+
+    void OnPlayerDead()
+    {
+        _energy = 0;
+        UpdateHealthTankClientRpc(_energy);
     }
 }

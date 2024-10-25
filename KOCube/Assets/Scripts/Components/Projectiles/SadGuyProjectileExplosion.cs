@@ -19,7 +19,7 @@ public class SadGuyProjectileExplosion : AProjectile
     {
         PlayerBehaviour receiver = other.GetComponent<PlayerBehaviour>();
 
-        if (receiver != null && NetworkManager.Singleton.IsServer)
+        if (receiver != null)
         {
             if (!tag.Equals(other.tag))
             {

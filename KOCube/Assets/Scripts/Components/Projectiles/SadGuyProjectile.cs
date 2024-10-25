@@ -30,7 +30,7 @@ public class SadGuyProjectile : AProjectile
             projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
             projectile.SetAttacker(GetAttacker()); //Se configura para que sepa quién lanzó el ataque
 
-            if (receiver != null && NetworkManager.Singleton.IsServer)
+            if (receiver != null)
             {
                 if (!tag.Equals(other.tag))
                 {
