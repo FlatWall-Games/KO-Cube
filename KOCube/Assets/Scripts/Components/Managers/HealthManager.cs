@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
-//using UnityEditor.Experimental.GraphView;
 
 public class HealthManager : NetworkBehaviour
 {
@@ -31,56 +30,30 @@ public class HealthManager : NetworkBehaviour
 
     public void ManageDamageAndHeal(IAttack attack)
     {
-        string type;
-        float amount;
-
         if (attack != null)
         {
-            HealthTankManager sadGuy = attack.GetAttacker().gameObject.GetComponent<HealthTankManager>();
             if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
             if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
             {
-                float finalHealing = attack.GetHealing();
-
-                if(sadGuy != null)
-                {
-                    if (attack.GetHealing() > sadGuy.Energy)
-                    {
-                        finalHealing = sadGuy.Energy;
-                    }
-                }
-
-                currentHealth += finalHealing;
-                amount = finalHealing;
+                currentHealth += attack.GetHealing();
 
                 if (currentHealth > maxHealth) 
                 { 
-                    amount = attack.GetHealing() - (currentHealth - maxHealth);
                     currentHealth = maxHealth; 
                 }
-
-                type = "heal";
             }
             else //Si no, dañan
             {
                 currentHealth -= attack.GetDamage();
-                amount = attack.GetDamage();
 
                 if (currentHealth <= 0) 
                 {
-                    amount = attack.GetDamage() + currentHealth;
                     GetComponent<PlayerBehaviour>().InitializePosition();
                     GameObject.FindObjectOfType<DeathMatchManager>().PlayerKilled(this.tag);
                     currentHealth = maxHealth;
                 }
-
-                type = "damage";
             }
             UpdateHealthClientRpc(currentHealth); //Se actualiza la vida en todos los clientes
-
-            if (sadGuy == null) return;
-
-            sadGuy.UpdateHealthTank(type, amount);
         }
     }
 

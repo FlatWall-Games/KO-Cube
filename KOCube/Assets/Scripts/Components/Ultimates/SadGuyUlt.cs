@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class SadGuyUlt : AProjectile
 {
     [SerializeField] LineRenderer lineRenderer;
+    HealthTankManager healthTank;
 
     protected override void Awake()
     {
         base.Awake();
         SetAttacker(transform.parent.parent.GetComponent<PlayerBehaviour>()); //Se fuerza la asignación del responsable del ataque en el awake, pues el rayo se lanza demasiado rápido.
+        healthTank = transform.parent.parent.GetComponent<HealthTankManager>();
         RayShoot();
     }
 
@@ -22,10 +25,18 @@ public class SadGuyUlt : AProjectile
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-            HealthManager health = hit.transform.GetComponent<HealthManager>();
-            if (health != null)
+            HealthManager other = hit.transform.GetComponent<HealthManager>();
+            if (other != null)
             {
-                health.OnRaycastHit(this);
+                other.OnRaycastHit(this);
+
+                if (NetworkManager.Singleton.IsServer)
+                {
+                    if (!tag.Equals(other.tag))
+                    {
+                        healthTank.UpdateHealthTank("damage", GetDamage());
+                    }
+                }
             }
             DrawRay(hit.point);
         }
