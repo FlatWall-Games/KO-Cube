@@ -101,6 +101,7 @@ MonoBehaviour:
   timeToDestroy: 0.3
   damage: 40
   healing: 0
+  isNetworkObject: 0
 --- !u!64 &6866852306910095116
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5

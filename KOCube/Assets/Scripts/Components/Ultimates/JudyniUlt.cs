@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class JudyniUlt : AProjectile
@@ -18,9 +19,8 @@ public class JudyniUlt : AProjectile
         private void Update()
         {
             // Si attacker está configurado y aún no ha ejecutado tpRaycast
-            if (this.attacker != null && !hasAttacked)
+            if (this.attacker != null && !hasAttacked && attacker.gameObject.GetComponent<NetworkObject>().IsOwner)
             {
-                Debug.Log("Raycast lanzado");
                 tpRaycast();
                 hasAttacked = true; // Evita llamar a tpRaycast múltiples veces
             }
@@ -35,8 +35,6 @@ public class JudyniUlt : AProjectile
 
                 // Teletransporta al jugador a la posición ajustada
                 attacker.TeleportPlayerServerRpc(teleportPosition);
-
-                Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
             }
             else
             {

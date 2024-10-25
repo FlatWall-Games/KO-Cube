@@ -131,5 +131,5 @@ MonoBehaviour:
   damage: 0
   healing: 0
   isNetworkObject: 0
-  rayDistance: 5
+  rayDistance: 15
   offset: 0.1
