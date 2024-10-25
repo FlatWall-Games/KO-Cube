@@ -50,7 +50,7 @@ public class HealthManager : NetworkBehaviour
 
                 if (currentHealth <= 0) 
                 {
-                    OnDead();
+                    OnDead?.Invoke();
                     GetComponent<PlayerBehaviour>().InitializePosition();
                     GameObject.FindObjectOfType<DeathMatchManager>().PlayerKilled(this.tag);
                     currentHealth = maxHealth;
