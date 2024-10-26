@@ -10,6 +10,7 @@ public class HealthManager : NetworkBehaviour
     [SerializeField] private float maxHealth; //Máximo de vida que tiene el jugador
     [SerializeField] private Image healthBar; //Imagen de la barra de vida
 
+    
     private float currentHealth; //Vida actual
     public event Action OnDead;
     public MatchStatsManager matchStatsManager;
@@ -25,10 +26,6 @@ public class HealthManager : NetworkBehaviour
         if (!IsServer) return; //Sólo calcula daños el servidor
         IAttack attack = other.GetComponent<IAttack>();
         ManageDamageAndHeal(attack);
-        if (currentHealth <= 0)
-        {
-            other.gameObject.GetComponent<AProjectile>().GetAttacker().GetComponent<MatchStatsManager>().AddKill();
-        }
     }
 
     public void OnRaycastHit(IAttack attack)
@@ -42,6 +39,8 @@ public class HealthManager : NetworkBehaviour
         if (attack != null)
         {
             if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
+
+            bool killed = false;
             if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
             {
                 currentHealth += attack.GetHealing();
@@ -60,20 +59,25 @@ public class HealthManager : NetworkBehaviour
                     OnDead?.Invoke();
                     GetComponent<PlayerBehaviour>().InitializePosition();
                     GameObject.FindObjectOfType<DeathMatchManager>().PlayerKilled(this.tag);
-                    matchStatsManager.AddDeath();
+                    killed = true;
+                    attack.GetAttacker().AddKillsClientRpc();
                     currentHealth = maxHealth;
                 }
             }
-            UpdateHealthClientRpc(currentHealth); //Se actualiza la vida en todos los clientes
+            UpdateHealthClientRpc(currentHealth, killed); //Se actualiza la vida en todos los clientes
         }
     }
 
     [ClientRpc]
-    private void UpdateHealthClientRpc(float newHealth)
+    private void UpdateHealthClientRpc(float newHealth, bool killed)
     {
         currentHealth = newHealth;
         float value = currentHealth / maxHealth;
         healthBar.color = new Color(1 - value, value, 0, 1);
         healthBar.fillAmount = value;
+        if (killed)
+        {
+            matchStatsManager.AddDeath();
+        }
     }
 }

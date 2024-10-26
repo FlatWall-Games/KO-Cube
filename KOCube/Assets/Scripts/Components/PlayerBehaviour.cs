@@ -146,4 +146,10 @@ public class PlayerBehaviour : NetworkBehaviour
         CinemachineTransposer t = GameObject.FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
         t.m_FollowOffset = new Vector3(t.m_FollowOffset.x, t.m_FollowOffset.y, -t.m_FollowOffset.z);
     }
+
+    [ClientRpc]
+    public void AddKillsClientRpc()
+    {
+        GetComponent<MatchStatsManager>().AddKill();
+    }
 }
