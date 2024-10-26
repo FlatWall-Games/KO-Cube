@@ -54,6 +54,9 @@ public class UIManager : Singleton<UIManager>, IUI
 
     void OnGUI()
     {
+        //OnGUI se ejecuta en cada frame, a la hora de recargar la escena puede dar problemas si NetworkManger no existe todavia
+        if (NetworkManager.Singleton == null) return;
+
         GUILayout.BeginArea(new Rect(10, 10, 300, 300));
         GUI.skin.label.fontSize = 25;
         if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsServer)
@@ -112,10 +115,18 @@ public class UIManager : Singleton<UIManager>, IUI
         StartHost();
     }
 
-    public void ReloadGame()
+    //Destruimos el NetworkManager para que no se duplique y esperamos un poco, luego recargamos la escena
+    IEnumerator ReloadGame()
     {
         Destroy(NetworkManager.Singleton.gameObject);
+        yield return (0.2f);
         SceneManager.LoadScene(0);
+    }
+
+    //Metodo que acaba la sesion de juego actual y manda a recargar la escena
+    public void EndGameSession()
+    {
+        StartCoroutine(ReloadGame());
     }
 
     //Método encargado de inicializar un runtime como host de una partida del juego.
