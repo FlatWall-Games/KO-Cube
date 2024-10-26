@@ -68,11 +68,17 @@ public class DeathMatchManager : NetworkBehaviour
     {
         GameObject.FindObjectOfType<UIManager>().enabled = false;
         StablishPlayersMovementClientRpc(true);
+
+        //Aplica los colores de la interfaz cuando comienza la partida en el host
+        GameObject.FindObjectOfType<TeamColorUI>().SetColorUI();
     }
 
     [ClientRpc]
     private void StablishPlayersMovementClientRpc(bool movement)
     {
+        //Aplica los colores de la interfaz cuando comienza la partida en el cliente
+        GameObject.FindObjectOfType<TeamColorUI>().SetColorUI();
+
         pointsT1Text.gameObject.SetActive(true);
         pointsT2Text.gameObject.SetActive(true);
         timeLeftText.gameObject.SetActive(true);
