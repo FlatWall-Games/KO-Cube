@@ -33,7 +33,6 @@ public class DeathMatchManager : NetworkBehaviour
             if (IsServer && timeLeft <= 0)
             {
                 StablishPlayersMovementClientRpc(false);
-                //UIManager.Instance.State = new ResultsState(UIManager.Instance);
                 EnterResultsScreenClientRpc();
             }
         }

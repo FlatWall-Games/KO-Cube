@@ -37,9 +37,9 @@ public class UIManager : Singleton<UIManager>, IUI
 
     void Start()
     {
+        Debug.Log("start ejecutado");
         Canvas = GameObject.Find("Canvas");
         State = new StartMenuState(this);
-        DontDestroyOnLoad(Canvas);
     }
 
     void Update()
@@ -110,6 +110,12 @@ public class UIManager : Singleton<UIManager>, IUI
     public void StartGameAsHost()
     {
         StartHost();
+    }
+
+    public void ReloadGame()
+    {
+        Destroy(NetworkManager.Singleton.gameObject);
+        SceneManager.LoadScene(0);
     }
 
     //Método encargado de inicializar un runtime como host de una partida del juego.

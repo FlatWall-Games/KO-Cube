@@ -16,7 +16,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //Al solo tener una escena, no nos interesa que se mantenga entre escenas. Esto permite que la escena de recargue
+        //sin problemas 
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 }
