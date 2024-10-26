@@ -30,8 +30,8 @@ public class DeathMatchManager : NetworkBehaviour
             timeLeft -= Time.deltaTime;
             int roundedDuration = (int)Mathf.Ceil(timeLeft);
             timeLeftText.text = (roundedDuration / 60).ToString() + ":" + (roundedDuration % 60).ToString();
-            if (IsServer && timeLeft <= 0) 
-            { 
+            if (IsServer && timeLeft <= 0)
+            {
                 StablishPlayersMovementClientRpc(false);
                 UIManager.Instance.State = new ResultsState(UIManager.Instance);
                 

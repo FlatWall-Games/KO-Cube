@@ -1184,6 +1184,8 @@ GameObject:
   - component: {fileID: 7550814244392496253}
   - component: {fileID: 7442144102207965242}
   - component: {fileID: 6751371197789644161}
+  - component: {fileID: -3998135035485529868}
+  - component: {fileID: -9047457272593860149}
   m_Layer: 0
   m_Name: Cleo
   m_TagString: Untagged
@@ -1280,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4018568849
+  GlobalObjectIdHash: 742109908
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1597,6 +1599,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 1426444764182573148}
+  matchStatsManager: {fileID: 0}
+--- !u!114 &-3998135035485529868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345367470636222976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abaa24458b925994097f3235a7af03ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kills: 0
+  deaths: 0
+--- !u!114 &-9047457272593860149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345367470636222976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d628e744f471c1142b6ed4d82d82d7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterImage: {fileID: 21300000, guid: d838d5ee769724442b3afcab8c84fa0d, type: 3}
 --- !u!1 &4370237712225687835
 GameObject:
   m_ObjectHideFlags: 0

@@ -5573,7 +5573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &508983774
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17371,7 +17371,7 @@ GameObject:
   - component: {fileID: 1449140133}
   - component: {fileID: 1449140132}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: KillsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20221,7 +20221,7 @@ GameObject:
   - component: {fileID: 1666522045}
   - component: {fileID: 1666522044}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DeathsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -764,6 +764,8 @@ GameObject:
   - component: {fileID: 7550814244392496253}
   - component: {fileID: 7442144102207965242}
   - component: {fileID: 6751371197789644161}
+  - component: {fileID: -2316422663116436082}
+  - component: {fileID: 7801151421698165111}
   m_Layer: 0
   m_Name: Alra
   m_TagString: Untagged
@@ -856,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3092957235
+  GlobalObjectIdHash: 3676693948
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1160,6 +1162,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 4492691323842380987}
+  matchStatsManager: {fileID: 0}
+--- !u!114 &-2316422663116436082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345367470636222976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abaa24458b925994097f3235a7af03ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kills: 0
+  deaths: 0
+--- !u!114 &7801151421698165111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345367470636222976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d628e744f471c1142b6ed4d82d82d7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterImage: {fileID: 21300000, guid: 367874b79a8a5cc4fa297a79420f58c2, type: 3}
 --- !u!1 &5375303902051367666
 GameObject:
   m_ObjectHideFlags: 0

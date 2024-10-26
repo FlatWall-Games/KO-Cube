@@ -9,12 +9,15 @@ public class HealthManager : NetworkBehaviour
 {
     [SerializeField] private float maxHealth; //Máximo de vida que tiene el jugador
     [SerializeField] private Image healthBar; //Imagen de la barra de vida
+
     private float currentHealth; //Vida actual
     public event Action OnDead;
+    public MatchStatsManager matchStatsManager;
 
     void Awake()
     {
         currentHealth = maxHealth;
+        matchStatsManager = GetComponent<MatchStatsManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,6 +25,10 @@ public class HealthManager : NetworkBehaviour
         if (!IsServer) return; //Sólo calcula daños el servidor
         IAttack attack = other.GetComponent<IAttack>();
         ManageDamageAndHeal(attack);
+        if (currentHealth <= 0)
+        {
+            other.gameObject.GetComponent<AProjectile>().GetAttacker().GetComponent<MatchStatsManager>().AddKill();
+        }
     }
 
     public void OnRaycastHit(IAttack attack)
@@ -53,6 +60,7 @@ public class HealthManager : NetworkBehaviour
                     OnDead?.Invoke();
                     GetComponent<PlayerBehaviour>().InitializePosition();
                     GameObject.FindObjectOfType<DeathMatchManager>().PlayerKilled(this.tag);
+                    matchStatsManager.AddDeath();
                     currentHealth = maxHealth;
                 }
             }
