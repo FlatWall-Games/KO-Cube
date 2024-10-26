@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 7442144102207965242}
   - component: {fileID: 6751371197789644161}
   - component: {fileID: -2316422663116436082}
-  - component: {fileID: 7801151421698165111}
+  - component: {fileID: -2252561160796438655}
   m_Layer: 0
   m_Name: Alra
   m_TagString: Untagged
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kills: 0
   deaths: 0
---- !u!114 &7801151421698165111
+--- !u!114 &-2252561160796438655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1189,6 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d628e744f471c1142b6ed4d82d82d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterID: 4
   characterImage: {fileID: 21300000, guid: 367874b79a8a5cc4fa297a79420f58c2, type: 3}
 --- !u!1 &5375303902051367666
 GameObject:

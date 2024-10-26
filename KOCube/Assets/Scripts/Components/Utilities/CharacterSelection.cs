@@ -13,7 +13,7 @@ public class CharacterSelection : NetworkBehaviour
     public TextMeshProUGUI[] uiCharacterDescriptions;
     private int arrayIndex = 0;
 
-    private Image uiCharacterPortrait;
+    private Image uiCharacterFullBodyImage;
     private TextMeshProUGUI uiCharacterName;
     private TextMeshProUGUI uiCharacterDescription;
 
@@ -21,7 +21,7 @@ public class CharacterSelection : NetworkBehaviour
 
     private void Awake()
     {
-        uiCharacterPortrait = transform.Find("UI/CharacterImage").GetComponent<Image>();
+        uiCharacterFullBodyImage = transform.Find("UI/CharacterImage").GetComponent<Image>();
         uiCharacterName = transform.Find("UI/CharacterNamePanel/CharacterName").GetComponent<TextMeshProUGUI>();
         uiCharacterDescription = transform.Find("UI/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
     }
@@ -45,7 +45,7 @@ public class CharacterSelection : NetworkBehaviour
     //Metodo que cambia la imagen del personaje
     private void ChangeCharacterImage(int index)
     {
-        uiCharacterPortrait.sprite = uiCharacterImages[index];
+        uiCharacterFullBodyImage.sprite = uiCharacterImages[index];
     }
 
     //Metodo que cambia el nombre del personaje

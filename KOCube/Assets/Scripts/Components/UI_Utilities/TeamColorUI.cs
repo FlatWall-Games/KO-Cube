@@ -37,5 +37,8 @@ public class TeamColorUI : MonoBehaviour
                 statsTeam2.color = (playerTag == "Team2") ? yourTeamColor : enemyTeamColor;
             }
         }
+
+        //Llamamos a la funcion que carga las imagenes de los personajes en la interfaz
+        gameObject.GetComponent<HUD_CharactersIcon>().SetCharacterPortraits();
     }
 }
