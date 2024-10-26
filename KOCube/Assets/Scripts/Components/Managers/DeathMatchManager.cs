@@ -33,8 +33,8 @@ public class DeathMatchManager : NetworkBehaviour
             if (IsServer && timeLeft <= 0)
             {
                 StablishPlayersMovementClientRpc(false);
-                UIManager.Instance.State = new ResultsState(UIManager.Instance);
-                
+                //UIManager.Instance.State = new ResultsState(UIManager.Instance);
+                EnterResultsScreenClientRpc();
             }
         }
     }
@@ -90,5 +90,10 @@ public class DeathMatchManager : NetworkBehaviour
         {
             if (player.IsOwner) player.GetComponent<PlayerInput>().enabled = movement;
         }
+    }
+    [ClientRpc]
+    public void EnterResultsScreenClientRpc()
+    {
+        UIManager.Instance.State = new ResultsState(UIManager.Instance);
     }
 }

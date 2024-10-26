@@ -23,9 +23,9 @@ public class ResultsState : AUIState
         {
             if (player.IsOwner)
             {
-                UIManager.Instance.Canvas.transform.Find("KillsText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetKills().ToString();
-                UIManager.Instance.Canvas.transform.Find("DeathsText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetDeaths().ToString();
-                UIManager.Instance.Canvas.transform.Find("PlayerCharacter").GetComponent<Image>().sprite = player.GetComponent<CharacterImage>().characterImage;
+                UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/PersonalStats/Kills/KillsText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetKills().ToString();
+                UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/PersonalStats/Deaths/DeathsText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetDeaths().ToString();
+                UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/PlayerCharacter").GetComponent<Image>().sprite = player.GetComponent<CharacterImage>().characterImage;
             }
         }
     }
