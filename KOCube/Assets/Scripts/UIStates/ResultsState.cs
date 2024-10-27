@@ -27,8 +27,12 @@ public class ResultsState : AUIState
                 UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/PersonalStats/Deaths/DeathsText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetDeaths().ToString();
                 UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/MatchResultLabel/FinalResultText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetResults();
                 UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/PlayerCharacter").GetComponent<Image>().sprite = player.GetComponent<CharacterInfo>().characterImage;
+                GameObject.Find("GameManager/ButtonCanvas/TextP1").SetActive(false);
+                GameObject.Find("GameManager/ButtonCanvas/TextP2").SetActive(false);
+                GameObject.Find("GameManager/ButtonCanvas/TextTimer").SetActive(false);
             }
         }
+        
     }
 
     public override void Exit()
