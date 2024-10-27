@@ -7,12 +7,22 @@ using UnityEngine;
 public class SadGuyProjectileExplosion : AProjectile
 {
     HealthTankManager healthTank;
+    float maxHealing = 15f;
 
     protected override void Awake()
     {
         base.Awake();
         healthTank = transform.parent.GetComponent<SadGuyProjectile>().healthTank;
         this.transform.parent = null; //Se desvincula del padre para que no le afecte su movimiento
+
+        if (healthTank.Energy < maxHealing)
+        {
+            healing = healthTank.Energy;
+        }
+        else
+        {
+            healing = maxHealing;
+        }
     }
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción

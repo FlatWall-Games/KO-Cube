@@ -121,4 +121,5 @@ MonoBehaviour:
   speed: 0
   timeToDestroy: 0.1
   damage: 15
-  healing: 15
+  healing: 0
+  isNetworkObject: 0
