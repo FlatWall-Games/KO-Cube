@@ -9,9 +9,15 @@ public class SadGuyUlt : AProjectile
     [SerializeField] float projectileSize = 0.5f;
     HealthTankManager healthTank;
 
+    int layerToIgnore;
+    int layerMask;
+
     protected override void Awake()
     {
         base.Awake();
+        layerToIgnore = 1 << 6;
+        layerMask = ~layerToIgnore;
+        SetTag(transform.parent.parent.tag);
         SetAttacker(transform.parent.parent.GetComponent<PlayerBehaviour>()); //Se fuerza la asignación del responsable del ataque en el awake, pues el rayo se lanza demasiado rápido.
         healthTank = transform.parent.parent.GetComponent<HealthTankManager>();
         RayShoot();
@@ -24,7 +30,7 @@ public class SadGuyUlt : AProjectile
     void RayShoot()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, projectileSize, transform.forward, out hit))
+        if (Physics.SphereCast(transform.position, projectileSize, transform.forward, out hit, Mathf.Infinity, layerMask))
         {
             HealthManager other = hit.transform.GetComponent<HealthManager>();
             if (other != null)
