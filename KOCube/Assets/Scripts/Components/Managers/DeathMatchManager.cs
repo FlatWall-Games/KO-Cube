@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class DeathMatchManager : NetworkBehaviour
 {
-    [SerializeField] private int maxKills = 10;
+    [SerializeField] private int maxKills;
     [SerializeField] private TextMeshProUGUI pointsT1Text;
     [SerializeField] private TextMeshProUGUI pointsT2Text;
     [SerializeField] private Button startGameButton;
     [SerializeField] private TextMeshProUGUI timeLeftText;
-    [SerializeField] private float timeLeft = 300; //Duración de la partida en segundos
-    
+    [SerializeField] private float timeLeft = 120; //Duración de la partida en segundos
+    [SerializeField] private TextMeshProUGUI gameModeUiText; //Texto que aparece en la interfaz ingame sobrew este modo
+
     private int pointsTeam1 = 0;
     private int pointsTeam2 = 0;
     private bool gameStarted = false;
@@ -21,6 +22,7 @@ public class DeathMatchManager : NetworkBehaviour
     private void Awake()
     {
         Time.timeScale = 0;
+        gameModeUiText.text = $"¡Elimina a {maxKills} enemigos para ganar!";
     }
 
     private void Update()

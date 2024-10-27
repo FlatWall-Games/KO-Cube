@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rend: {fileID: 0}
-  speed: 10
+  speed: 8
 --- !u!114 &3764132138304378946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26740d4eab054b2429f2b6dfa4dc37f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 400
   healthBar: {fileID: 5022041273119112242}
   matchStatsManager: {fileID: 0}
 --- !u!114 &5727310630616828594
@@ -1131,6 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d628e744f471c1142b6ed4d82d82d7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterID: 0
   characterImage: {fileID: 21300000, guid: e074630b89fc535428ddfcc1d3b102bb, type: 3}
 --- !u!1 &4815995066385027553
 GameObject:
@@ -1721,7 +1722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   singleBar: {fileID: 4132456737329035074}
   maxAmmo: 5
-  reloadTime: 1
+  reloadTime: 2
   basicShoot: {fileID: 6742419832762531967}
 --- !u!1 &8899337757942201569
 GameObject:
