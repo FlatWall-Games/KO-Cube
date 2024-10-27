@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc0b3178c897f048a066d52ed7b3942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadTime: 3
+  loadTime: 25
   ultBar: {fileID: 5417474825978315546}
 --- !u!1 &948813520586291336
 GameObject:
@@ -2078,7 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3662810355
+  GlobalObjectIdHash: 1647738984
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2411,6 +2411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kills: 0
   deaths: 0
+  result: 
 --- !u!114 &6865806905250748192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2794,7 +2795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   singleBar: {fileID: 859226499654711073}
   maxAmmo: 5
-  reloadTime: 2
+  reloadTime: 1.5
   basicShoot: {fileID: 6742419832762531967}
 --- !u!1 &5135689870843049974
 GameObject:
