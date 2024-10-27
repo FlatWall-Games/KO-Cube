@@ -93,14 +93,20 @@ public class DeathMatchManager : NetworkBehaviour
     [ClientRpc]
     private void StablishPlayersMovementClientRpc(bool movement)
     {
-        //Aplica los colores de la interfaz cuando comienza la partida 
-        GameObject.FindObjectOfType<TeamColorUI>().SetColorUI();
-
         pointsT1Text.gameObject.SetActive(true);
         pointsT2Text.gameObject.SetActive(true);
         timeLeftText.gameObject.SetActive(true);
-        if (movement) Time.timeScale = 1;
-        else Time.timeScale = 0;
+        if (movement) 
+        {
+            //Aplica los colores de la interfaz cuando comienza la partida 
+            GameObject.FindObjectOfType<TeamColorUI>().SetColorUI();
+            Time.timeScale = 1;
+        }
+        else 
+        { 
+            Time.timeScale = 0; 
+        }
+
         gameStarted = movement;
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         foreach (PlayerBehaviour player in players)
