@@ -35,7 +35,19 @@ public class DeathMatchManager : NetworkBehaviour
             if (IsServer && timeLeft <= 0)
             {
                 StablishPlayersMovementClientRpc(false);
-                EnterResultsScreenClientRpc();
+                if (pointsTeam1 > pointsTeam2)
+                {
+                    EnterResultsScreenClientRpc("Team1");
+                }
+                else if (pointsTeam2 > pointsTeam1)
+                {
+                    EnterResultsScreenClientRpc("Team2");
+                }
+                else 
+                {
+                    EnterResultsScreenClientRpc("Empate");
+                }
+                
             }
         }
     }
@@ -49,11 +61,18 @@ public class DeathMatchManager : NetworkBehaviour
     {
         if (tag.Equals("Team1"))
         {
-            if (++pointsTeam2 >= maxKills) StablishPlayersMovementClientRpc(false);
+            if (++pointsTeam2 >= maxKills) { 
+                StablishPlayersMovementClientRpc(false);
+                EnterResultsScreenClientRpc("Team2");
+            }
         }
         else
         {
-            if(++pointsTeam1 >= maxKills) StablishPlayersMovementClientRpc(false);
+            if (++pointsTeam1 >= maxKills)
+            {
+                StablishPlayersMovementClientRpc(false);
+                EnterResultsScreenClientRpc("Team1");
+            }
         }
         UpdatePointsClientRpc(pointsTeam1, pointsTeam2);
     }
@@ -89,9 +108,28 @@ public class DeathMatchManager : NetworkBehaviour
             if (player.IsOwner) player.GetComponent<PlayerInput>().enabled = movement;
         }
     }
+
     [ClientRpc]
-    public void EnterResultsScreenClientRpc()
+    public void EnterResultsScreenClientRpc(string tag)
     {
+        PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
+        foreach (PlayerBehaviour player in players)
+        {
+            if (player.IsOwner) {
+                if (player.tag.Equals(tag))
+                {
+                    player.GetComponent<MatchStatsManager>().SetResults("Victoria");
+                }
+                else if (tag.Equals("Empate")) 
+                {
+                    player.GetComponent<MatchStatsManager>().SetResults("Empate");
+                }
+                else
+                {
+                    player.GetComponent<MatchStatsManager>().SetResults("Derrota");
+                }
+            }
+        }
         UIManager.Instance.State = new ResultsState(UIManager.Instance);
     }
 }
