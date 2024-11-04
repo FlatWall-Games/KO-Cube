@@ -8,6 +8,7 @@ public class FlagBehaviour : NetworkBehaviour
     [SerializeField] private Renderer flagArea;
     private HealthManager carrier;
     private Transform flagOrigin;
+    private bool dropped = false;
 
     [Header("Render materials: ")]
     [SerializeField] private Material blueMaterial;
@@ -30,7 +31,7 @@ public class FlagBehaviour : NetworkBehaviour
 
     void Update()
     {
-        if(this.transform.parent != null)
+        if(!dropped)
         {
             restoreBar.fillAmount = 1;
             restoreBar.gameObject.SetActive(false);
@@ -55,15 +56,19 @@ public class FlagBehaviour : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!IsServer) return;
+
         if (other.CompareTag("FlagArea") && other.gameObject != this.flagArea.gameObject)
         {
-            GameObject.FindObjectOfType<AGameManager>().PointScored(team);
+            //team indica el equipo al que pertenece la bandera. Al ser robada se le asigna el punto al otro equipo
+            if(team.Equals("Team1")) GameObject.FindObjectOfType<AGameManager>().PointScored("Team2");
+            else GameObject.FindObjectOfType<AGameManager>().PointScored("Team1");
             RestoreFlagPosition();
         }
 
         if (carrier != null) return;
         
-        if ((other.tag.Equals("Team1") || other.tag.Equals("Team2")) && !other.tag.Equals(team))
+        if ((other.CompareTag("Team1") || other.CompareTag("Team2")) && !other.CompareTag(team))
         {
             this.transform.parent = other.transform;
             this.transform.localPosition = new Vector3(0, this.transform.localPosition.y, -0.5f);
@@ -71,6 +76,7 @@ public class FlagBehaviour : NetworkBehaviour
             carrier = other.GetComponent<HealthManager>();
             carrier.GetComponent<AttackManager>().carrying = true;
             carrier.OnDead += DropFlag;
+            SetDroppedClientRpc(false);
         }
     }
     
@@ -80,6 +86,7 @@ public class FlagBehaviour : NetworkBehaviour
         carrier.OnDead -= DropFlag;
         carrier.GetComponent<AttackManager>().carrying = false;
         carrier = null;
+        SetDroppedClientRpc(true);
     }
 
     private void RestoreFlagPosition()
@@ -87,5 +94,12 @@ public class FlagBehaviour : NetworkBehaviour
         DropFlag();
         this.transform.parent = flagOrigin;
         this.transform.localPosition = Vector3.zero;
+        SetDroppedClientRpc(false);
+    }
+
+    [ClientRpc]
+    private void SetDroppedClientRpc(bool d)
+    {
+        dropped = d;
     }
 }

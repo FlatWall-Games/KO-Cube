@@ -17,6 +17,7 @@ public class AGameManager : NetworkBehaviour
     protected int pointsTeam1 = 0;
     protected int pointsTeam2 = 0;
     protected bool gameStarted = false;
+    protected bool inverted = false;
 
     protected virtual void Awake()
     {
@@ -59,18 +60,18 @@ public class AGameManager : NetworkBehaviour
     {
         if (team.Equals("Team1"))
         {
-            if (++pointsTeam2 >= maxPoints)
-            {
-                StablishPlayersMovementClientRpc(false);
-                EnterResultsScreenClientRpc("Team2");
-            }
-        }
-        else
-        {
             if (++pointsTeam1 >= maxPoints)
             {
                 StablishPlayersMovementClientRpc(false);
                 EnterResultsScreenClientRpc("Team1");
+            }
+        }
+        else
+        {
+            if (++pointsTeam2 >= maxPoints)
+            {
+                StablishPlayersMovementClientRpc(false);
+                EnterResultsScreenClientRpc("Team2");
             }
         }
         UpdatePointsClientRpc(pointsTeam1, pointsTeam2);
@@ -140,6 +141,7 @@ public class AGameManager : NetworkBehaviour
         GameObject.FindWithTag("Reversible").transform.localScale = new Vector3(-1, 1, 1);
         pointsT1Text.rectTransform.localPosition = new Vector3(-pointsT1Text.rectTransform.localPosition.x, pointsT1Text.rectTransform.localPosition.y, 0);
         pointsT2Text.rectTransform.localPosition = new Vector3(-pointsT2Text.rectTransform.localPosition.x, pointsT2Text.rectTransform.localPosition.y, 0);
+        inverted = true;
     }
 
     public void DisableUI()

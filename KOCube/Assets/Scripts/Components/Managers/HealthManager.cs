@@ -9,8 +9,8 @@ public class HealthManager : NetworkBehaviour
 {
     [SerializeField] private float maxHealth; //Máximo de vida que tiene el jugador
     [SerializeField] private Image healthBar; //Imagen de la barra de vida
+    DeathMatchManager deathMatch;
 
-    
     private float currentHealth; //Vida actual
     public event Action OnDead;
     public MatchStatsManager matchStatsManager;
@@ -19,6 +19,7 @@ public class HealthManager : NetworkBehaviour
     {
         currentHealth = maxHealth;
         matchStatsManager = GetComponent<MatchStatsManager>();
+        deathMatch = GameObject.FindObjectOfType<DeathMatchManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,7 +59,7 @@ public class HealthManager : NetworkBehaviour
                 {
                     OnDead?.Invoke();
                     GetComponent<PlayerBehaviour>().InitializePosition();
-                    GameObject.FindObjectOfType<AGameManager>().PointScored(this.tag);
+                    if(deathMatch != null) deathMatch.PointScored(attack.GetAttacker().tag);
                     killed = true;
                     attack.GetAttacker().AddKillsClientRpc();
                     currentHealth = maxHealth;

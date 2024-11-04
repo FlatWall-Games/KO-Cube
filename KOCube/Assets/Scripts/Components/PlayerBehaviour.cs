@@ -39,8 +39,8 @@ public class PlayerBehaviour : NetworkBehaviour
                 UpdateCameraOffsetClientRpc();
             }
             GameObject.FindObjectOfType<AGameManager>().EnableButton();
+            AssignTagClientRpc(this.tag);
         }
-        RequestTagServerRpc();
     }
 
     private void Update()
@@ -86,12 +86,6 @@ public class PlayerBehaviour : NetworkBehaviour
         zMovement = context[1];
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void RequestTagServerRpc()
-    {
-        AssignTagClientRpc(this.tag);
-    }
-
     [ClientRpc]
     private void AssignTagClientRpc(string tag)
     {
@@ -101,6 +95,7 @@ public class PlayerBehaviour : NetworkBehaviour
             ownerTag = tag;
             if (ownerTag.Equals("Team2")) GameObject.FindObjectOfType<AGameManager>().InvertUI(); //Se hace que el equipo del jugador esté siempre a la izquierda
         }
+        GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
         if (!ownerTag.Equals("Untagged")) InitializePlayersShaders();
     }
 

@@ -8,11 +8,6 @@ public class CaptureFlagManager : AGameManager
         gameModeUiText.text = $"¡Captura {maxPoints} banderas para ganar!";
     }
 
-    private void Start()
-    {
-
-    }
-
     protected override void Update()
     {
         base.Update();
@@ -20,8 +15,9 @@ public class CaptureFlagManager : AGameManager
 
     public override void InvertUI()
     {
-        base.InvertUI();
+        if (inverted) return;
         FlagBehaviour[] flags = GameObject.FindObjectsOfType<FlagBehaviour>();
         foreach (FlagBehaviour f in flags) f.ToggleMaterial();
+        base.InvertUI();
     }
 }

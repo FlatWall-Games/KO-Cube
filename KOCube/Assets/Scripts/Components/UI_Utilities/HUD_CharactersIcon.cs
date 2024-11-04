@@ -21,6 +21,8 @@ public class HUD_CharactersIcon : MonoBehaviour
     {
         //Conseguimos una lista de todos los jugadores y segun su tag de equipo, se rellena la interfaz con las imagenes
         PlayerBehaviour[] playerList = GameObject.FindObjectsOfType<PlayerBehaviour>();
+        arrayIndexTeam1 = 0;
+        arrayIndexTeam2 = 0;
 
         foreach (var player in playerList) 
         {
@@ -30,7 +32,6 @@ public class HUD_CharactersIcon : MonoBehaviour
 
             if (playerTag == "Team1") AddPortraitToTeam1(characterId);
             else AddPortraitToTeam2(characterId);
-            Debug.Log("me ejecute");
         }
     }
 
