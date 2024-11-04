@@ -91,7 +91,6 @@ public class FlagBehaviour : NetworkBehaviour
 
     private void RestoreFlagPosition()
     {
-        DropFlag();
         this.transform.parent = flagOrigin;
         this.transform.localPosition = Vector3.zero;
         SetDroppedClientRpc(false);

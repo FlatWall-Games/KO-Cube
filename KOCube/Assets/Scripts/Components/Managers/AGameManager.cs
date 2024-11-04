@@ -46,7 +46,7 @@ public class AGameManager : NetworkBehaviour
                 {
                     EnterResultsScreenClientRpc("Empate");
                 }
-
+                UIEnablerClientRpc(false);
             }
         }
     }
@@ -64,6 +64,7 @@ public class AGameManager : NetworkBehaviour
             {
                 StablishPlayersMovementClientRpc(false);
                 EnterResultsScreenClientRpc("Team1");
+                UIEnablerClientRpc(false);
             }
         }
         else
@@ -72,6 +73,7 @@ public class AGameManager : NetworkBehaviour
             {
                 StablishPlayersMovementClientRpc(false);
                 EnterResultsScreenClientRpc("Team2");
+                UIEnablerClientRpc(false);
             }
         }
         UpdatePointsClientRpc(pointsTeam1, pointsTeam2);
@@ -86,12 +88,8 @@ public class AGameManager : NetworkBehaviour
 
     public void StartGame()
     {
-        GameObject.FindObjectOfType<UIManager>().enabled = false;
         StablishPlayersMovementClientRpc(true);
-        gameModeUiText.gameObject.SetActive(true);
-        pointsT1Text.gameObject.SetActive(true);
-        pointsT2Text.gameObject.SetActive(true);
-        timeLeftText.gameObject.SetActive(true);
+        UIEnablerClientRpc(true);
     }
 
     [ClientRpc]
@@ -144,12 +142,14 @@ public class AGameManager : NetworkBehaviour
         inverted = true;
     }
 
-    public void DisableUI()
+    [ClientRpc]
+    private void UIEnablerClientRpc(bool state)
     {
-        gameModeUiText.gameObject.SetActive(false);
-        pointsT1Text.gameObject.SetActive(false);
-        pointsT2Text.gameObject.SetActive(false);
-        timeLeftText.gameObject.SetActive(false);
+        gameModeUiText.gameObject.SetActive(state);
+        pointsT1Text.gameObject.SetActive(state);
+        pointsT2Text.gameObject.SetActive(state);
+        timeLeftText.gameObject.SetActive(state);
+        GameObject.FindObjectOfType<UIManager>().enabled = false; //Deberá estar desactivado en todos los casos, al comenzar y acabar la partida
     }
 }
 
