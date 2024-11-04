@@ -5,6 +5,7 @@ using Unity.Netcode;
 public class AttackManager : NetworkBehaviour
 {
     private bool shooting = false; //Indica si está disparando
+    public bool carrying = false; //Indica si está cargando con una bandera
     private Animator anim; //Animador del personaje
     private Vector3 controllerAimDirection = Vector3.zero; //Dirección de apuntado con el mando
     [SerializeField] private GameObject aimIndicator; //Indica la dirección hacia la que se apunta con el mando para que sea más fácil apuntar
@@ -113,7 +114,7 @@ public class AttackManager : NetworkBehaviour
     [ServerRpc]
     private void ShootServerRpc(Quaternion lookRotation, string attackType) //El servidor gestiona si el disparo se puede hacer o no
     {
-        if (shooting) return;
+        if (shooting || carrying) return;
         
         if (attackType.Equals("BASIC"))
         {

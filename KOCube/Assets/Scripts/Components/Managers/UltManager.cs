@@ -7,17 +7,20 @@ public class UltManager : MonoBehaviour
 {
     [SerializeField] private float loadTime;
     [SerializeField] private Image ultBar;
+    private AGameManager gameManager;
     private bool canShoot = false;
     private float timer = 0;
 
     void Start()
     {
+        gameManager = GameObject.FindObjectOfType<AGameManager>();
         ultBar.color = new Color(0.5f, 0.5f, 0.5f, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!gameManager.HasStarted()) return;
         if(timer < loadTime) timer += Time.deltaTime;
         else
         {

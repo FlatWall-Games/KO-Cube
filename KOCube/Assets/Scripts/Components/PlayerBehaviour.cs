@@ -1,7 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
 using Cinemachine;
 
 public class PlayerBehaviour : NetworkBehaviour
@@ -39,7 +38,7 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 UpdateCameraOffsetClientRpc();
             }
-            GameObject.FindObjectOfType<DeathMatchManager>().EnableButton();
+            GameObject.FindObjectOfType<AGameManager>().EnableButton();
         }
         RequestTagServerRpc();
     }
@@ -97,7 +96,11 @@ public class PlayerBehaviour : NetworkBehaviour
     private void AssignTagClientRpc(string tag)
     {
         this.tag = tag;
-        if (IsOwner) ownerTag = tag;
+        if (IsOwner)
+        {
+            ownerTag = tag;
+            if (ownerTag.Equals("Team2")) GameObject.FindObjectOfType<AGameManager>().InvertUI(); //Se hace que el equipo del jugador esté siempre a la izquierda
+        }
         if (!ownerTag.Equals("Untagged")) InitializePlayersShaders();
     }
 
@@ -137,6 +140,7 @@ public class PlayerBehaviour : NetworkBehaviour
         this.transform.position = initTransform.position;
         this.transform.rotation = initTransform.rotation;
         GetComponent<CharacterController>().enabled = true;
+        ResetUltClientRpc();
     }
 
     [ClientRpc]
@@ -151,5 +155,11 @@ public class PlayerBehaviour : NetworkBehaviour
     public void AddKillsClientRpc()
     {
         GetComponent<MatchStatsManager>().AddKill();
+    }
+
+    [ClientRpc]
+	private void ResetUltClientRpc()
+    {
+        transform.Find("UltManager").GetComponent<UltManager>().UpdateBar();
     }
 }

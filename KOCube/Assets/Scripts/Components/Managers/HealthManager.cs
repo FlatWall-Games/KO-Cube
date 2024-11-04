@@ -58,7 +58,7 @@ public class HealthManager : NetworkBehaviour
                 {
                     OnDead?.Invoke();
                     GetComponent<PlayerBehaviour>().InitializePosition();
-                    GameObject.FindObjectOfType<DeathMatchManager>().PlayerKilled(this.tag);
+                    GameObject.FindObjectOfType<AGameManager>().PointScored(this.tag);
                     killed = true;
                     attack.GetAttacker().AddKillsClientRpc();
                     currentHealth = maxHealth;

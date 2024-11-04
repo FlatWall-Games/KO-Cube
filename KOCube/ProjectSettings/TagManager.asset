@@ -7,6 +7,9 @@ TagManager:
   - Team1
   - Team2
   - Floor
+  - Reversible
+  - Flag
+  - FlagArea
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Attack
-  - 
+  - Flag
   - 
   - 
   - 
