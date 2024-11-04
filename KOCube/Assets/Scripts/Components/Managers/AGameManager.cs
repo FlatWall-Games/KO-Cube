@@ -135,7 +135,6 @@ public class AGameManager : NetworkBehaviour
 
     public virtual void InvertUI()
     {
-        GameObject.FindObjectOfType<TeamColorUI>().SetColorUI();
         GameObject.FindWithTag("Reversible").transform.localScale = new Vector3(-1, 1, 1);
         pointsT1Text.rectTransform.localPosition = new Vector3(-pointsT1Text.rectTransform.localPosition.x, pointsT1Text.rectTransform.localPosition.y, 0);
         pointsT2Text.rectTransform.localPosition = new Vector3(-pointsT2Text.rectTransform.localPosition.x, pointsT2Text.rectTransform.localPosition.y, 0);

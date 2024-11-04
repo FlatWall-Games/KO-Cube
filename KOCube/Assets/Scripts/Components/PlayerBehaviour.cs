@@ -94,6 +94,7 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             ownerTag = tag;
             if (ownerTag.Equals("Team2")) GameObject.FindObjectOfType<AGameManager>().InvertUI(); //Se hace que el equipo del jugador esté siempre a la izquierda
+            GameObject.FindObjectOfType<TeamColorUI>().SetColorUI();
         }
         GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
         if (!ownerTag.Equals("Untagged")) InitializePlayersShaders();

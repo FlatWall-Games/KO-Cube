@@ -83,14 +83,18 @@ public class FlagBehaviour : NetworkBehaviour
     private void DropFlag()
     {
         this.transform.parent = null;
-        carrier.OnDead -= DropFlag;
-        carrier.GetComponent<AttackManager>().carrying = false;
-        carrier = null;
+        if (carrier != null)
+        {
+            carrier.OnDead -= DropFlag;
+            carrier.GetComponent<AttackManager>().carrying = false;
+            carrier = null;
+        }
         SetDroppedClientRpc(true);
     }
 
     private void RestoreFlagPosition()
     {
+        DropFlag();
         this.transform.parent = flagOrigin;
         this.transform.localPosition = Vector3.zero;
         SetDroppedClientRpc(false);
