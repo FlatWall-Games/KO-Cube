@@ -8,7 +8,7 @@ public class PlayerBehaviour : NetworkBehaviour
     CharacterController characterController;
     AttackManager basicShoot;
     public Renderer rend;
-    private static string ownerTag = "Untagged";
+    public static string ownerTag = "Untagged";
 
     float xMovement = 0;
     float yMovement = 0;

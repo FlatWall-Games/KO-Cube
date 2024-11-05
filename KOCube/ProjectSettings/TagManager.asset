@@ -10,6 +10,7 @@ TagManager:
   - Reversible
   - Flag
   - FlagArea
+  - MainCanvas
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI
   - Attack
   - Flag
-  - 
+  - HotZone
   - 
   - 
   - 

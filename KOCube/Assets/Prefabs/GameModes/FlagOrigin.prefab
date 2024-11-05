@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 8730272154442523759}
   - component: {fileID: 7419735973308732636}
   - component: {fileID: 5806120237668948345}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: FlagArea
   m_TagString: FlagArea
   m_Icon: {fileID: 0}

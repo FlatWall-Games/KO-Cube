@@ -38,7 +38,7 @@ public class UIManager : Singleton<UIManager>, IUI
     void Start()
     {
         Debug.Log("start ejecutado");
-        Canvas = GameObject.Find("Canvas");
+        Canvas = GameObject.FindWithTag("MainCanvas");
         State = new StartMenuState(this);
     }
 
