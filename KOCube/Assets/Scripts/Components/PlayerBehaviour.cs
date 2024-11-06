@@ -114,10 +114,12 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [ServerRpc]
     public void TeleportPlayerServerRpc(Vector3 newPos) 
-    { 
+    {
+        this.GetComponent<Collider>().enabled = false;
         this.GetComponent<CharacterController>().enabled = false;
         transform.position = newPos;
         this.GetComponent<CharacterController>().enabled = true;
+        this.GetComponent<Collider>().enabled = true;
     }
 
     public void CanMove()

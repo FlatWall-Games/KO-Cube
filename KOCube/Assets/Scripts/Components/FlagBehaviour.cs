@@ -81,7 +81,7 @@ public class FlagBehaviour : NetworkBehaviour
         }
     }
     
-    private void DropFlag()
+    private void DropFlag(object s, string team)
     {
         this.transform.parent = null;
         if (carrier != null)
@@ -95,7 +95,7 @@ public class FlagBehaviour : NetworkBehaviour
 
     private void RestoreFlagPosition()
     {
-        DropFlag();
+        DropFlag(null, null);
         this.transform.parent = flagOrigin;
         this.transform.localPosition = Vector3.zero;
         SetDroppedClientRpc(false);

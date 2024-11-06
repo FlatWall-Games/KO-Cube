@@ -24,14 +24,14 @@ public class HotZoneManager : AGameManager
     {
         if (team.Equals("Team1")) pointsTeam2--;
         else pointsTeam1--;
-        UpdateSliderClientRpc();
+        UpdateSliderClientRpc(pointsTeam1, pointsTeam2);
         base.PointScored(team);
     }
 
     [ClientRpc]
-    private void UpdateSliderClientRpc()
+    private void UpdateSliderClientRpc(int points1, int points2)
     {
-        if (PlayerBehaviour.ownerTag.Equals("Team1")) slider.value = pointsTeam1;
-        else slider.value = pointsTeam2;
+        if (PlayerBehaviour.ownerTag.Equals("Team1")) slider.value = points1;
+        else slider.value = points2;
     }
 }

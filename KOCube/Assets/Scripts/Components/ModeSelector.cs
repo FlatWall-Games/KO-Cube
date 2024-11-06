@@ -8,7 +8,7 @@ public class ModeSelector : NetworkBehaviour
     private int currentModeIndex = 0;
     [SerializeField] private GameObject[] modes;
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void RequestModeServerRpc()
     {
         AssignModeClientRpc(currentModeIndex);

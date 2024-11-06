@@ -52,7 +52,7 @@ public class HealthTankManager : NetworkBehaviour
         tankBar.fillAmount = value;
     }
 
-    void OnPlayerDead()
+    void OnPlayerDead(object s, string team)
     {
         _energy = 0;
         UpdateHealthTankClientRpc(_energy);

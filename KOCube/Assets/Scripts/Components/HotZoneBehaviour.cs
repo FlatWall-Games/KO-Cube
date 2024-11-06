@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using System;
 
 public class HotZoneBehaviour : NetworkBehaviour
 {
@@ -58,6 +59,8 @@ public class HotZoneBehaviour : NetworkBehaviour
         if (!IsServer) return;
         if (other.CompareTag("Team1")) numT1Inside++;
         else if (other.CompareTag("Team2")) numT2Inside++;
+        other.GetComponent<HealthManager>().OnDead += PlayerDead;
+        if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().ulted += PlayerDead;
     }
 
     private void OnTriggerExit(Collider other)
@@ -65,6 +68,17 @@ public class HotZoneBehaviour : NetworkBehaviour
         if (!IsServer) return;
         if (other.CompareTag("Team1")) numT1Inside--;
         else if (other.CompareTag("Team2")) numT2Inside--;
+        other.GetComponent<HealthManager>().OnDead -= PlayerDead;
+        if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().ulted -= PlayerDead;
+    }
+
+    private void PlayerDead(object s, string tag)
+    {
+        if (tag.Equals("Team1")) numT1Inside--;
+        else numT2Inside--;
+        GameObject player = s as GameObject;
+        player.GetComponent<HealthManager>().OnDead -= PlayerDead;
+        if (player.GetComponent<CharacterInfo>().characterID == 1) player.GetComponent<AttackManager>().ulted -= PlayerDead;
     }
 
     [ClientRpc]

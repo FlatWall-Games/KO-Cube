@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 6751371197789644161}
   - component: {fileID: 5727310630616828594}
   - component: {fileID: 7712783104728763439}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Machingan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 868684278
+  GlobalObjectIdHash: 4235631485
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1041,6 +1041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66b2dc42e220c444a0f2a96c5cbaf92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carrying: 0
   aimIndicator: {fileID: 3008699170680591583}
   ammoManager: {fileID: 7658024016803085478}
   basicPrefab: {fileID: 4150131388132305550, guid: 33377b21ecb18a741a9e77ee9a21f8a8,
@@ -1119,6 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kills: 0
   deaths: 0
+  result: 
 --- !u!114 &7712783104728763439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,7 +1533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6888117055452916084}
   - component: {fileID: 4314308978078311389}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

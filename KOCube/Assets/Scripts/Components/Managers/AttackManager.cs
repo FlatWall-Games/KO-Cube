@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using System;
 
 public class AttackManager : NetworkBehaviour
 {
@@ -20,6 +21,7 @@ public class AttackManager : NetworkBehaviour
     [SerializeField] private UltManager ultManager; //Controlador de las ultis
     [SerializeField] GameObject ultPrefab; //Prefab del básico
     [SerializeField] private Transform ultOrigin; //Posición desde la que salen las ultis
+    public EventHandler<string> ulted;
 
     private void Awake()
     {
@@ -127,6 +129,7 @@ public class AttackManager : NetworkBehaviour
             if (!ultManager.RequestShoot()) return;
             transform.rotation = lookRotation;
             anim.SetTrigger("ShootUlt");
+            ulted?.Invoke(this.gameObject, this.tag);
         }
 
         UpdateBarsClientRpc(attackType);

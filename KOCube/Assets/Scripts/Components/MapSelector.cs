@@ -8,7 +8,7 @@ public class MapSelector : NetworkBehaviour
     private int currentMapIndex = 0;
     [SerializeField] private GameObject[] maps;
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void RequestMapServerRpc()
     {
         AssignMapClientRpc(currentMapIndex);

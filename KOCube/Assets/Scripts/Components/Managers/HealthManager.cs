@@ -12,7 +12,7 @@ public class HealthManager : NetworkBehaviour
     DeathMatchManager deathMatch;
 
     private float currentHealth; //Vida actual
-    public event Action OnDead;
+    public EventHandler<string> OnDead;
     public MatchStatsManager matchStatsManager;
 
     void Awake()
@@ -57,7 +57,7 @@ public class HealthManager : NetworkBehaviour
 
                 if (currentHealth <= 0) 
                 {
-                    OnDead?.Invoke();
+                    OnDead?.Invoke(this.gameObject, this.tag);
                     GetComponent<PlayerBehaviour>().InitializePosition();
                     if(deathMatch != null) deathMatch.PointScored(attack.GetAttacker().tag);
                     killed = true;

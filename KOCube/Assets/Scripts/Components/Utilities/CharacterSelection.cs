@@ -77,7 +77,7 @@ public class CharacterSelection : NetworkBehaviour
             // Si es un cliente, enviamos la solicitud al servidor
             SpawnCharacterRequestServerRpc(arrayIndex);
         }
-
+        SelectionDone();
         UIManager.Instance.State = new GameState(UIManager.Instance);
     }
 
@@ -96,7 +96,6 @@ public class CharacterSelection : NetworkBehaviour
 
             // Asociar el NetworkObject con el cliente
             playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
-            SelectionDone();
         }
         else
         {
@@ -115,7 +114,6 @@ public class CharacterSelection : NetworkBehaviour
 
             // Asociar el NetworkObject con el cliente
             playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
-            SelectionDone();
         }
         else
         {

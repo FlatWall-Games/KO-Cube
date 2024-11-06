@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1759420714376917118}
   - component: {fileID: 6994669095177081586}
   - component: {fileID: 6842985925556032849}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 1268013852425285268}
   - component: {fileID: 4861785587547319991}
   - component: {fileID: 8182572434682607405}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: RestoreTimerBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,7 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8936509203757719625}
   - component: {fileID: 635822981054146418}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
