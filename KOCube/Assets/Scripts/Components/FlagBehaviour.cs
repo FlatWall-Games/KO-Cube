@@ -70,12 +70,13 @@ public class FlagBehaviour : NetworkBehaviour
         
         if ((other.CompareTag("Team1") || other.CompareTag("Team2")) && !other.CompareTag(team))
         {
+            carrier = other.GetComponent<HealthManager>();
+            if (carrier == null) return; //La ulti de Alra, por ejemplo, puede colisionar con la bandera
+            carrier.GetComponent<AttackManager>().carrying = true;
+            carrier.OnDead += DropFlag;
             this.transform.parent = other.transform;
             this.transform.localPosition = new Vector3(0, this.transform.localPosition.y, -0.5f);
             this.transform.rotation = Quaternion.identity;
-            carrier = other.GetComponent<HealthManager>();
-            carrier.GetComponent<AttackManager>().carrying = true;
-            carrier.OnDead += DropFlag;
             SetDroppedClientRpc(false);
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,13 +19,14 @@ public class CharacterSelection : NetworkBehaviour
     private TextMeshProUGUI uiCharacterDescription;
 
     public GameObject[] playerPrefabs; //Lista de prefabs de persooajes (Por si acaso, que su orden coincida con el de la lista del NetworkManager)
-
+    
     private void Awake()
     {
-        uiCharacterFullBodyImage = transform.Find("UI/CharacterImage").GetComponent<Image>();
-        uiCharacterName = transform.Find("UI/CharacterNamePanel/CharacterName").GetComponent<TextMeshProUGUI>();
-        uiCharacterDescription = transform.Find("UI/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
+        uiCharacterFullBodyImage = transform.Find("UI/CharacterSelection/CharacterImage").GetComponent<Image>();
+        uiCharacterName = transform.Find("UI/CharacterSelection/CharacterNamePanel/CharacterName").GetComponent<TextMeshProUGUI>();
+        uiCharacterDescription = transform.Find("UI/CharacterSelection/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
     }
+
     //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje
     public void ChangeCharacterUI(int value)
     {
@@ -94,6 +96,7 @@ public class CharacterSelection : NetworkBehaviour
 
             // Asociar el NetworkObject con el cliente
             playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
+            SelectionDone();
         }
         else
         {
@@ -112,14 +115,18 @@ public class CharacterSelection : NetworkBehaviour
 
             // Asociar el NetworkObject con el cliente
             playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+            SelectionDone();
         }
         else
         {
             Debug.LogWarning("Índice de personaje inválido");
         }
     }
-    private void Update()
+    
+    private void SelectionDone()
     {
-
+        if(IsServer) GameObject.FindObjectOfType<ModeSelector>().UpdateMode();
+        else GameObject.FindObjectOfType<ModeSelector>().RequestModeServerRpc();
+        GameObject.FindObjectOfType<UIManager>().gui_visible = true;
     }
 }

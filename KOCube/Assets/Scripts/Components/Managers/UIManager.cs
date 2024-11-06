@@ -23,6 +23,8 @@ public class UIManager : Singleton<UIManager>, IUI
     private IState _currentState;
     private GameObject _canvas;
 
+    public bool gui_visible = false;
+
     public IState State 
     { 
         get { return _currentState; } 
@@ -54,6 +56,7 @@ public class UIManager : Singleton<UIManager>, IUI
 
     void OnGUI()
     {
+        if (!gui_visible) return;
         //OnGUI se ejecuta en cada frame, a la hora de recargar la escena puede dar problemas si NetworkManger no existe todavia
         if (NetworkManager.Singleton == null) return;
 

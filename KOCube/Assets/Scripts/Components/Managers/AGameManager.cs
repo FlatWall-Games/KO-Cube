@@ -148,7 +148,7 @@ public class AGameManager : NetworkBehaviour
         pointsT1Text.gameObject.SetActive(state);
         pointsT2Text.gameObject.SetActive(state);
         timeLeftText.gameObject.SetActive(state);
-        GameObject.FindObjectOfType<UIManager>().enabled = false; //Deberá estar desactivado en todos los casos, al comenzar y acabar la partida
+        GameObject.FindObjectOfType<UIManager>().gui_visible = false; //Deberá estar desactivado en todos los casos, al comenzar y acabar la partida
     }
 }
 
