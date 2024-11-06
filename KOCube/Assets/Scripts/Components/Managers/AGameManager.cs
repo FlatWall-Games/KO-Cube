@@ -86,6 +86,11 @@ public class AGameManager : NetworkBehaviour
         pointsT2Text.text = t2.ToString();
     }
 
+    public void PlayerReady()
+    {
+        GameObject.FindObjectOfType<PlayersReadyManager>().PlayerReadyServerRpc();
+    }
+
     public void StartGame()
     {
         StablishPlayersMovementClientRpc(true);

@@ -38,9 +38,9 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 UpdateCameraOffsetClientRpc();
             }
-            GameObject.FindObjectOfType<AGameManager>().EnableButton();
             AssignTagClientRpc(this.tag);
         }
+        GameObject.FindObjectOfType<AGameManager>().EnableButton();
     }
 
     private void Update()

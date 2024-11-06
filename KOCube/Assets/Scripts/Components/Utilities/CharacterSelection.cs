@@ -27,6 +27,16 @@ public class CharacterSelection : NetworkBehaviour
         uiCharacterDescription = transform.Find("UI/CharacterSelection/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
     }
 
+    public override void OnNetworkSpawn()
+    {
+        Invoke("AddPlayers", 0.5f);
+    }
+
+    private void AddPlayers()
+    {
+        GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
+    }
+
     //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje
     public void ChangeCharacterUI(int value)
     {
