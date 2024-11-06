@@ -40,7 +40,7 @@ public class PlayerBehaviour : NetworkBehaviour
             }
             AssignTagClientRpc(this.tag);
         }
-        GameObject.FindObjectOfType<AGameManager>().EnableButton();
+        if(IsOwner) GameObject.FindObjectOfType<AGameManager>().EnableButton();
     }
 
     private void Update()
