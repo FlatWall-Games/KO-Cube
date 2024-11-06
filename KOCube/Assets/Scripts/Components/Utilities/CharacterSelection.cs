@@ -125,8 +125,16 @@ public class CharacterSelection : NetworkBehaviour
     
     private void SelectionDone()
     {
-        if(IsServer) GameObject.FindObjectOfType<ModeSelector>().UpdateMode();
-        else GameObject.FindObjectOfType<ModeSelector>().RequestModeServerRpc();
+        if (IsServer)
+        {
+            GameObject.FindObjectOfType<ModeSelector>().UpdateMode();
+            GameObject.FindObjectOfType<MapSelector>().UpdateMap();
+        }
+        else
+        {
+            GameObject.FindObjectOfType<ModeSelector>().RequestModeServerRpc();
+            GameObject.FindObjectOfType<MapSelector>().RequestMapServerRpc();
+        }
         GameObject.FindObjectOfType<UIManager>().gui_visible = true;
     }
 }
