@@ -12,13 +12,11 @@ public class PlayersReadyManager : NetworkBehaviour
     public void AddPlayerServerRpc()
     {
         totalPlayers++;
-        Debug.Log("JUGADORES TOTALES: " + totalPlayers);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc()
     {
         if(++numPlayersReady == totalPlayers) GameObject.FindObjectOfType<AGameManager>().StartGame();
-        Debug.Log("JUGADORES LISTOS: " + numPlayersReady);
     }
 }

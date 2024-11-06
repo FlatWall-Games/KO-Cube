@@ -22,7 +22,6 @@ public class AProjectile : MonoBehaviour, IAttack
     private void OnTriggerEnter(Collider other)
     {
         CheckDestroy(other);
-        
     }
 
     public virtual void CheckDestroy(Collider other) { }

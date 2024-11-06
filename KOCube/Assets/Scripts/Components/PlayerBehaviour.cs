@@ -6,7 +6,7 @@ using Cinemachine;
 public class PlayerBehaviour : NetworkBehaviour
 {
     CharacterController characterController;
-    AttackManager basicShoot;
+    AttackManager attackManager;
     public Renderer rend;
     public static string ownerTag = "Untagged";
 
@@ -23,7 +23,7 @@ public class PlayerBehaviour : NetworkBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        basicShoot = GetComponent<AttackManager>();
+        attackManager = GetComponent<AttackManager>();
         rend = GetComponent<Renderer>();
         rend.material = new Material(rend.material); //Desvinculamos el material del objeto del original para que los cambios no afecten al resto
     }
@@ -40,6 +40,8 @@ public class PlayerBehaviour : NetworkBehaviour
             }
             AssignTagClientRpc(this.tag);
         }
+        else RequestTagServerRpc();
+
         if(IsOwner) GameObject.FindObjectOfType<AGameManager>().EnableButton();
     }
 
@@ -61,8 +63,9 @@ public class PlayerBehaviour : NetworkBehaviour
             movement = new Vector3(0f, yMovement, 0f);
         }
         movement *= speed * Time.deltaTime;
+        if (attackManager.carrying) movement *= 0.75f; //Los personajes que cargan con banderas son más lentos
         characterController.Move(movement);
-        if ((xMovement != 0 || zMovement != 0) && !basicShoot.IsShooting()) //Si se mueve y no está disparando mira hacia donde se mueve
+        if ((xMovement != 0 || zMovement != 0) && !attackManager.IsShooting()) //Si se mueve y no está disparando mira hacia donde se mueve
         {
             movement.y = 0f; //Anulamos el eje y del movimiento para que rote en el eje deseado
             rotation = Quaternion.LookRotation(movement);
@@ -86,6 +89,12 @@ public class PlayerBehaviour : NetworkBehaviour
         zMovement = context[1];
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    private void RequestTagServerRpc()
+    {
+        AssignTagClientRpc(this.tag);
+    }
+
     [ClientRpc]
     private void AssignTagClientRpc(string tag)
     {
@@ -96,8 +105,11 @@ public class PlayerBehaviour : NetworkBehaviour
             if (ownerTag.Equals("Team2")) GameObject.FindObjectOfType<AGameManager>().InvertUI(); //Se hace que el equipo del jugador esté siempre a la izquierda
             GameObject.FindObjectOfType<TeamColorUI>().SetColorUI();
         }
-        GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
-        if (!ownerTag.Equals("Untagged")) InitializePlayersShaders();
+        if (!ownerTag.Equals("Untagged")) //Sólo se hará lo siguiente cuando el personaje del jugador esté inicializado
+        {
+            InitializePlayersShaders();
+            GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
+        }
     }
 
     private void InitializePlayersShaders()
