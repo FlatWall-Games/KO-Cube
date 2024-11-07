@@ -54,6 +54,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
             SetSkinsData("0");
             SaveData();
         }
+        MoneyText.Instance.UpdateMoney();
 
         Debug.Log("Ruta de PlayerPrefs en este sistema operativo: " + Application.persistentDataPath);
         //Descomentar esta linea para borrar los datos (esto solo esta aqui para pruebas)
@@ -86,6 +87,11 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         coins = amount;
         SetCoinsData(amount);
         SaveData();
+    }
+
+    public void AddCoins(int amount)
+    {
+        SetCoins(coins + amount);
     }
 
     public void SetSkins(string skinCode, int charCode)
