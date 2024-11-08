@@ -141,7 +141,7 @@ public class UIManager : Singleton<UIManager>, IUI
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
-        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(_maxConnections);
+        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(_maxConnections, "europe-west2");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
         _joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 

@@ -24,8 +24,8 @@ public class PlayerBehaviour : NetworkBehaviour
     {
         characterController = GetComponent<CharacterController>();
         attackManager = GetComponent<AttackManager>();
-        rend = GetComponent<Renderer>();
-        rend.material = new Material(rend.material); //Desvinculamos el material del objeto del original para que los cambios no afecten al resto
+        //rend = GetComponent<Renderer>();
+        //rend.material = new Material(rend.material); //Desvinculamos el material del objeto del original para que los cambios no afecten al resto
     }
 
     void Start()
