@@ -89,9 +89,11 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         SaveData();
     }
 
-    public void AddCoins(int amount)
+    public bool AddCoins(int amount)
     {
+        if (coins + amount < 0) return false;
         SetCoins(coins + amount);
+        return true;
     }
 
     public void SetSkins(string skinCode, int charCode)
