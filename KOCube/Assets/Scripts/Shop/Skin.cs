@@ -29,8 +29,8 @@ public class Skin : MonoBehaviour
         return acquired;
     }
 
-    public void AcquireSkin()
+    public void AcquireSkin(bool acquire)
     {
-        acquired = true;
+        acquired = acquire;
     }
 }

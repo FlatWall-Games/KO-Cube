@@ -12,7 +12,8 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     //Atributos que se almacenaran
     string username;
     int coins;
-    List<List<string>> characterSkins = new List<List<string>>(numberOfCharacters);
+    List<List<bool>> characterSkins = new List<List<bool>>(numberOfCharacters);
+    int[] activeSkins = new int[numberOfCharacters];
     //Por cada personaje se almacena una lista con el codigo de las skisn que posee, siendo 0 la skin por defecto.
     //Los codigos de los personajes (su orden en la lista) son:
     //VER EL ORDEN EN EL NETWORK MANAGER
@@ -23,7 +24,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         //Inicizaliacion de la estructura
         for (int i = 0; i < numberOfCharacters; i++)
         {
-            characterSkins.Add(new List<string>());
+            characterSkins.Add(new List<bool>());
         }
 
         //Si existen datos guardados del jugador, los recuperamos y los almacenamos
@@ -37,9 +38,20 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
                 string stringSkins = PlayerPrefs.GetString("Character" + i);
                 //Convertimos en lista la cadena anterior
                 List<string> skinList = stringSkins.Split('.').ToList();
+                List<bool> skinBools = new List<bool>();
+                foreach(string skin in skinList)
+                {
+                    Debug.Log(skin);
+                    skinBools.Add(bool.Parse(skin));
+                }
                 //Asignamos la lista recuperada
-                characterSkins[i] = skinList;
+                characterSkins[i] = skinBools;
+                SkinManager.Instance.RestoreData(i, characterSkins[i]);
+
+                //Recuperamos también la lista de skins activas
+                activeSkins[i] = PlayerPrefs.GetInt("ActiveSkin" + i);
             }
+            SkinManager.Instance.RestoreActiveSkins(activeSkins);
 
             Debug.Log("Datos recuperados con exito");
         }
@@ -51,30 +63,24 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
             coins = 10000;
             SetNameData(username); //Aqui habria que poner el nombre que escriba el jugador
             SetCoinsData(coins);
-            SetSkinsData("0");
+            SetSkinsData(-1);
             SaveData();
+            for(int i = 0; i < numberOfCharacters; i++)
+            {
+                SkinManager.Instance.RestoreData(i, characterSkins[i]);
+                activeSkins[i] = 0;
+            }
+            SkinManager.Instance.RestoreActiveSkins(activeSkins);
         }
         MoneyText.Instance.UpdateMoney();
 
         Debug.Log("Ruta de PlayerPrefs en este sistema operativo: " + Application.persistentDataPath);
         //Descomentar esta linea para borrar los datos (esto solo esta aqui para pruebas)
         //DeleteData();
-        PrintSkins();
     }
 
     //////////////////////// Metodos publicos para modificar datos desde otros scripts //////////////////////// 
 
-    //Metodo para comprobar que se recupera bien la estructura
-    public void PrintSkins()
-    {
-        foreach (List<string> skins in characterSkins) 
-        { 
-            foreach (string skin in skins)
-            {
-                Debug.Log(skin);
-            }
-        }
-    }
     public void SetName(string name)
     {
         username = name;
@@ -96,10 +102,17 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         return true;
     }
 
-    public void SetSkins(string skinCode, int charCode)
+    public void SetSkins(int charCode, List<bool> list)
     {
-        characterSkins[charCode].Add(skinCode);
-        SetSkinsData(skinCode, charCode);
+        characterSkins[charCode] = list;
+        SetSkinsData(charCode);
+        SaveData();
+    }
+
+    public void SetActiveSkins(int[] activeSkins)
+    {
+        this.activeSkins = activeSkins;
+        SetActiveSkinsData();
         SaveData();
     }
 
@@ -113,7 +126,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         return coins;
     }
 
-    public List<string> GetSkins(int charCode)
+    public List<bool> GetSkins(int charCode)
     {
         return characterSkins[charCode];
     }
@@ -139,15 +152,16 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         PlayerPrefs.SetInt("coins", amount);
     }
 
-    void SetSkinsData(string skinCode, int charCode = -1) 
+    void SetSkinsData(int charCode = -1) 
     {
         //Quiere decir que hay que crear la estructura por defecto de las skins que tiene el jugador
         if (charCode == -1)
         {
-            //Por cada personaje, se crea una lista con el codigo de las skins que tenga 
+            List<bool> newList = new List<bool>() { true, false, false, false };
             for(int i = 0; i < numberOfCharacters; i++)
             {
-                characterSkins[i].Add("0");
+                characterSkins[i].Clear();
+                characterSkins[i] = newList;
                 PlayerPrefs.SetString("Character" + i, CreateStringSkins(characterSkins[i]));
             }
         }
@@ -157,7 +171,15 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         }
     }
 
-    string CreateStringSkins(List<string> skinList)
+    void SetActiveSkinsData()
+    {
+        for(int i = 0; i < activeSkins.Length; i++)
+        {
+            PlayerPrefs.SetInt("ActiveSkin" + i, activeSkins[i]);
+        }
+    }
+
+    string CreateStringSkins(List<bool> skinList)
     {
         return string.Join(".", skinList);
     }

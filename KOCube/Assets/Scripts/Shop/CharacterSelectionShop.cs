@@ -37,7 +37,7 @@ public class CharacterSelectionShop : MonoBehaviour
         {
             buttons[i].SetSkin(skins[i]);
         }
-        buttons[0].SetActiveButton();
+        buttons[SkinManager.Instance.GetActiveSkin(index)].SetActiveButton();
     }
 
     public void SetActiveSkin()

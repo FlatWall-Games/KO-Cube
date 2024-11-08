@@ -71,9 +71,10 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
         if (PlayerDataManager.Instance.AddCoins(-skin.GetPrice()))
         {
             MoneyText.Instance.UpdateMoney();
-            skin.AcquireSkin();
+            skin.AcquireSkin(true);
             Debug.Log($"Comprada la skin: {skin.GetName()}.");
             SetActiveButton();
+            SkinManager.Instance.UpdateData(CharacterSelectionShop.Instance.index);
         }
     }
 
