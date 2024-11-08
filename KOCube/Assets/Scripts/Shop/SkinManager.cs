@@ -14,6 +14,9 @@ public class SkinManager : MonoBehaviour
     [SerializeField] private Skin[] SadGuySkins;
     private List<Skin[]> totalSkins = new List<Skin[]>();
 
+    //Lista de skins activas:
+    private int[] activeSkins = new int[6]; 
+
     private void Awake()
     {
         Instance = this;
@@ -28,5 +31,16 @@ public class SkinManager : MonoBehaviour
     public Skin[] GetCharacterSkins(int characterID)
     {
         return totalSkins[characterID];
+    }
+
+    public void SetActiveSkin(int characterID, int activeSkin)
+    {
+        activeSkins[characterID] = activeSkin;
+        Debug.Log($"Equipada la skin número {activeSkin} para el personaje con ID: {characterID}");
+    }
+
+    public int GetActiveSkin(int characterID)
+    {
+        return activeSkins[characterID];
     }
 }

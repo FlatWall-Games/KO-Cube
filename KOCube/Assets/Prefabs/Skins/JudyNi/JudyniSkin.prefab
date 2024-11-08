@@ -47,3 +47,4 @@ MonoBehaviour:
   materials: []
   price: 0
   skinName: Default
+  acquired: 1

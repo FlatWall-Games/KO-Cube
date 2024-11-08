@@ -5,14 +5,20 @@ using UnityEngine.UI;
 
 public class CharacterSelectionShop : MonoBehaviour
 {
+    public static CharacterSelectionShop Instance;
     [SerializeField] private Sprite[] charactersImages;
     [SerializeField] private Image currentCharacterImage;
     [SerializeField] private SkinButton[] buttons;
-    int index = 0;
+    public int index = 0;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnEnable()
     {
-        UpdateSkinButtons();
+        Invoke("UpdateSkinButtons", 0.01f); //Sin este pequeño delay no funciona la primera vez que abres la tienda, por la cara
     }
 
     public void ChangeImage(int i)
@@ -32,5 +38,11 @@ public class CharacterSelectionShop : MonoBehaviour
             buttons[i].SetSkin(skins[i]);
         }
         buttons[0].SetActiveButton();
+    }
+
+    public void SetActiveSkin()
+    {
+        SkinManager.Instance.SetActiveSkin(index, SkinButton.activeButton.buttonIndex);
+        SkinButton.activeButton.SetActiveButton();
     }
 }
