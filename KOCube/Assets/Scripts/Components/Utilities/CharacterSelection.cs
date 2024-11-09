@@ -71,6 +71,7 @@ public class CharacterSelection : NetworkBehaviour
     {
         if (IsServer)
         {
+            isSpectator = false;
             // Si es el servidor, instanciamos el personaje directamente
             SpawnCharacterServer(arrayIndex);
         }
