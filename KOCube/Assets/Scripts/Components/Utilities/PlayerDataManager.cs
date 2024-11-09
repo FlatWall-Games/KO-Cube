@@ -41,7 +41,6 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
                 List<bool> skinBools = new List<bool>();
                 foreach(string skin in skinList)
                 {
-                    Debug.Log(skin);
                     skinBools.Add(bool.Parse(skin));
                 }
                 //Asignamos la lista recuperada

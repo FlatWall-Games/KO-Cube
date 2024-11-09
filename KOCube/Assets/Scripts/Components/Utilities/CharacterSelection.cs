@@ -85,10 +85,30 @@ public class CharacterSelection : NetworkBehaviour
         else
         {
             // Si es un cliente, enviamos la solicitud al servidor
-            SpawnCharacterRequestServerRpc(arrayIndex);
+            RequestGameStartedServerRpc();
         }
         SelectionDone();
         UIManager.Instance.State = new GameState(UIManager.Instance);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void RequestGameStartedServerRpc(ServerRpcParams serverRpcParams = default)
+    {
+        AssignGameStartedClientRpc(GameObject.FindObjectOfType<AGameManager>().HasStarted(),
+        new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new ulong[] { serverRpcParams.Receive.SenderClientId }
+            }
+        });
+    }
+
+    [ClientRpc] 
+    private void AssignGameStartedClientRpc(bool started, ClientRpcParams clientParams = default)
+    {
+        if (!started) SpawnCharacterRequestServerRpc(arrayIndex);
+        else GameObject.FindWithTag("MainCamera").GetComponent<SpectatorCamera>().SetSpectate();
     }
 
     // ServerRpc para que el servidor reciba la solicitud del cliente
