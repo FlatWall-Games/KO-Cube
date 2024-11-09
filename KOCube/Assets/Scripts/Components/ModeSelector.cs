@@ -32,6 +32,6 @@ public class ModeSelector : NetworkBehaviour
         {
             if (i != currentModeIndex) modes[i].SetActive(false);
         }
-        GameObject.FindObjectOfType<AGameManager>().SyncSpectatorData();
+        if(GameObject.FindObjectOfType<CharacterSelection>().isSpectator) GameObject.FindObjectOfType<AGameManager>().SyncSpectatorData();
     }
 }

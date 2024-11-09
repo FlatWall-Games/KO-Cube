@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 public class PlayersReadyManager : NetworkBehaviour
 {
     private int numPlayersReady = 0;
     private int totalPlayers = 0;
+    [SerializeField] private TextMeshProUGUI countDownText;
 
     [ServerRpc(RequireOwnership = false)]
     public void AddPlayerServerRpc()
@@ -17,6 +19,33 @@ public class PlayersReadyManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc()
     {
-        if(++numPlayersReady == totalPlayers) GameObject.FindObjectOfType<AGameManager>().StartGame();
+        StartGameAfterCountClientRpc();
+    }
+
+    [ClientRpc]
+    private void StartGameAfterCountClientRpc()
+    {
+        StartCoroutine(CountDown());
+    }
+
+    IEnumerator CountDown()
+    {
+        countDownText.gameObject.SetActive(true);
+        countDownText.text = "LA PARTIDA COMENZARÁ EN:\r\n3";
+        yield return new WaitForSeconds(1);
+        countDownText.text = "LA PARTIDA COMENZARÁ EN:\r\n2";
+        yield return new WaitForSeconds(1);
+        countDownText.text = "LA PARTIDA COMENZARÁ EN:\r\n1";
+        yield return new WaitForSeconds(1);
+        countDownText.text = "¡QUE COMIENCE LA PARTIDA!";
+        if (IsServer && ++numPlayersReady == totalPlayers) GameObject.FindObjectOfType<AGameManager>().StartGame();
+        yield return new WaitForSeconds(1);
+        countDownText.gameObject.SetActive(false);
+    }
+
+    public void GameEnded()
+    {
+        countDownText.gameObject.SetActive(true);
+        countDownText.text = "¡FIN DE LA PARTIDA!";
     }
 }

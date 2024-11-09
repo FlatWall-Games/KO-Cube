@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEditor.PackageManager.Requests;
+using System.Collections;
 
 public class AGameManager : NetworkBehaviour
 {
@@ -37,15 +38,15 @@ public class AGameManager : NetworkBehaviour
                 StablishPlayersMovementClientRpc(false);
                 if (pointsTeam1 > pointsTeam2)
                 {
-                    EnterResultsScreenClientRpc("Team1");
+                    EnterResultsAfterDelayClientRpc("Team1");
                 }
                 else if (pointsTeam2 > pointsTeam1)
                 {
-                    EnterResultsScreenClientRpc("Team2");
+                    EnterResultsAfterDelayClientRpc("Team2");
                 }
                 else
                 {
-                    EnterResultsScreenClientRpc("Empate");
+                    EnterResultsAfterDelayClientRpc("Empate");
                 }
                 UIEnablerClientRpc(false);
             }
@@ -64,7 +65,7 @@ public class AGameManager : NetworkBehaviour
             if (++pointsTeam1 >= maxPoints)
             {
                 StablishPlayersMovementClientRpc(false);
-                EnterResultsScreenClientRpc("Team1");
+                EnterResultsAfterDelayClientRpc("Team1");
                 UIEnablerClientRpc(false);
             }
         }
@@ -73,7 +74,7 @@ public class AGameManager : NetworkBehaviour
             if (++pointsTeam2 >= maxPoints)
             {
                 StablishPlayersMovementClientRpc(false);
-                EnterResultsScreenClientRpc("Team2");
+                EnterResultsAfterDelayClientRpc("Team2");
                 UIEnablerClientRpc(false);
             }
         }
@@ -101,18 +102,25 @@ public class AGameManager : NetworkBehaviour
     [ClientRpc]
     protected void StablishPlayersMovementClientRpc(bool movement)
     {
-        if (PlayerBehaviour.ownerTag.Equals("Untagged")) return; //No queremos que se haga para los espectadores
+        if (GameObject.FindObjectOfType<CharacterSelection>().isSpectator) return; //No queremos que se haga para los espectadores
         gameStarted = movement;
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         foreach (PlayerBehaviour player in players)
         {
             if (player.IsOwner) player.GetComponent<PlayerInput>().enabled = movement;
         }
+        GameObject.FindObjectOfType<PlayersReadyManager>().GameEnded();
     }
 
     [ClientRpc]
-    public void EnterResultsScreenClientRpc(string tag)
+    public void EnterResultsAfterDelayClientRpc(string tag)
     {
+        StartCoroutine(EnterResults(tag));
+    }
+
+    IEnumerator EnterResults(string tag)
+    {
+        yield return new WaitForSeconds(1.5f);
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         bool hasOwner = false;
         foreach (PlayerBehaviour player in players)
@@ -154,7 +162,7 @@ public class AGameManager : NetworkBehaviour
     [ClientRpc]
     private void UIEnablerClientRpc(bool state)
     {
-        if (PlayerBehaviour.ownerTag.Equals("Untagged")) return; //No queremos que se haga para los espectadores
+        if (GameObject.FindObjectOfType<CharacterSelection>().isSpectator) return; //No queremos que se haga para los espectadores
         gameModeUiText.gameObject.SetActive(state);
         pointsT1Text.gameObject.SetActive(state);
         pointsT2Text.gameObject.SetActive(state);
@@ -166,7 +174,6 @@ public class AGameManager : NetworkBehaviour
     ///
     public void SyncSpectatorData()
     {
-        if (!PlayerBehaviour.ownerTag.Equals("Untagged")) return; //Sólo para espectadores
         gameModeUiText.gameObject.SetActive(true);
         pointsT1Text.gameObject.SetActive(true);
         pointsT2Text.gameObject.SetActive(true);

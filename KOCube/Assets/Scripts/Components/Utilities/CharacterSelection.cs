@@ -18,6 +18,7 @@ public class CharacterSelection : NetworkBehaviour
     private TextMeshProUGUI uiCharacterName;
     private TextMeshProUGUI uiCharacterDescription;
 
+    public bool isSpectator = false;
     public GameObject[] playerPrefabs; //Lista de prefabs de persooajes (Por si acaso, que su orden coincida con el de la lista del NetworkManager)
     
     private void Awake()
@@ -103,7 +104,11 @@ public class CharacterSelection : NetworkBehaviour
     private void AssignGameStartedClientRpc(bool started, ClientRpcParams clientParams = default)
     {
         if (!started) SpawnCharacterRequestServerRpc(arrayIndex);
-        else GameObject.FindWithTag("MainCamera").GetComponent<SpectatorCamera>().SetSpectate();
+        else
+        {
+            isSpectator = true;
+            GameObject.FindWithTag("MainCamera").GetComponent<SpectatorCamera>().SetSpectate();
+        }
     }
 
     // ServerRpc para que el servidor reciba la solicitud del cliente
@@ -160,7 +165,6 @@ public class CharacterSelection : NetworkBehaviour
             GameObject.FindObjectOfType<ModeSelector>().RequestModeServerRpc();
             GameObject.FindObjectOfType<MapSelector>().RequestMapServerRpc();
         }
-        GameObject.FindObjectOfType<AGameManager>().SyncSpectatorData();
         GameObject.FindObjectOfType<UIManager>().gui_visible = true;
     }
 }
