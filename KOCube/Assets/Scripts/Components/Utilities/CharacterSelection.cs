@@ -32,11 +32,6 @@ public class CharacterSelection : NetworkBehaviour
         Invoke("AddPlayers", 0.5f);
     }
 
-    private void AddPlayers()
-    {
-        GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
-    }
-
     //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje
     public void ChangeCharacterUI(int value)
     {
@@ -126,6 +121,7 @@ public class CharacterSelection : NetworkBehaviour
 
             // Asociar el NetworkObject con el cliente
             playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
+            GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
         }
         else
         {
@@ -144,6 +140,7 @@ public class CharacterSelection : NetworkBehaviour
 
             // Asociar el NetworkObject con el cliente
             playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+            GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
         }
         else
         {

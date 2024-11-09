@@ -107,7 +107,7 @@ public class PlayerBehaviour : NetworkBehaviour
         }
         if (!ownerTag.Equals("Untagged")) //Sólo se hará lo siguiente cuando el personaje del jugador esté inicializado
         {
-            InitializePlayersShaders();
+            //InitializePlayersShaders();
             GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
         }
     }
