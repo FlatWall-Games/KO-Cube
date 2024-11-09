@@ -38279,7 +38279,7 @@ MonoBehaviour:
   - {fileID: 321962933529451624, guid: f804b91e80b95cb49b5be0e49d4e0131, type: 3}
   - {fileID: 321962933529451624, guid: d3c4d667ee1d6ae4e95d8fec8017d6d3, type: 3}
   playerPrefabs:
-  - {fileID: 3345367470636222976, guid: cffd50d27e5b9eb48b955f8f09d3a3c6, type: 3}
+  - {fileID: 3723434334071456548, guid: 70ba66fe451b1164188733479be0fee6, type: 3}
   - {fileID: 3345367470636222976, guid: 47ddfa7d21103c647813e941c41def60, type: 3}
   - {fileID: 3345367470636222976, guid: 63ed74ab02d40af48a40db23c738507f, type: 3}
   - {fileID: 3345367470636222976, guid: 38d613c0625cb184e8577a2bff1e3a01, type: 3}

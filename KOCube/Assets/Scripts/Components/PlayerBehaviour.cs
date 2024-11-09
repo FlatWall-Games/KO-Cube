@@ -71,7 +71,7 @@ public class PlayerBehaviour : NetworkBehaviour
             rotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
         }
-
+        Debug.Log(movement);
     }
 
     public void OnMove(InputAction.CallbackContext context)
