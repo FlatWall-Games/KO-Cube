@@ -22,9 +22,8 @@ public class SpectatorCamera : MonoBehaviour
         FollowCurrentIndex();
         GetComponent<PlayerInput>().enabled = true;
         GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
-        GameObject.FindObjectOfType<AGameManager>().SyncSpectatorData();
         GameObject.FindWithTag("NonSpectable").SetActive(false);
-        GameObject.FindWithTag("SpectableHUD").transform.Find("Background").gameObject.SetActive(false);
+        GameObject.FindWithTag("SpectableHUD").transform.Find("Background").gameObject.SetActive(true);
     }
 
     public void TogglePlayer(InputAction.CallbackContext context)

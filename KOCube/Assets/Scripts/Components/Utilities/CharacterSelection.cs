@@ -160,6 +160,7 @@ public class CharacterSelection : NetworkBehaviour
             GameObject.FindObjectOfType<ModeSelector>().RequestModeServerRpc();
             GameObject.FindObjectOfType<MapSelector>().RequestMapServerRpc();
         }
+        GameObject.FindObjectOfType<AGameManager>().SyncSpectatorData();
         GameObject.FindObjectOfType<UIManager>().gui_visible = true;
     }
 }

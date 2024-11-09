@@ -101,6 +101,7 @@ public class AGameManager : NetworkBehaviour
     [ClientRpc]
     protected void StablishPlayersMovementClientRpc(bool movement)
     {
+        if (PlayerBehaviour.ownerTag.Equals("Untagged")) return; //No queremos que se haga para los espectadores
         gameStarted = movement;
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         foreach (PlayerBehaviour player in players)
@@ -113,6 +114,7 @@ public class AGameManager : NetworkBehaviour
     public void EnterResultsScreenClientRpc(string tag)
     {
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
+        bool hasOwner = false;
         foreach (PlayerBehaviour player in players)
         {
             if (player.IsOwner)
@@ -129,8 +131,10 @@ public class AGameManager : NetworkBehaviour
                 {
                     player.GetComponent<MatchStatsManager>().SetResults("Derrota");
                 }
+                hasOwner = true; //Los espectadores no tendrán owner
             }
         }
+        if (!hasOwner) UIManager.Instance.EndGameSession();
         UIManager.Instance.State = new ResultsState(UIManager.Instance);
     }
 
@@ -150,6 +154,7 @@ public class AGameManager : NetworkBehaviour
     [ClientRpc]
     private void UIEnablerClientRpc(bool state)
     {
+        if (PlayerBehaviour.ownerTag.Equals("Untagged")) return; //No queremos que se haga para los espectadores
         gameModeUiText.gameObject.SetActive(state);
         pointsT1Text.gameObject.SetActive(state);
         pointsT2Text.gameObject.SetActive(state);
@@ -161,6 +166,7 @@ public class AGameManager : NetworkBehaviour
     ///
     public void SyncSpectatorData()
     {
+        if (!PlayerBehaviour.ownerTag.Equals("Untagged")) return; //Sólo para espectadores
         gameModeUiText.gameObject.SetActive(true);
         pointsT1Text.gameObject.SetActive(true);
         pointsT2Text.gameObject.SetActive(true);
