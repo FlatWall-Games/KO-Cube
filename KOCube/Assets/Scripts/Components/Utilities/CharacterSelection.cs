@@ -18,11 +18,12 @@ public class CharacterSelection : NetworkBehaviour
     private TextMeshProUGUI uiCharacterName;
     private TextMeshProUGUI uiCharacterDescription;
 
-    public bool isSpectator = false;
+    public bool isSpectator = true;
     public GameObject[] playerPrefabs; //Lista de prefabs de persooajes (Por si acaso, que su orden coincida con el de la lista del NetworkManager)
     
     private void Awake()
     {
+        isSpectator = true;
         uiCharacterFullBodyImage = transform.Find("UI/CharacterSelection/CharacterImage").GetComponent<Image>();
         uiCharacterName = transform.Find("UI/CharacterSelection/CharacterNamePanel/CharacterName").GetComponent<TextMeshProUGUI>();
         uiCharacterDescription = transform.Find("UI/CharacterSelection/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
@@ -85,7 +86,7 @@ public class CharacterSelection : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void RequestGameStartedServerRpc(ServerRpcParams serverRpcParams = default)
     {
-        AssignGameStartedClientRpc(GameObject.FindObjectOfType<AGameManager>().HasStarted(),
+        AssignGameStartedClientRpc(GameObject.FindObjectOfType<AGameManager>().AcceptsClients(),
         new ClientRpcParams
         {
             Send = new ClientRpcSendParams
@@ -96,12 +97,15 @@ public class CharacterSelection : NetworkBehaviour
     }
 
     [ClientRpc] 
-    private void AssignGameStartedClientRpc(bool started, ClientRpcParams clientParams = default)
+    private void AssignGameStartedClientRpc(bool accepts, ClientRpcParams clientParams = default)
     {
-        if (!started) SpawnCharacterRequestServerRpc(arrayIndex);
+        if (accepts)
+        {
+            isSpectator = false;
+            SpawnCharacterRequestServerRpc(arrayIndex);
+        }
         else
         {
-            isSpectator = true;
             GameObject.FindWithTag("MainCamera").GetComponent<SpectatorCamera>().SetSpectate();
         }
     }

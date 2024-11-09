@@ -14,14 +14,13 @@ public class PlayersReadyManager : NetworkBehaviour
     public void AddPlayerServerRpc()
     {
         totalPlayers++;
-        Debug.Log(totalPlayers);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc()
     {
         if (++numPlayersReady == totalPlayers) StartGameAfterCountClientRpc();
-        Debug.Log(numPlayersReady);
+        GameObject.FindObjectOfType<AGameManager>().SetAcceptClients(false);
     }
 
     [ClientRpc]

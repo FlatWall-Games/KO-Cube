@@ -19,6 +19,7 @@ public class AGameManager : NetworkBehaviour
     protected int pointsTeam1 = 0;
     protected int pointsTeam2 = 0;
     protected bool gameStarted = false;
+    protected bool acceptsClients = true;
     protected bool inverted = false;
 
     protected virtual void Awake()
@@ -103,6 +104,7 @@ public class AGameManager : NetworkBehaviour
     protected void StablishPlayersMovementClientRpc(bool movement)
     {
         if (GameObject.FindObjectOfType<CharacterSelection>().isSpectator) return; //No queremos que se haga para los espectadores
+        Debug.Log(GameObject.FindObjectOfType<CharacterSelection>().isSpectator);
         gameStarted = movement;
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         foreach (PlayerBehaviour player in players)
@@ -149,6 +151,16 @@ public class AGameManager : NetworkBehaviour
     public bool HasStarted()
     {
         return gameStarted;
+    }
+
+    public void SetAcceptClients(bool accept)
+    {
+        acceptsClients = accept;
+    }
+
+    public bool AcceptsClients()
+    {
+        return acceptsClients;
     }
 
     public virtual void InvertUI()
