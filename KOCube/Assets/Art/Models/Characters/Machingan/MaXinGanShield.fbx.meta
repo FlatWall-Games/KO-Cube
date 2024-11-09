@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c50361c6c1a06af4f929321694a9e8b2
+guid: 6874a66c11795294bbfce108b402350e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ShieldColor
-    second: {fileID: 2100000, guid: 3205b5840c15aad4e81d9bf65f233769, type: 2}
+    second: {fileID: 2100000, guid: 44f6343a0b481554ab21fa310cecc4be, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
