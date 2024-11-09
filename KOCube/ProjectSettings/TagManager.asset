@@ -11,6 +11,8 @@ TagManager:
   - Flag
   - FlagArea
   - MainCanvas
+  - NonSpectable
+  - SpectableHUD
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using Unity.Netcode;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEditor.PackageManager.Requests;
 
 public class AGameManager : NetworkBehaviour
 {
@@ -154,6 +155,39 @@ public class AGameManager : NetworkBehaviour
         pointsT2Text.gameObject.SetActive(state);
         timeLeftText.gameObject.SetActive(state);
         GameObject.FindObjectOfType<UIManager>().gui_visible = false; //Deberá estar desactivado en todos los casos, al comenzar y acabar la partida
+    }
+
+    //////////////////////SÍNCRONIZACIÓN DE LOS ESPECTADORES:
+    ///
+    public void SyncSpectatorData()
+    {
+        gameModeUiText.gameObject.SetActive(true);
+        pointsT1Text.gameObject.SetActive(true);
+        pointsT2Text.gameObject.SetActive(true);
+        timeLeftText.gameObject.SetActive(true);
+        RequestTimeAndPointsServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void RequestTimeAndPointsServerRpc(ServerRpcParams serverParams = default)
+    {
+        AssignTimeAndPointsClientRpc(pointsTeam1, pointsTeam2, timeLeft,
+           new ClientRpcParams
+           {
+               Send = new ClientRpcSendParams
+               {
+                   TargetClientIds = new ulong[] { serverParams.Receive.SenderClientId }
+               }
+           });
+    }
+
+    [ClientRpc]
+    private void AssignTimeAndPointsClientRpc(int p1, int p2, float time, ClientRpcParams clientParams = default)
+    {
+        gameStarted = true;
+        pointsT1Text.text = p1.ToString();
+        pointsT2Text.text = p2.ToString();
+        timeLeft = time;
     }
 }
 

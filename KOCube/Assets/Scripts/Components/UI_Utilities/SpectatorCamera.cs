@@ -13,21 +13,24 @@ public class SpectatorCamera : MonoBehaviour
 
     private void Awake()
     {
-        players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         cam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
     }
 
     public void SetSpectate()
     {
+        players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         FollowCurrentIndex();
         GetComponent<PlayerInput>().enabled = true;
+        GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
+        GameObject.FindObjectOfType<AGameManager>().SyncSpectatorData();
+        GameObject.FindWithTag("NonSpectable").SetActive(false);
+        GameObject.FindWithTag("SpectableHUD").transform.Find("Background").gameObject.SetActive(false);
     }
 
     public void TogglePlayer(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         index += (int)context.ReadValue<float>();
-        Debug.Log(index);
         if (index < 0) index = players.Length - 1;
         else if (index == players.Length) index = 0;
         FollowCurrentIndex();
