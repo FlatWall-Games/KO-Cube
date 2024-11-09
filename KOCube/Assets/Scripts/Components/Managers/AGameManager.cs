@@ -109,7 +109,7 @@ public class AGameManager : NetworkBehaviour
         {
             if (player.IsOwner) player.GetComponent<PlayerInput>().enabled = movement;
         }
-        GameObject.FindObjectOfType<PlayersReadyManager>().GameEnded();
+        if(!movement) GameObject.FindObjectOfType<PlayersReadyManager>().GameEnded();
     }
 
     [ClientRpc]

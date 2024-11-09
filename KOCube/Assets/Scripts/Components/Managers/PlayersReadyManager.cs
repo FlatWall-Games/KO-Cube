@@ -14,12 +14,14 @@ public class PlayersReadyManager : NetworkBehaviour
     public void AddPlayerServerRpc()
     {
         totalPlayers++;
+        Debug.Log(totalPlayers);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc()
     {
-        StartGameAfterCountClientRpc();
+        if (++numPlayersReady == totalPlayers) StartGameAfterCountClientRpc();
+        Debug.Log(numPlayersReady);
     }
 
     [ClientRpc]
@@ -38,7 +40,7 @@ public class PlayersReadyManager : NetworkBehaviour
         countDownText.text = "LA PARTIDA COMENZARÁ EN:\r\n1";
         yield return new WaitForSeconds(1);
         countDownText.text = "¡QUE COMIENCE LA PARTIDA!";
-        if (IsServer && ++numPlayersReady == totalPlayers) GameObject.FindObjectOfType<AGameManager>().StartGame();
+        if(IsServer) GameObject.FindObjectOfType<AGameManager>().StartGame();
         yield return new WaitForSeconds(1);
         countDownText.gameObject.SetActive(false);
     }

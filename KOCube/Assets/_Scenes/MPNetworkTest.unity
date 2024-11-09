@@ -13331,7 +13331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -39154,6 +39154,7 @@ MonoBehaviour:
   - {fileID: 321962933529451624, guid: c28c4a9b633fa0944ab944ccdbd721c2, type: 3}
   - {fileID: 321962933529451624, guid: f804b91e80b95cb49b5be0e49d4e0131, type: 3}
   - {fileID: 321962933529451624, guid: d3c4d667ee1d6ae4e95d8fec8017d6d3, type: 3}
+  isSpectator: 0
   playerPrefabs:
   - {fileID: 3345367470636222976, guid: cffd50d27e5b9eb48b955f8f09d3a3c6, type: 3}
   - {fileID: 3345367470636222976, guid: 47ddfa7d21103c647813e941c41def60, type: 3}
@@ -51809,6 +51810,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3482337346
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788367871947572100, guid: b069a582d177f73409f6ea679f763926,
+        type: 3}
+      propertyPath: timeLeft
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6168733488243390338, guid: b069a582d177f73409f6ea679f763926,
         type: 3}
