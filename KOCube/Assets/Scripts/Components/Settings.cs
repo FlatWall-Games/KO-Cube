@@ -57,6 +57,7 @@ public class Settings : MonoBehaviour
         SetMusicVolume(sliderValues[2]);
         SetSFXVolume(sliderValues[3]);
         confirmButton.interactable = false;
+        SaveChanges();
     }
 
     public void SetDefault()

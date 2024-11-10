@@ -1,10 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UserSetupState : AUIState
 {
-    GameObject userSetupScreen;
+    GameObject userSetupScreen; //Referencia al objeto que contiene la interfaz
+    TextMeshProUGUI informationBoxText; //Referencia al texto que se muestra en la caja de avisos
+    TMP_InputField nameInputField;  //Referencia al inputfield del nombre del jugador
+    Button continueButton; //Referencia al boton de continuar
+
+    string searchingText = "Buscando datos del Usuario";
+    string succesSearchText = "¡Datos encontrados!";
+    string failureSearchText = "No se han encontrado datos, introduce tu nombre";
+
+    float maxSearchingTimer = 4f;
+    float searchingTimer = 0f;
+    float textTimer = 0f;
+
+    bool canContinue = false;
 
     public UserSetupState(IUI context) : base(context)
     {
@@ -12,8 +28,18 @@ public class UserSetupState : AUIState
 
     public override void Enter()
     {
-        userSetupScreen = contextUI.Canvas.transform.Find("SetupUserMenu").gameObject;
+        //Inicializamos las variables
+        userSetupScreen = contextUI.Canvas.transform.Find("SetUpUserMenu").gameObject;
+        informationBoxText = userSetupScreen.transform.Find("InformationBox/Text").gameObject.GetComponent<TextMeshProUGUI>();
+        nameInputField = userSetupScreen.transform.Find("NameInputField").gameObject.GetComponent<TMP_InputField>();
+        continueButton = userSetupScreen.transform.Find("ContinueButton").gameObject.GetComponent<Button>();
+        informationBoxText.text = searchingText;
+
+        //Suscribimos el metodo Continue a la pulsacion del boton
+        continueButton.onClick.AddListener(Continue);
+
         userSetupScreen.SetActive(true);
+        contextUI.Canvas.transform.Find("Shop").gameObject.SetActive(false);
     }
 
     public override void Exit()
@@ -27,5 +53,41 @@ public class UserSetupState : AUIState
 
     public override void Update()
     {
+        searchingTimer += Time.deltaTime;
+        textTimer += Time.deltaTime;
+
+        //Cada segundo se añadira un punto al texto
+        if (textTimer >= 1f)
+        {
+            informationBoxText.text += ".";
+            textTimer = 0f;
+        }
+
+        //Cuando se termina de emular la busqueda de datos
+        if(searchingTimer > maxSearchingTimer)
+        {
+            if (PlayerDataManager.Instance.IsPlayerKnown())
+            {
+                canContinue = true;
+                informationBoxText.text = succesSearchText;
+                continueButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                informationBoxText.text = failureSearchText;
+                nameInputField.gameObject.SetActive(true);
+                continueButton.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void Continue()
+    {
+        if (canContinue || nameInputField.text != "")
+        {
+            contextUI.State = new StartMenuState(contextUI);
+            PlayerDataManager.Instance.CreateDataSystem(nameInputField.text);
+        }
+        
     }
 }

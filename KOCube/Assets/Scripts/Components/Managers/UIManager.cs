@@ -41,7 +41,7 @@ public class UIManager : Singleton<UIManager>, IUI
     {
         Debug.Log("start ejecutado");
         Canvas = GameObject.FindWithTag("MainCanvas");
-        State = new StartMenuState(this);
+        State = new UserSetupState(this);
     }
 
     void Update()

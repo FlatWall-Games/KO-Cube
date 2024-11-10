@@ -20,8 +20,8 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     //Los codigos de los personajes (su orden en la lista) son:
     //VER EL ORDEN EN EL NETWORK MANAGER
 
-
-    void Start()
+    //Recibe un nombre que usara si no hay datos sobre el jugador
+    public void CreateDataSystem(string name)
     {
         //Inicizaliacion de la estructura
         for (int i = 0; i < numberOfCharacters; i++)
@@ -30,16 +30,20 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         }
 
         //Si existen datos guardados del jugador, los recuperamos y los almacenamos
-        if (PlayerPrefs.HasKey("username"))
+        if (IsPlayerKnown())
         {
             username = PlayerPrefs.GetString("username");
             coins = PlayerPrefs.GetInt("coins");
 
+            //Recuperamos la informacion de las skins siguiendo los siguientes pasos:
             for (int i = 0; i < numberOfCharacters; i++)
             {   //Recuperamos la cadena de skins de cada personaje
                 string stringSkins = PlayerPrefs.GetString("Character" + i);
-                //Convertimos en lista la cadena anterior
+
+                //Convertimos en una lista la cadena recuperada
                 List<string> skinList = stringSkins.Split('.').ToList();
+
+                //Creamos una lista donde almacenaremos los bool de la lista anterior, pasandolas de strings a bool
                 List<bool> skinBools = new List<bool>();
                 foreach(string skin in skinList)
                 {
@@ -68,7 +72,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         {
             //Si no hay datos guardados, se crean con los valores iniciales
             Debug.Log("No hay datos guardados para este jugador. Creando estructura por defecto...");
-            username = "jugador";
+            username = name;
             coins = 10000;
             SetNameData(username); //Aqui habria que poner el nombre que escriba el jugador
             SetCoinsData(coins);
@@ -86,11 +90,24 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         MoneyText.Instance.UpdateMoney();
 
         Debug.Log("Ruta de PlayerPrefs en este sistema operativo: " + Application.persistentDataPath);
-        //Descomentar esta linea para borrar los datos (esto solo esta aqui para pruebas)
-        //DeleteData();
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha0))
+        {
+            Debug.Log("Eliminando Datos...");
+            DeleteData();
+        }
     }
 
     //////////////////////// Metodos publicos para modificar datos desde otros scripts //////////////////////// 
+
+    //Devuelve True si existen datos del usuario
+    public bool IsPlayerKnown()
+    {
+        return PlayerPrefs.HasKey("username");
+    }
 
     public void SetName(string name)
     {
@@ -154,11 +171,13 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         return characterSkins[charCode];
     }
 
+    //Guarda los datos con los ultimos cambios que se hayan realizado
     public void SaveData()
     {
         PlayerPrefs.Save();
     }
 
+    //Elimina todos los datos almacenados
     public void DeleteData()
     {
         PlayerPrefs.DeleteAll();
