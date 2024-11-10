@@ -8,12 +8,14 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
 {
     //Variable que indica el numero de personajes del juego
     const int numberOfCharacters = 6;
+    const int numberOfSettings = 4;
 
     //Atributos que se almacenaran
     string username;
     int coins;
     List<List<bool>> characterSkins = new List<List<bool>>(numberOfCharacters);
     int[] activeSkins = new int[numberOfCharacters];
+    List<float> settingsValues = new List<float>(4);
     //Por cada personaje se almacena una lista con el codigo de las skisn que posee, siendo 0 la skin por defecto.
     //Los codigos de los personajes (su orden en la lista) son:
     //VER EL ORDEN EN EL NETWORK MANAGER
@@ -51,6 +53,14 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
                 activeSkins[i] = PlayerPrefs.GetInt("ActiveSkin" + i);
             }
             SkinManager.Instance.RestoreActiveSkins(activeSkins);
+            
+            settingsValues.Clear();
+            for(int i = 0; i < numberOfSettings; i++) 
+            {
+                settingsValues.Add(PlayerPrefs.GetFloat("Settings" + i));
+            }
+
+            GameObject.FindObjectOfType<Settings>().RestoreValues(settingsValues);
 
             Debug.Log("Datos recuperados con exito");
         }
@@ -70,6 +80,8 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
                 activeSkins[i] = 0;
             }
             SkinManager.Instance.RestoreActiveSkins(activeSkins);
+            settingsValues = new List<float>() { 1, 0, 0, 0 };
+            GameObject.FindObjectOfType<Settings>().RestoreValues(settingsValues);
         }
         MoneyText.Instance.UpdateMoney();
 
@@ -113,6 +125,18 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         this.activeSkins = activeSkins;
         SetActiveSkinsData();
         SaveData();
+    }
+
+    public void SetSettings(List<float> values)
+    {
+        settingsValues = values;
+        SetSettingsData();
+        SaveData();
+    }
+
+    public List<float> GetSettings()
+    {
+        return settingsValues;
     }
 
     public string GetName()
@@ -175,6 +199,14 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         for(int i = 0; i < activeSkins.Length; i++)
         {
             PlayerPrefs.SetInt("ActiveSkin" + i, activeSkins[i]);
+        }
+    }
+
+    void SetSettingsData()
+    {
+        for(int i = 0; i < settingsValues.Count; i++)
+        {
+            PlayerPrefs.SetFloat("Settings" + i, settingsValues[i]);
         }
     }
 
