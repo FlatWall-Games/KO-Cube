@@ -39,7 +39,6 @@ public class UserSetupState : AUIState
         continueButton.onClick.AddListener(Continue);
 
         userSetupScreen.SetActive(true);
-        //contextUI.Canvas.transform.Find("Shop").gameObject.SetActive(false);
     }
 
     public override void Exit()

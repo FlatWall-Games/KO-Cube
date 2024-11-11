@@ -14,17 +14,21 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
     [SerializeField] private Button equipButton;
     [SerializeField] private Button buyButton;
 
-    void Start()
+    void Awake()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(SetActiveButton); 
-        warning = PurchaseWarning.Instance;
         nameText = button.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+    }
+
+    void Start()
+    {
+        warning = PurchaseWarning.Instance;
     }
 
     public void SetActiveButton()
     {
-        warning.SetButton(this);
+        if(warning != null) warning.SetButton(this);
         ToggleButtonStyle(); //Pone el botón activo en gris y el resto en blanco
         UpdatePriceText(); //Actualiza el texto del precio y verifica si la skin se puede comprar
         ToggleActionButton(); //Intercambia botones de comprar y de equipar
