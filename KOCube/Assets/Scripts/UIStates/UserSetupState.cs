@@ -14,7 +14,7 @@ public class UserSetupState : AUIState
 
     string searchingText = "Buscando datos del Usuario";
     string succesSearchText = "¡Datos encontrados!";
-    string failureSearchText = "No se han encontrado datos, introduce tu nombre";
+    string failureSearchText = "No se han encontrado datos, introduce tu nombre"; 
 
     float maxSearchingTimer = Random.Range(0.5f, 3f);
     float searchingTimer = 0f;
