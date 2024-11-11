@@ -6,6 +6,7 @@ using Unity.Netcode;
 public class CharacterSkinManager : NetworkBehaviour
 {
     [SerializeField] private Skin[] skins;
+    [SerializeField] private string rootName;
     private int currentSkin = -1;
 
     private void Start()
@@ -32,6 +33,7 @@ public class CharacterSkinManager : NetworkBehaviour
     public void SetSkinClientRpc(int skinIndex)
     {
         skins[skinIndex].transform.SetAsFirstSibling();
+        skins[skinIndex].name = rootName;
         skins[skinIndex].SetActive(true);
         GetComponent<Animator>().Rebind();
     }

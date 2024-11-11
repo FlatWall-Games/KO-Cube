@@ -32,7 +32,8 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
         ToggleButtonStyle(); //Pone el botón activo en gris y el resto en blanco
         UpdatePriceText(); //Actualiza el texto del precio y verifica si la skin se puede comprar
         ToggleActionButton(); //Intercambia botones de comprar y de equipar
-        CharacterSelectionShop.Instance.currentSkinManager.SetSkin(buttonIndex);
+        PreviewSkinManager[] previewManagers = GameObject.FindObjectsOfType<PreviewSkinManager>();
+        foreach(PreviewSkinManager pm in previewManagers) { pm.SetSkin(buttonIndex); }
     }
 
     private void ToggleButtonStyle()

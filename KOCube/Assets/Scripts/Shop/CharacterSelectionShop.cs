@@ -7,14 +7,12 @@ public class CharacterSelectionShop : MonoBehaviour
 {
     public static CharacterSelectionShop Instance;
     [SerializeField] private GameObject[] characterPreviews;
-    public PreviewSkinManager currentSkinManager;
     [SerializeField] private SkinButton[] buttons;
     public int index = 0;
 
     private void Awake()
     {
         Instance = this;
-        currentSkinManager = characterPreviews[0].GetComponent<PreviewSkinManager>();
     }
 
     private void OnEnable()
@@ -29,7 +27,6 @@ public class CharacterSelectionShop : MonoBehaviour
         if (index < 0) index = characterPreviews.Length-1;
         else if (index == characterPreviews.Length) index = 0;
         characterPreviews[index].SetActive(true);
-        currentSkinManager = characterPreviews[index].GetComponent<PreviewSkinManager>();
         UpdateSkinButtons();
     }
 

@@ -1023,6 +1023,7 @@ MonoBehaviour:
   - {fileID: 826810030114160705}
   - {fileID: 2000405536403569467}
   - {fileID: 1625572808163698528}
+  rootName: 
 --- !u!1 &4815995066385027553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,7 +1657,7 @@ PrefabInstance:
     - target: {fileID: 3882235490850546073, guid: 89ec27e25b7f13543a71d5ec8ff4c07d,
         type: 3}
       propertyPath: m_Name
-      value: Coxis
+      value: Coxis (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3882235490850546073, guid: 89ec27e25b7f13543a71d5ec8ff4c07d,
         type: 3}
@@ -1797,7 +1798,7 @@ PrefabInstance:
     - target: {fileID: 7100012554359525882, guid: 4f574131a0f81ef4997f3da361bc532d,
         type: 3}
       propertyPath: m_Name
-      value: Coxis
+      value: Coxis (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7100012554359525882, guid: 4f574131a0f81ef4997f3da361bc532d,
         type: 3}
@@ -1888,7 +1889,7 @@ PrefabInstance:
     - target: {fileID: 6054141356321895634, guid: cea8216d2cd64b54a86549fb31906039,
         type: 3}
       propertyPath: m_Name
-      value: Coxis
+      value: Coxis (3)
       objectReference: {fileID: 0}
     - target: {fileID: 6054141356321895634, guid: cea8216d2cd64b54a86549fb31906039,
         type: 3}
