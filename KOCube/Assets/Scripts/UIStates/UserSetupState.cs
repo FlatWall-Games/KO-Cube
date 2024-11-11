@@ -16,7 +16,7 @@ public class UserSetupState : AUIState
     string succesSearchText = "¡Datos encontrados!";
     string failureSearchText = "No se han encontrado datos, introduce tu nombre";
 
-    float maxSearchingTimer = 4f;
+    float maxSearchingTimer = Random.Range(0.5f, 3f);
     float searchingTimer = 0f;
     float textTimer = 0f;
 
@@ -55,8 +55,8 @@ public class UserSetupState : AUIState
         searchingTimer += Time.deltaTime;
         textTimer += Time.deltaTime;
 
-        //Cada segundo se añadira un punto al texto
-        if (textTimer >= 1f)
+        //Cada tercio del tiempo maximo se añadira un punto al texto (se suma 1 más porque al principio no tiene puntos)
+        if (textTimer >= maxSearchingTimer / 4)
         {
             informationBoxText.text += ".";
             textTimer = 0f;
