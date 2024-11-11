@@ -29,6 +29,12 @@ public class CharacterSelection : NetworkBehaviour
         uiCharacterDescription = transform.Find("UI/CharacterSelection/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
     }
 
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkDespawn();
+        GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
+    }
+
     //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje
     public void ChangeCharacterUI(int value)
     {
@@ -126,7 +132,6 @@ public class CharacterSelection : NetworkBehaviour
 
             // Asociar el NetworkObject con el cliente
             playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
-            GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
         }
         else
         {
@@ -145,7 +150,6 @@ public class CharacterSelection : NetworkBehaviour
 
             // Asociar el NetworkObject con el cliente
             playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
-            GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
         }
         else
         {
