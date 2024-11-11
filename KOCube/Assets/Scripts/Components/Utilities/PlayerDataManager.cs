@@ -73,7 +73,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
             //Si no hay datos guardados, se crean con los valores iniciales
             Debug.Log("No hay datos guardados para este jugador. Creando estructura por defecto...");
             username = name;
-            coins = 10000;
+            coins = 200;
             SetNameData(username); //Aqui habria que poner el nombre que escriba el jugador
             SetCoinsData(coins);
             SetSkinsData(-1);
