@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class CharacterSelectionShop : MonoBehaviour
 {
     public static CharacterSelectionShop Instance;
-    [SerializeField] private Sprite[] charactersImages;
-    [SerializeField] private Image currentCharacterImage;
+    [SerializeField] private GameObject[] characterPreviews;
+    public CharacterSkinManager currentSkinManager;
     [SerializeField] private SkinButton[] buttons;
     public int index = 0;
 
     private void Awake()
     {
         Instance = this;
+        currentSkinManager = characterPreviews[0].GetComponent<CharacterSkinManager>();
     }
 
     private void OnEnable()
@@ -21,12 +22,14 @@ public class CharacterSelectionShop : MonoBehaviour
         Invoke("UpdateSkinButtons", 0.01f); //Sin este pequeño delay no funciona la primera vez que abres la tienda, por la cara
     }
 
-    public void ChangeImage(int i)
+    public void ChangeCharacter(int i)
     {
+        characterPreviews[index].SetActive(false);
         index += i;
-        if (index < 0) index = charactersImages.Length-1;
-        else if (index == charactersImages.Length) index = 0;
-        currentCharacterImage.sprite = charactersImages[index];
+        if (index < 0) index = characterPreviews.Length-1;
+        else if (index == characterPreviews.Length) index = 0;
+        characterPreviews[index].SetActive(true);
+        currentSkinManager = characterPreviews[index].GetComponent<CharacterSkinManager>();
         UpdateSkinButtons();
     }
 

@@ -19,8 +19,11 @@ public class PlayersReadyManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc()
     {
-        if (++numPlayersReady == totalPlayers) StartGameAfterCountClientRpc();
-        GameObject.FindObjectOfType<AGameManager>().SetAcceptClients(false);
+        if (++numPlayersReady == totalPlayers)
+        {
+            StartGameAfterCountClientRpc();
+            GameObject.FindObjectOfType<AGameManager>().SetAcceptClients(false);
+        }
     }
 
     [ClientRpc]

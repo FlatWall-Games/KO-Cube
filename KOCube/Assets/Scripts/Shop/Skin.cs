@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class Skin : MonoBehaviour
 {
-    [SerializeField] private Material[] materials; //Materiales que tendrá la skin
+    [SerializeField] private GameObject[] skinObjects; 
     [SerializeField] private int price;
     [SerializeField] private string skinName;
     [SerializeField] private bool acquired = false;
+
+    public void SetActive(bool active)
+    {
+        foreach(GameObject obj in skinObjects)
+        {
+            obj.SetActive(active);
+        }
+    }
 
     public string GetName()
     {
         return skinName;
     }
 
-    public Material[] GetMaterials()
+    public GameObject[] GetObjects()
     {
-        return materials;
+        return skinObjects;
     }
 
     public int GetPrice()

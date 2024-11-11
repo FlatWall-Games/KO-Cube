@@ -103,7 +103,6 @@ public class AGameManager : NetworkBehaviour
     protected void StablishPlayersMovementClientRpc(bool movement)
     {
         if (GameObject.FindObjectOfType<CharacterSelection>().isSpectator) return; //No queremos que se haga para los espectadores
-        Debug.Log(GameObject.FindObjectOfType<CharacterSelection>().isSpectator);
         gameStarted = movement;
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         foreach (PlayerBehaviour player in players)
