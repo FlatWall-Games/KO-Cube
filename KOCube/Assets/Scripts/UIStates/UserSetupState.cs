@@ -68,7 +68,6 @@ public class UserSetupState : AUIState
         {
             if (PlayerDataManager.Instance.IsPlayerKnown())
             {
-                Debug.Log("Update Ejecutado");
                 canContinue = true;
                 informationBoxText.text = succesSearchText;
                 continueButton.gameObject.SetActive(true);
@@ -86,8 +85,8 @@ public class UserSetupState : AUIState
     {
         if (canContinue || nameInputField.text != "")
         {
-            contextUI.State = new StartMenuState(contextUI);
             PlayerDataManager.Instance.CreateDataSystem(nameInputField.text);
+            contextUI.State = new MainMenuState(contextUI);
         }
         
     }

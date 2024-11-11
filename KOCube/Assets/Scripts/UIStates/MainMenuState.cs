@@ -18,6 +18,7 @@ public class MainMenuState : AUIState
         mainScreen = contextUI.Canvas.transform.Find("MainScreenMenu").gameObject;
         mainScreen.SetActive(true);
         nameText = mainScreen.transform.Find("ProfileButton/Text").GetComponent<TextMeshProUGUI>();
+        Debug.Log("el nombre es " + PlayerDataManager.Instance.GetName());
         nameText.text = PlayerDataManager.Instance.GetName();
         //EventSystem.current.SetSelectedGameObject(mainScreen.transform.Find("PlayButton").gameObject);
     }
