@@ -39,7 +39,7 @@ public class UserSetupState : AUIState
         continueButton.onClick.AddListener(Continue);
 
         userSetupScreen.SetActive(true);
-        contextUI.Canvas.transform.Find("Shop").gameObject.SetActive(false);
+        //contextUI.Canvas.transform.Find("Shop").gameObject.SetActive(false);
     }
 
     public override void Exit()
@@ -68,6 +68,7 @@ public class UserSetupState : AUIState
         {
             if (PlayerDataManager.Instance.IsPlayerKnown())
             {
+                Debug.Log("Update Ejecutado");
                 canContinue = true;
                 informationBoxText.text = succesSearchText;
                 continueButton.gameObject.SetActive(true);

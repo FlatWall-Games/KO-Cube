@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/MPNetworkTest.unity
     guid: e4ecd130fd72b8c488661e331114193e
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/CaptureFlagTesting.unity
     guid: d1f293b0eaebf1d43b3bc9487aec8eee
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/HotZoneTesting.unity
     guid: 088077319b3980746895af40c4c7b342
   m_configObjects:
