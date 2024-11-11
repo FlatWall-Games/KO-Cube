@@ -6,23 +6,25 @@ using Unity.Netcode;
 public class CharacterSkinManager : NetworkBehaviour
 {
     [SerializeField] private Skin[] skins;
-    private int currentSkin;
+    private int currentSkin = -1;
 
     private void Start()
     {
-        if(IsOwner) SetSkinServerRpc(SkinManager.Instance.GetActiveSkin(GetComponent<CharacterInfo>().characterID));
-        RequestSkinServerRpc();
+        if (IsOwner) SetSkinServerRpc(SkinManager.Instance.GetActiveSkin(GetComponent<CharacterInfo>().characterID));
+        else RequestSkinServerRpc();
     }
 
     [ServerRpc]
     private void SetSkinServerRpc(int skinIndex)
     {
         currentSkin = skinIndex;
+        RequestSkinServerRpc();
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void RequestSkinServerRpc()
     {
+        if (currentSkin == -1) return; //Si todavía no ha sido asignada hace return
         SetSkinClientRpc(currentSkin);
     }
 
