@@ -7,7 +7,6 @@ public class PlayerBehaviour : NetworkBehaviour
 {
     CharacterController characterController;
     AttackManager attackManager;
-    public Renderer rend;
     public static string ownerTag = "Untagged";
 
     float xMovement = 0;
@@ -24,8 +23,6 @@ public class PlayerBehaviour : NetworkBehaviour
     {
         characterController = GetComponent<CharacterController>();
         attackManager = GetComponent<AttackManager>();
-        //rend = GetComponent<Renderer>();
-        //rend.material = new Material(rend.material); //Desvinculamos el material del objeto del original para que los cambios no afecten al resto
     }
 
     void Start()
@@ -42,7 +39,11 @@ public class PlayerBehaviour : NetworkBehaviour
         }
         else RequestTagServerRpc();
 
-        if(IsOwner) GameObject.FindObjectOfType<AGameManager>().EnableButton();
+        if (IsOwner)
+        {
+            GameObject.FindObjectOfType<AGameManager>().EnableButton();
+            GameObject.FindObjectOfType<AudioListenerManager>().SetTransform(this.transform);
+        }
     }
 
     private void Update()
@@ -107,19 +108,19 @@ public class PlayerBehaviour : NetworkBehaviour
         }
         if (!ownerTag.Equals("Untagged")) //Sólo se hará lo siguiente cuando el personaje del jugador esté inicializado
         {
-            //InitializePlayersShaders();
+            UpdatePlayersLights();
             GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
         }
     }
 
-    private void InitializePlayersShaders()
+    private void UpdatePlayersLights()
     {
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         foreach (PlayerBehaviour player in players)
         {
             if (!player.tag.Equals(ownerTag))
             {
-                player.rend.material.SetColor("_color", Color.red);
+                player.transform.Find("ColorLight").GetComponent<TeamColorManager>().SetColor(Color.red);
             }
         }
     }
