@@ -59,6 +59,7 @@ public class HealthManager : NetworkBehaviour
                 if (currentHealth <= 0) 
                 {
                     OnDead?.Invoke(this.gameObject, this.tag);
+                    GetComponent<CharacterController>().enabled = false; //No queremos recibir más golpes estando muertos
                     GetComponent<PlayerBehaviour>().InitializePosition();
                     if(deathMatch != null) deathMatch.PointScored(attack.GetAttacker().tag);
                     killed = true;

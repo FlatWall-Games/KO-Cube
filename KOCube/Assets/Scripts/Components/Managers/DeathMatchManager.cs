@@ -17,4 +17,10 @@ public class DeathMatchManager : AGameManager
     {
         base.Update();
     }
+
+    public override void InvertUI()
+    {
+        if (inverted) return;
+        base.InvertUI();
+    }
 }

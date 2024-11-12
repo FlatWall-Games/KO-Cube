@@ -34,4 +34,10 @@ public class HotZoneManager : AGameManager
         if (PlayerBehaviour.ownerTag.Equals("Team1")) slider.value = points1;
         else slider.value = points2;
     }
+
+    public override void InvertUI()
+    {
+        if (inverted) return;
+        base.InvertUI();
+    }
 }

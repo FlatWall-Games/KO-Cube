@@ -12,9 +12,10 @@ public class CleoPassive : MonoBehaviour
     {
         if(++counter == 3)
         {
-            counter = 0;
-            GameObject attack = GameObject.Instantiate(attackPrefab, basicTransform);
-            attack.tag = this.tag;
+            counter = -1;
+            IAttack attack = GameObject.Instantiate(attackPrefab, basicTransform).GetComponent<IAttack>();
+            attack.SetTag(this.tag);
+            attack.SetAttacker(GetComponent<PlayerBehaviour>());
         }
     }
 
