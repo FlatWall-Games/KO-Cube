@@ -820,7 +820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3222885b95a5b0d4f9dcf1f2de2a5333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rend: {fileID: 0}
   speed: 8
 --- !u!114 &3764132138304378946
 MonoBehaviour:
@@ -1155,7 +1154,7 @@ MonoBehaviour:
   - {fileID: 826810030114160705}
   - {fileID: 2000405536403569467}
   - {fileID: 1625572808163698528}
-  rootName: 
+  rootName: Coxis
 --- !u!1 &4815995066385027553
 GameObject:
   m_ObjectHideFlags: 0
