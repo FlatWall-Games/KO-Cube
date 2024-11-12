@@ -5,47 +5,30 @@ using UnityEngine;
 
 public class CleoProjectile : AProjectile
 {
-    CleoThreeHitsBehaviour cleoThreeHits;
+    CleoPassive passive;
+    private bool hit = false;
     protected override void Awake()
     {
         base.Awake();
-        Transform parent = transform.parent;
+    }
+
+    private void Start()
+    {
+        if(attacker != null) passive = attacker.GetComponent<CleoPassive>();
     }
 
     public override void CheckDestroy(Collider other) //Cada proyectil tiene sus condiciones de destrucción
     {
-        //string otherTag = other.tag;
-        //if (this.attacker != null)
-        //{
-        //    if (other.GetComponent<PlayerBehaviour>() == this.attacker) return;
-        //    cleoThreeHits = this.attacker.GetComponentInChildren<CleoThreeHitsBehaviour>();
-        //    if (cleoThreeHits.GetHits() >= 2)
-        //    {
-        //        CleoProjectile newProjectile = GameObject.Instantiate(this, transform.parent);
-        //        cleoThreeHits.ResetHits();
-        //    }
-        //    else
-        //    {
-        //        //En este caso, el proyectil se destruye al chocar con un jugador del otro equipo o con un objeto del mapa
-        //        if (otherTag.Equals("Team1"))
-        //        {
-        //            if (this.tag.Equals("Team2"))
-        //            {
-        //                cleoThreeHits.AddHit();
-        //                return;
-        //            }
-        //        }
-        //        else if (otherTag.Equals("Team2"))
-        //        {
-        //            if (this.tag.Equals("Team1"))
-        //            {
-        //                cleoThreeHits.AddHit();
-        //                return;
-        //            }
-        //        }
-        //            cleoThreeHits.ResetHits();
-        //    }
-        //}
-        
+        if (this.tag.Equals("Team1") && other.tag.Equals("Team2")) hit = true;
+        else if (this.tag.Equals("Team2") && other.tag.Equals("Team1")) hit = true;
+    }
+
+    private void OnDestroy()
+    {
+        if (passive != null)
+        {
+            if (hit) passive.AddHit();
+            else passive.ResetCounter();
+        }
     }
 }
