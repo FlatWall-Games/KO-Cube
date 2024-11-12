@@ -15,7 +15,10 @@ public class SkinManager : MonoBehaviour
     private List<Skin[]> totalSkins = new List<Skin[]>();
 
     //Lista de skins activas:
-    private int[] activeSkins = new int[6]; 
+    private int[] activeSkins = new int[6];
+
+    //Lista de previews:
+    [SerializeField] private GameObject[] characterPreviews;
 
     private void Awake()
     {
@@ -56,6 +59,7 @@ public class SkinManager : MonoBehaviour
     public void RestoreActiveSkins(int[] skins)
     {
         activeSkins = skins;
+        RestorePreviews();
     }
 
     public void UpdateData(int index)
@@ -66,5 +70,17 @@ public class SkinManager : MonoBehaviour
             list.Add(skin.IsAcquired());
         }
         PlayerDataManager.Instance.SetSkins(index, list);
+    }
+
+    private void RestorePreviews() 
+    {
+        for (int i = 0; i < characterPreviews.Length; i++)
+        {
+            foreach(PreviewSkinManager psm in characterPreviews[i].GetComponents<PreviewSkinManager>())
+            {
+                psm.SetSkin(activeSkins[i]);
+            }
+            if (i != 0) characterPreviews[i].SetActive(false);
+        }
     }
 }

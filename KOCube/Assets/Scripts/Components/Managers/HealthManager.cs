@@ -13,6 +13,7 @@ public class HealthManager : NetworkBehaviour
 
     private float currentHealth; //Vida actual
     public EventHandler<string> OnDead;
+    public EventHandler<float> OnDamaged;
     public MatchStatsManager matchStatsManager;
 
     void Awake()
@@ -54,7 +55,7 @@ public class HealthManager : NetworkBehaviour
             else //Si no, dañan
             {
                 currentHealth -= attack.GetDamage();
-
+                OnDamaged?.Invoke(this.gameObject, attack.GetDamage());
                 if (currentHealth <= 0) 
                 {
                     OnDead?.Invoke(this.gameObject, this.tag);
@@ -67,6 +68,14 @@ public class HealthManager : NetworkBehaviour
             }
             UpdateHealthClientRpc(currentHealth, killed); //Se actualiza la vida en todos los clientes
         }
+    }
+
+    public void ForceHeal(float amount) //Permite la cura sin proyectil de por medio
+    {
+        if (currentHealth <= 0) return; //No se puede curar si ha muerto
+        currentHealth += amount;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        UpdateHealthClientRpc(currentHealth, false);
     }
 
     [ClientRpc]

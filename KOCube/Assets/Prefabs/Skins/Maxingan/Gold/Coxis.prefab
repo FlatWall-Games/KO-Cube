@@ -632,8 +632,8 @@ MonoBehaviour:
   skinObjects:
   - {fileID: 3882235490850546073}
   price: 200
-  skinName: Maxingan Dorada
-  acquired: 0
+  skinName: Ma Xing Gan Dorada
+  acquired: 1
 --- !u!1 &4191534415838727606
 GameObject:
   m_ObjectHideFlags: 0

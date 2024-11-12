@@ -1111,8 +1111,8 @@ MonoBehaviour:
   skinObjects:
   - {fileID: 6054141356321895634}
   price: 500
-  skinName: "Maxingan Sabidur\xEDa Oriental"
-  acquired: 0
+  skinName: "Ma Xing Gan Sabidur\xEDa Oriental"
+  acquired: 1
 --- !u!1 &6120628405873175080
 GameObject:
   m_ObjectHideFlags: 0
