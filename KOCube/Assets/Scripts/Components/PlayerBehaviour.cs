@@ -15,7 +15,7 @@ public class PlayerBehaviour : NetworkBehaviour
     Quaternion rotation;
 
     [SerializeField]
-    float speed = 10f;
+    public float speed = 10f;
     float rotationSpeed = 10f;
     bool canMove = true;
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CharacterSelectionShop : MonoBehaviour
 {
     public static CharacterSelectionShop Instance;
-    [SerializeField] private GameObject[] characterPreviews;
+    [SerializeField] private PreviewManager previewManager;
     [SerializeField] private SkinButton[] buttons;
     public int index = 0;
 
@@ -22,11 +22,7 @@ public class CharacterSelectionShop : MonoBehaviour
 
     public void ChangeCharacter(int i)
     {
-        characterPreviews[index].SetActive(false);
-        index += i;
-        if (index < 0) index = characterPreviews.Length-1;
-        else if (index == characterPreviews.Length) index = 0;
-        characterPreviews[index].SetActive(true);
+        index = previewManager.ChangePreview(i);
         UpdateSkinButtons();
     }
 

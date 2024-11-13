@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class CharacterSelection : NetworkBehaviour
 {
     //Variables de la interfaz
-    public GameObject[] characterPreviews;
+    public PreviewManager previewManager;
     public TextMeshProUGUI[] uiCharacterNames;
     public TextMeshProUGUI[] uiCharacterDescriptions;
     private int arrayIndex = 0;
@@ -31,21 +31,13 @@ public class CharacterSelection : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
-        foreach(GameObject preview in characterPreviews) { preview.SetActive(false); }
-        ChangeCharacterUI(0);
+        previewManager.ForcePreview(0);
     }
 
     //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje
     public void ChangeCharacterUI(int value)
     {
-        characterPreviews[arrayIndex].SetActive(false);
-        arrayIndex += value;
-        //Controlamos que el indice que accede a los arrays no se salga
-        //Si llega a valer la misma longitud que el array, igualamos el indice a cero
-        //Si llega a valer menos de 0, lo igualamos al indice del ultimo elemento
-        if( arrayIndex == characterPreviews.Length) arrayIndex = 0;
-        else if( arrayIndex < 0) arrayIndex = characterPreviews.Length - 1;
-        characterPreviews[arrayIndex].SetActive(true);
+        arrayIndex = previewManager.ChangePreview(value);
         //Actualizamos la imagen, el nombre y la descripcion
         ChangeCharacterName(arrayIndex);
         ChangeCharacterDescription(arrayIndex);

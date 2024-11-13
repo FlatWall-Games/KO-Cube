@@ -6,7 +6,13 @@ public class PreviewSkinManager : MonoBehaviour
 {
     [SerializeField] private Skin[] skins;
     [SerializeField] private string rootName;
+    [SerializeField] private int characterID;
     private int currentSkin;
+
+    private void OnEnable()
+    {
+        SetSkin(SkinManager.Instance.GetActiveSkin(characterID));
+    }
 
     public void SetSkin(int skinIndex)
     {
