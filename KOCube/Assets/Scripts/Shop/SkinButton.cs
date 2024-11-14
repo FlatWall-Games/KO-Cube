@@ -58,7 +58,7 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
 
     private void ToggleActionButton()
     {
-        equipButton.gameObject.SetActive(skin.IsAcquired());
+        equipButton.interactable = skin.IsAcquired();
         buyButton.interactable = !skin.IsAcquired();
         if (SkinManager.Instance.GetActiveSkin(CharacterSelectionShop.Instance.index) == buttonIndex)
         {
@@ -68,7 +68,6 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
         else
         {
             equipButton.transform.GetComponentInChildren<TextMeshProUGUI>().text = "EQUIPAR";
-            equipButton.interactable = true;
         }
     }
 

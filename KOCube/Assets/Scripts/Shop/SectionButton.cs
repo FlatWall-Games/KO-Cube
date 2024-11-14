@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,20 +8,22 @@ public class SectionButton : MonoBehaviour
 {
     public bool active = false;
     [SerializeField] private SectionButton[] otherButtons;
-    public GameObject section;
+    public GameObject[] sections;
+    private int sectionIndex = 0;
 
     private void Awake()
     {
-        ToggleStyle();
-        if (!active) section.SetActive(false);
+        //ToggleStyle();
+        if (!active) sections[sectionIndex].SetActive(false);
+        else GetComponent<Button>().interactable = false;
     }
 
     public void ToggleButton()
     {
         active = !active;
-        section.SetActive(active);
+        sections[sectionIndex].SetActive(active);
         GetComponent<Button>().interactable = !GetComponent<Button>().interactable;
-        ToggleStyle();
+        //ToggleStyle();
     }
 
     public void TurnOffOtherButtons()
@@ -30,7 +33,7 @@ public class SectionButton : MonoBehaviour
             button.active = false;
             button.GetComponent<Button>().interactable = true;
             //button.ToggleStyle();
-            button.section.SetActive(false);
+            button.sections[sectionIndex].SetActive(false);
         }
     }
 
@@ -54,5 +57,12 @@ public class SectionButton : MonoBehaviour
             ToggleButton();
             TurnOffOtherButtons();
         }
+    }
+
+    public void SetSection(int index)
+    {
+        sections[sectionIndex].SetActive(false);
+        sectionIndex = index;
+        if(active) sections[sectionIndex].SetActive(true);
     }
 }
