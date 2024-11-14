@@ -1,12 +1,14 @@
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
+using TMPro;
 
 public class MapButton: MonoBehaviour
 {
     [SerializeField] private int mapIndex;
     [SerializeField] private bool mainMap; //Indica que es el mapa por defecto del modo de juego seleccionado
     private MapButton[] buttons;
+    [SerializeField] private string[] mapNames;
 
     private void Awake()
     {
@@ -46,5 +48,12 @@ public class MapButton: MonoBehaviour
             button.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
             button.GetComponent<Image>().color = Color.white;
         }
+    }
+
+    public void SetMapIndex(int index)
+    {
+        mapIndex = index;
+        transform.GetComponentInChildren<TextMeshProUGUI>().text = mapNames[index];
+        ToggleSelected(this, mainMap);
     }
 }

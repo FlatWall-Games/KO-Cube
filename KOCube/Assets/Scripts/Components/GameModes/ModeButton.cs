@@ -29,10 +29,8 @@ public class ModeButton : MonoBehaviour
         {
             button.transform.localScale = new Vector3(1, 1, 1);
             button.GetComponent<Image>().color = Color.white;
-            button.transform.Find("Maps").gameObject.SetActive(false);
         }
         this.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
         this.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-        this.transform.Find("Maps").gameObject.SetActive(true);
     }
 }
