@@ -5,10 +5,18 @@ using UnityEngine.EventSystems;
 
 public class ControllerSelectedButtonTool : MonoBehaviour
 {
-    public GameObject focusedElement;
     // Añadir este script al boton que se quiere seleccionar automaticamente con el mando al activar la interfaz
-    void OnEnable()
+    public void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(focusedElement);
+        StartCoroutine(SetFocus());
+    }
+
+    IEnumerator SetFocus()
+    {
+        //Espera un momento antes de asignar el foco para asegurar que la interfaz este activada
+        yield return new WaitForSeconds(0.1f);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(gameObject);
     }
 }
