@@ -21,7 +21,9 @@ public class AttackManager : NetworkBehaviour
     [SerializeField] private UltManager ultManager; //Controlador de las ultis
     [SerializeField] GameObject ultPrefab; //Prefab del básico
     [SerializeField] private Transform ultOrigin; //Posición desde la que salen las ultis
-    public EventHandler<string> ulted;
+    
+    public EventHandler<string> ulted; //Con el que Judy comunica que se ha teletransportado para el correcto funcionamiento de hotzone
+    public EventHandler<string> onAttack;
 
     private void Awake()
     {
@@ -139,6 +141,7 @@ public class AttackManager : NetworkBehaviour
     private void UpdateBarsClientRpc(string attackType)
     {
         shooting = true;
+        onAttack?.Invoke(this, attackType);
         if (attackType.Equals("BASIC")) ammoManager.UpdateAmmoBar();
         else ultManager.UpdateBar();
     }
