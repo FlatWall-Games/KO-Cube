@@ -29,7 +29,7 @@ public class SectionButton : MonoBehaviour
         {
             button.active = false;
             button.GetComponent<Button>().interactable = true;
-            button.ToggleStyle();
+            //button.ToggleStyle();
             button.section.SetActive(false);
         }
     }
