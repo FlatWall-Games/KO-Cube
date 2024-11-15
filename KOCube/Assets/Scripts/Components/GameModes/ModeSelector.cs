@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using System;
 
 public class ModeSelector : NetworkBehaviour
 {
     private int currentModeIndex = 0;
     [SerializeField] private GameObject[] modes;
+    public event Action ModeSelected;
 
     [ServerRpc(RequireOwnership = false)]
     public void RequestModeServerRpc()
@@ -33,5 +35,6 @@ public class ModeSelector : NetworkBehaviour
             if (i != currentModeIndex) modes[i].SetActive(false);
         }
         if(GameObject.FindObjectOfType<CharacterSelection>().isSpectator) GameObject.FindObjectOfType<AGameManager>().SyncSpectatorData();
+        ModeSelected?.Invoke();
     }
 }
