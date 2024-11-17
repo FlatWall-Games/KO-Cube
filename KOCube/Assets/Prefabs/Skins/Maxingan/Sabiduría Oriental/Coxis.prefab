@@ -734,7 +734,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c370053ba6641a49ad82ebf92f58753, type: 2}
+  - {fileID: 2100000, guid: 9ce1e0474950d06458af6aa311e9b367, type: 2}
   - {fileID: 2100000, guid: 04cc59c50de3a46479698ec857733a7b, type: 2}
   - {fileID: 2100000, guid: 29d767088223a7d419b852703c63c385, type: 2}
   - {fileID: 2100000, guid: e88b9cd92bbc06f4f81b908cce8117df, type: 2}
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinObjects:
   - {fileID: 6054141356321895634}
-  price: 500
+  price: 250
   skinName: "Ma Xing Gan Sabidur\xEDa Oriental"
   acquired: 1
 --- !u!1 &6120628405873175080
@@ -1175,10 +1175,10 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 56d2e1c714274f84681cc8b862864699, type: 2}
-  - {fileID: 2100000, guid: 2c370053ba6641a49ad82ebf92f58753, type: 2}
+  - {fileID: 2100000, guid: 9ce1e0474950d06458af6aa311e9b367, type: 2}
   - {fileID: 2100000, guid: df93c2dbadfb2e74bbd0926c3f304eb5, type: 2}
-  - {fileID: 2100000, guid: ea8cda77342c68c44a00d17ae2b294fc, type: 2}
-  - {fileID: 2100000, guid: 8c06b512cd85a474c8af30e3395ca931, type: 2}
+  - {fileID: 2100000, guid: 18b322a1f42c3f64b92267249464655d, type: 2}
+  - {fileID: 2100000, guid: 29d767088223a7d419b852703c63c385, type: 2}
   - {fileID: 2100000, guid: 048dadf37913a0247beb1cfafb53236d, type: 2}
   - {fileID: 2100000, guid: fa361ca2ba066b144ae4ac28d3a00244, type: 2}
   m_StaticBatchInfo:
@@ -1412,7 +1412,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c370053ba6641a49ad82ebf92f58753, type: 2}
+  - {fileID: 2100000, guid: 9ce1e0474950d06458af6aa311e9b367, type: 2}
   - {fileID: 2100000, guid: bb40d7aa7c0b84c4d975f9523ad506ea, type: 2}
   - {fileID: 2100000, guid: 29d767088223a7d419b852703c63c385, type: 2}
   - {fileID: 2100000, guid: 3e98bb574778cf24e95953bd193a886e, type: 2}

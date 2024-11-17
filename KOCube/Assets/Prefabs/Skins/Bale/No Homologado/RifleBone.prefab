@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinObjects:
   - {fileID: 984159466481913204}
-  price: 500
-  skinName: "Bale Drag\xF3n"
+  price: 1000
+  skinName: Bale Camuflaje No Homologado
   acquired: 0
 --- !u!1 &5672107038659530518
 GameObject:

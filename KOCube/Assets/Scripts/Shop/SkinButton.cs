@@ -52,7 +52,11 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
             else priceText.color = Color.black;
             buyButton.interactable = skin.GetPrice() <= PlayerDataManager.Instance.GetCoins();
         }
-        else priceText.text = "Adquirida";
+        else
+        {
+            priceText.text = "Adquirida";
+            priceText.color = Color.black;
+        }
         priceText.transform.Find("Coin").GetComponent<Image>().enabled = !skin.IsAcquired();
     }
 
@@ -60,7 +64,7 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
     {
         equipButton.interactable = skin.IsAcquired();
         buyButton.interactable = !skin.IsAcquired();
-        if (SkinManager.Instance.GetActiveSkin(CharacterSelectionShop.Instance.index) == buttonIndex)
+        if (SkinManager.Instance.GetActiveSkin(SkinShop.Instance.index) == buttonIndex)
         {
             equipButton.transform.GetComponentInChildren<TextMeshProUGUI>().text = "EQUIPADA";
             equipButton.interactable = false;
@@ -79,7 +83,7 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
             skin.AcquireSkin(true);
             Debug.Log($"Comprada la skin: {skin.GetName()}.");
             SetActiveButton();
-            SkinManager.Instance.UpdateData(CharacterSelectionShop.Instance.index);
+            SkinManager.Instance.UpdateData(SkinShop.Instance.index);
         }
     }
 

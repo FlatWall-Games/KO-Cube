@@ -1464,9 +1464,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinObjects:
   - {fileID: 9085908324374779212}
-  price: 500
+  price: 1000
   skinName: Bale Camuflaje No Homologado
-  acquired: 0
+  acquired: 1
 --- !u!1 &9132550553336919858
 GameObject:
   m_ObjectHideFlags: 0

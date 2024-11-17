@@ -1502,9 +1502,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinObjects:
   - {fileID: 7852528591355275364}
-  price: 500
+  price: 1000
   skinName: Judy Ni Tamariz
-  acquired: 0
+  acquired: 1
 --- !u!1 &8029853151797996891
 GameObject:
   m_ObjectHideFlags: 0

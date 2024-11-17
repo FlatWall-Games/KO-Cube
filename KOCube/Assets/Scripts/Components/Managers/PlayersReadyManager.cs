@@ -49,7 +49,14 @@ public class PlayersReadyManager : NetworkBehaviour
 
     public void GameEnded()
     {
+        StartCoroutine(DisplayEndText());
+    }
+
+    IEnumerator DisplayEndText()
+    {
         countDownText.gameObject.SetActive(true);
         countDownText.text = "¡FIN DE LA PARTIDA!";
+        yield return new WaitForSeconds(1.5f);
+        countDownText.gameObject.SetActive(false);
     }
 }

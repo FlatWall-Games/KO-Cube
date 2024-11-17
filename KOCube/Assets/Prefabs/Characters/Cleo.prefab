@@ -792,9 +792,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1349680345846093515}
+  - {fileID: 5549864786936009814}
   - {fileID: 8137436859716661699}
   - {fileID: 1026564233204661819}
-  - {fileID: 5549864786936009814}
   - {fileID: 2259632325325084423}
   - {fileID: 1821933112672037270}
   - {fileID: 1102600582248442274}
@@ -1169,9 +1169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skins:
   - {fileID: 248203605380111659}
-  - {fileID: 7000625130703976995}
-  - {fileID: 2302987000909952475}
   - {fileID: 6687801861788508086}
+  - {fileID: 2302987000909952475}
+  - {fileID: 7000625130703976995}
   rootName: Bone
 --- !u!114 &-10535576916262834
 MonoBehaviour:

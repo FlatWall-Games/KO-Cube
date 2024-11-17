@@ -11,7 +11,7 @@ public class PreviewSkinManager : MonoBehaviour
 
     private void OnEnable()
     {
-        SetSkin(SkinManager.Instance.GetActiveSkin(characterID));
+        if(SkinManager.Instance != null) SetSkin(SkinManager.Instance.GetActiveSkin(characterID));
     }
 
     public void SetSkin(int skinIndex)

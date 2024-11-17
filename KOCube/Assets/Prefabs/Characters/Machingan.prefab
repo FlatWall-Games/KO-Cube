@@ -1218,9 +1218,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1737372116187755460}
-  - {fileID: 6398395846998256211}
-  - {fileID: 6039357319455009549}
   - {fileID: 8731177297394021444}
+  - {fileID: 6039357319455009549}
+  - {fileID: 6398395846998256211}
   - {fileID: 437306703609229618}
   - {fileID: 1821933112672037270}
   - {fileID: 835763323948357890}
@@ -1518,10 +1518,17 @@ MonoBehaviour:
     TriggerNameHash: 621681159
     TransitionIndex: 0
   - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 753088835
+    Layer: 1
+    OriginatingState: 2081823275
     DestinationState: 319337876
     TransitionDuration: 0
+    TriggerNameHash: -199737661
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 1
+    OriginatingState: 1744665739
+    DestinationState: 319337876
+    TransitionDuration: 0.25
     TriggerNameHash: -199737661
     TransitionIndex: 1
   m_Animator: {fileID: 571336068098503327}
@@ -1595,9 +1602,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skins:
   - {fileID: 4370009302927129130}
-  - {fileID: 826810030114160705}
-  - {fileID: 2000405536403569467}
   - {fileID: 1625572808163698528}
+  - {fileID: 2000405536403569467}
+  - {fileID: 826810030114160705}
   rootName: Coxis
 --- !u!114 &7598029460632259647
 MonoBehaviour:
