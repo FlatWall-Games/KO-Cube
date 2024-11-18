@@ -10,6 +10,7 @@ public class HealthManager : NetworkBehaviour
     [SerializeField] private float maxHealth; //Máximo de vida que tiene el jugador
     [SerializeField] private Image healthBar; //Imagen de la barra de vida
     DeathMatchManager deathMatch;
+    Animator anim;
 
     private float currentHealth; //Vida actual
     public EventHandler<string> OnDead;
@@ -58,6 +59,7 @@ public class HealthManager : NetworkBehaviour
                 OnDamaged?.Invoke(this.gameObject, attack.GetDamage());
                 if (currentHealth <= 0) 
                 {
+                    anim.SetTrigger("Dead");
                     OnDead?.Invoke(this.gameObject, this.tag);
                     GetComponent<CharacterController>().enabled = false; //No queremos recibir más golpes estando muertos
                     GetComponent<PlayerBehaviour>().InitializePosition();

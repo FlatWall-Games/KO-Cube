@@ -6,6 +6,7 @@ using Cinemachine;
 public class PlayerBehaviour : NetworkBehaviour
 {
     CharacterController characterController;
+    Animator anim;
     AttackManager attackManager;
     public static string ownerTag = "Untagged";
 
@@ -23,6 +24,7 @@ public class PlayerBehaviour : NetworkBehaviour
     {
         characterController = GetComponent<CharacterController>();
         attackManager = GetComponent<AttackManager>();
+        anim = GetComponent<Animator>();
     }
 
     void Start()
@@ -77,9 +79,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-
         OnMoveServerRpc(context.ReadValue<Vector2>());
-
     }
 
     [ServerRpc]
@@ -88,6 +88,8 @@ public class PlayerBehaviour : NetworkBehaviour
         if (this.tag.Equals("Team1")) context *= -1; //Se invierte el vector de entrada, pues la cámara está girada
         xMovement = context[0];
         zMovement = context[1];
+
+        anim.SetBool("Walking", (xMovement == 0 && zMovement == 0) ? false : true);
     }
 
     [ServerRpc(RequireOwnership = false)]
