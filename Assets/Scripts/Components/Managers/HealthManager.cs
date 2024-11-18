@@ -62,11 +62,9 @@ public class HealthManager : NetworkBehaviour
                     anim.SetTrigger("Dead");
                     OnDead?.Invoke(this.gameObject, this.tag);
                     GetComponent<CharacterController>().enabled = false; //No queremos recibir más golpes estando muertos
-                    GetComponent<PlayerBehaviour>().InitializePosition();
                     if(deathMatch != null) deathMatch.PointScored(attack.GetAttacker().tag);
                     killed = true;
                     attack.GetAttacker().AddKillsClientRpc();
-                    currentHealth = maxHealth;
                 }
             }
             UpdateHealthClientRpc(currentHealth, killed); //Se actualiza la vida en todos los clientes
@@ -91,6 +89,16 @@ public class HealthManager : NetworkBehaviour
         if (killed)
         {
             matchStatsManager.AddDeath();
+            
         }
+        healthBar.gameObject.SetActive(!killed); //Si muere se le desactiva la barra de vida y al reaparecer se vuelve a activar
+    }
+
+    public void RequestRespawn()
+    {
+        if (!IsServer) return;
+        GetComponent<PlayerBehaviour>().InitializePosition();
+        currentHealth = maxHealth;
+        UpdateHealthClientRpc(currentHealth, false);
     }
 }
