@@ -22,6 +22,7 @@ public class HealthManager : NetworkBehaviour
         currentHealth = maxHealth;
         matchStatsManager = GetComponent<MatchStatsManager>();
         deathMatch = GameObject.FindObjectOfType<DeathMatchManager>();
+        anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
