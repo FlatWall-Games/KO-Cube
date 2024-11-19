@@ -17,7 +17,6 @@ public class StartMenuState : AUIState
         startMenu = contextUI.Canvas.transform.Find("StartMenu").gameObject;
         startMenu.SetActive(true);
         contextUI.Canvas.transform.Find("Shop").gameObject.SetActive(false);
-        startMenu.transform.Find("Version").GetComponent<TextMeshProUGUI>().text = "Version " + Application.version;
     }
 
     public override void Exit()
