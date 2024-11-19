@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: KO Cube
+  companyName: FlatWallGames
+  productName: KOCube
   defaultCursor: {fileID: 2800000, guid: 3c8214a8b68880c4383524a5fb8b73ce, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -144,7 +144,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.7.3
+  bundleVersion: 0.17.1
   preloadedAssets:
   - {fileID: 11400000, guid: 5649cef5862fd76499d001caa4ac53c2, type: 2}
   metroInputSource: 0
