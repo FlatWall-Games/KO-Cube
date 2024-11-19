@@ -14,7 +14,7 @@ public class AnimatedCoin : MonoBehaviour
         speed = Random.Range(3, 6);
         rectTransform = GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(Random.Range(-50, 50), Random.Range(-50,50));
-        targetPosition = new Vector2(766, 393);
+        targetPosition = new Vector2(-766, 433);
         this.transform.parent = GameObject.Find("Shop").transform;
         Invoke("StartAnimationAfterCooldown", Random.Range(0.05f, 0.2f));
     }

@@ -13,12 +13,14 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private Button equipButton;
     [SerializeField] private Button buyButton;
+    private Color originalColor;
 
     void Awake()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(SetActiveButton); 
         nameText = button.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        originalColor = GetComponent<Image>().color;
     }
 
     void Start()
@@ -38,7 +40,7 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
 
     private void ToggleButtonStyle()
     {
-        if (activeButton != null) activeButton.GetComponent<Image>().color = Color.white;
+        if (activeButton != null) activeButton.GetComponent<Image>().color = originalColor;
         activeButton = this;
         activeButton.GetComponent<Image>().color = Color.grey;
     }
@@ -54,10 +56,10 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
         }
         else
         {
-            priceText.text = "Adquirida";
+            priceText.text = "ADQUIRIDA";
             priceText.color = Color.black;
         }
-        priceText.transform.Find("Coin").GetComponent<Image>().enabled = !skin.IsAcquired();
+        priceText.transform.parent.Find("Coin").GetComponent<Image>().enabled = !skin.IsAcquired();
     }
 
     private void ToggleActionButton()
