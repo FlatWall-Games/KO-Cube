@@ -30,7 +30,7 @@ public class CharacterSelection : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc();
+        GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc(1);
         previewManager.ForcePreview(0);
     }
 

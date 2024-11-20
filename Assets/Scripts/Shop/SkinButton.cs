@@ -50,7 +50,10 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
         if (!skin.IsAcquired()) //Si no está comprada verifica si se puede comprar
         {
             priceText.text = skin.GetPrice().ToString();
-            if (skin.GetPrice() > PlayerDataManager.Instance.GetCoins()) priceText.color = Color.red;
+            if (skin.GetPrice() > PlayerDataManager.Instance.GetCoins())
+            {
+                priceText.color = Color.red;
+            }
             else priceText.color = Color.black;
             buyButton.interactable = skin.GetPrice() <= PlayerDataManager.Instance.GetCoins();
         }
@@ -65,7 +68,7 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
     private void ToggleActionButton()
     {
         equipButton.interactable = skin.IsAcquired();
-        buyButton.interactable = !skin.IsAcquired();
+        if (skin.IsAcquired()) buyButton.interactable = false;
         if (SkinManager.Instance.GetActiveSkin(SkinShop.Instance.index) == buttonIndex)
         {
             equipButton.transform.GetComponentInChildren<TextMeshProUGUI>().text = "EQUIPADA";

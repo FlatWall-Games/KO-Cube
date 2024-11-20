@@ -11,9 +11,9 @@ public class PlayersReadyManager : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI countDownText;
 
     [ServerRpc(RequireOwnership = false)]
-    public void AddPlayerServerRpc()
+    public void AddPlayerServerRpc(int i)
     {
-        totalPlayers++;
+        totalPlayers+=i;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -58,5 +58,10 @@ public class PlayersReadyManager : NetworkBehaviour
         countDownText.text = "¡FIN DE LA PARTIDA!";
         yield return new WaitForSeconds(1.5f);
         countDownText.gameObject.SetActive(false);
+    }
+
+    public void SelectionExited()
+    {
+        AddPlayerServerRpc(-1);
     }
 }
