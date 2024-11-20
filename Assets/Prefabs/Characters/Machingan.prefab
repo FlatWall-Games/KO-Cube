@@ -1126,7 +1126,7 @@ Light:
     serializedVersion: 2
     m_Bits: 512
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
@@ -1518,6 +1518,13 @@ MonoBehaviour:
     TriggerNameHash: 621681159
     TransitionIndex: 0
   - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1095371188
+    DestinationState: 753088835
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
     Layer: 1
     OriginatingState: 2081823275
     DestinationState: 319337876
@@ -1526,10 +1533,31 @@ MonoBehaviour:
     TransitionIndex: 1
   - IsCrossFadeExit: 0
     Layer: 1
+    OriginatingState: 2081823275
+    DestinationState: 646380074
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 1
     OriginatingState: 1744665739
     DestinationState: 319337876
     TransitionDuration: 0.25
     TriggerNameHash: -199737661
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 1
+    OriginatingState: 1744665739
+    DestinationState: 646380074
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 1
+    OriginatingState: 319337876
+    DestinationState: 646380074
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
     TransitionIndex: 1
   m_Animator: {fileID: 571336068098503327}
 --- !u!114 &7442144102207965242
