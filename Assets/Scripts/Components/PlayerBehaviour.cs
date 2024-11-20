@@ -122,7 +122,7 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             if (!player.tag.Equals(ownerTag))
             {
-                player.transform.GetComponentInChildren<TeamColorManager>().SetColor(Color.red);
+                player.transform.Find("ColorArea").GetComponent<TeamColorManager>().SetColor(Color.red);
             }
         }
     }
