@@ -1,0 +1,34 @@
+{
+    "name": "ShopInputActions",
+    "maps": [
+        {
+            "name": "SHOP",
+            "id": "e92f7546-783e-4095-8d7b-1237d965c89b",
+            "actions": [
+                {
+                    "name": "RotateShopPreview",
+                    "type": "Value",
+                    "id": "e25e631e-81fa-411e-834f-5269b4f47d50",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c85e2549-78d9-4a7e-acc9-859075ff12b6",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateShopPreview",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

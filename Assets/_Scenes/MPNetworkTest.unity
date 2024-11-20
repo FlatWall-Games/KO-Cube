@@ -612,18 +612,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 249571739}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &13408580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5069,6 +5057,7 @@ GameObject:
   - component: {fileID: 118057423}
   - component: {fileID: 118057425}
   - component: {fileID: 118057426}
+  - component: {fileID: 118057427}
   m_Layer: 5
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -5085,15 +5074,15 @@ RectTransform:
   m_GameObject: {fileID: 118057422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1623185, y: 1.1623185, z: 1.1623185}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 508983774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 473, y: -202}
-  m_SizeDelta: {x: 1200, y: 1200}
+  m_AnchoredPosition: {x: 473, y: -948}
+  m_SizeDelta: {x: 2400, y: 2400}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &118057425
 CanvasRenderer:
@@ -5130,6 +5119,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!225 &118057427
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118057422}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &122072316
 GameObject:
   m_ObjectHideFlags: 0
@@ -8788,7 +8789,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 512
@@ -25320,7 +25321,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 983
@@ -25368,7 +25369,6 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras:
-  - {fileID: 249571742}
   - {fileID: 695463608}
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -36546,8 +36546,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 13408583}
   - {fileID: 414884417}
+  - {fileID: 13408583}
   - {fileID: 1462617324}
   m_Father: {fileID: 1758027395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40911,6 +40911,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1670587036}
         m_TargetAssemblyTypeName: ControllerSelectedButtonTool, Assembly-CSharp
         m_MethodName: OnEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 249571743}
+        m_TargetAssemblyTypeName: PreviewManager, Assembly-CSharp
+        m_MethodName: RestorePreviewRotation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -63310,6 +63322,7 @@ GameObject:
   - component: {fileID: 1799260493}
   - component: {fileID: 1799260494}
   - component: {fileID: 1799260495}
+  - component: {fileID: 1799260496}
   m_Layer: 5
   m_Name: CharacterImage
   m_TagString: Untagged
@@ -63371,18 +63384,67 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!225 &1799260495
-CanvasGroup:
+--- !u!114 &1799260495
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799260490}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec568dec8d7ea468dbc108e646b766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previewManager: {fileID: 249571743}
+  rotationSpeed: 1
+--- !u!114 &1799260496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799260490}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 729169dbe90964a4db94c08de32fe035,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1799260495}
+        m_TargetAssemblyTypeName: PreviewRotator, Assembly-CSharp
+        m_MethodName: RotateWithController
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e25e631e-81fa-411e-834f-5269b4f47d50
+    m_ActionName: SHOP/RotateShopPreview
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: SHOP
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1802376649
 GameObject:
   m_ObjectHideFlags: 0
@@ -65686,12 +65748,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 692338105}
+  - {fileID: 1460868678}
   - {fileID: 1156563172}
   - {fileID: 1940906509}
   - {fileID: 1939878351}
   - {fileID: 392657151}
-  - {fileID: 692338105}
-  - {fileID: 1460868678}
   - {fileID: 1759800737}
   m_Father: {fileID: 988456953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
