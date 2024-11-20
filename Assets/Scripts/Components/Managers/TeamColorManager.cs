@@ -1,30 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TeamColorManager : MonoBehaviour
 {
-    private Light colorLight;
+    private Image teamColorImage;
     private string teamTag = "Untagged";
-    [SerializeField] private float offsetX;
-    [SerializeField] private float offsetY;
 
     void Awake()
     {
-        colorLight = GetComponent<Light>();
+        teamColorImage = GetComponent<Image>();
         StartCoroutine(GetTeam());
-    }
-
-    private void Update()
-    {
-        if(teamTag.Equals("Team1")) transform.position = transform.parent.position + Vector3.forward * 3 + new Vector3(offsetX, offsetY, 0);
-        else transform.position = transform.parent.position - Vector3.forward * 3 + new Vector3(0,4,0);
-        transform.rotation = Quaternion.LookRotation(transform.parent.position - this.transform.position);
     }
 
     public void SetColor(Color color)
     {
-        colorLight.color = color;
+        teamColorImage.color = color;
     }
 
     IEnumerator GetTeam()

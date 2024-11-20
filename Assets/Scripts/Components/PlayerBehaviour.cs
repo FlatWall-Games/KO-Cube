@@ -110,19 +110,19 @@ public class PlayerBehaviour : NetworkBehaviour
         }
         if (!ownerTag.Equals("Untagged")) //Sólo se hará lo siguiente cuando el personaje del jugador esté inicializado
         {
-            UpdatePlayersLights();
+            UpdateColorArea();
             GameObject.FindObjectOfType<HUD_CharactersIcon>().SetCharacterPortraits();
         }
     }
 
-    private void UpdatePlayersLights()
+    private void UpdateColorArea()
     {
         PlayerBehaviour[] players = GameObject.FindObjectsOfType<PlayerBehaviour>();
         foreach (PlayerBehaviour player in players)
         {
             if (!player.tag.Equals(ownerTag))
             {
-                player.transform.Find("ColorLight").GetComponent<TeamColorManager>().SetColor(Color.red);
+                player.transform.GetComponentInChildren<TeamColorManager>().SetColor(Color.red);
             }
         }
     }
