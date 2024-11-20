@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class TeamColorManager : MonoBehaviour
 {
-    private Image teamColorImage;
+    private SpriteRenderer teamColorImage;
     private string teamTag = "Untagged";
 
     void Awake()
     {
-        teamColorImage = GetComponent<Image>();
+        teamColorImage = GetComponent<SpriteRenderer>();
         StartCoroutine(GetTeam());
     }
 
     public void SetColor(Color color)
     {
-        teamColorImage.color = color;
+        teamColorImage.color = new Color(color.r, color.g, color.b, 0.5f);
     }
 
     IEnumerator GetTeam()
