@@ -60,7 +60,7 @@ public class HotZoneBehaviour : NetworkBehaviour
         if (other.CompareTag("Team1")) numT1Inside++;
         else if (other.CompareTag("Team2")) numT2Inside++;
         other.GetComponent<HealthManager>().OnDead += PlayerDead;
-        if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().ulted += PlayerDead;
+        if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().Ulted += PlayerDead;
     }
 
     private void OnTriggerExit(Collider other)
@@ -69,7 +69,7 @@ public class HotZoneBehaviour : NetworkBehaviour
         if (other.CompareTag("Team1")) numT1Inside--;
         else if (other.CompareTag("Team2")) numT2Inside--;
         other.GetComponent<HealthManager>().OnDead -= PlayerDead;
-        if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().ulted -= PlayerDead;
+        if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().Ulted -= PlayerDead;
     }
 
     private void PlayerDead(object s, string tag)
@@ -78,7 +78,7 @@ public class HotZoneBehaviour : NetworkBehaviour
         else numT2Inside--;
         GameObject player = s as GameObject;
         player.GetComponent<HealthManager>().OnDead -= PlayerDead;
-        if (player.GetComponent<CharacterInfo>().characterID == 1) player.GetComponent<AttackManager>().ulted -= PlayerDead;
+        if (player.GetComponent<CharacterInfo>().characterID == 1) player.GetComponent<AttackManager>().Ulted -= PlayerDead;
     }
 
     [ClientRpc]

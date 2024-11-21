@@ -5,17 +5,19 @@ using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
-    [SerializeField] private AudioClip[] clips;
+    [SerializeField] private AudioClip[] musicClips;
+    [SerializeField] private AudioClip[] ambientClips;
     [SerializeField] private AudioMixerGroup musicMixer;
     [SerializeField] private float currentVolume = 0;
-    private AudioSource source;
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource ambientSource;
     private Animator anim;
     private bool animationActive;
     private int currentSong = 0;
+    private bool loop = true;
     
     void Awake()
     {
-        source = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
     }
 
@@ -27,17 +29,27 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    public void PlaySong(int songIndex, float animationSpeed)
+    public void PlaySong(int songIndex, float animationSpeed, bool loop)
     {
+        this.loop = loop;
+        musicSource.loop = true;
         anim.speed = animationSpeed;
         currentSong = songIndex;
         anim.Rebind();
     }
 
-    public void ChangeSong()
+    public void PlayAmbient(int ambientIndex, bool loop)
     {
-        source.clip = clips[currentSong];
-        source.Play();
+        ambientSource.loop = loop;
+        ambientSource.clip = ambientClips[ambientIndex];
+        ambientSource.Play();
+    }
+
+    public void ChangeSong() //Llamada desde la animación de fade-out fade-in
+    {
+        musicSource.clip = musicClips[currentSong];
+        musicSource.Play();
+        musicSource.loop = loop;
     }
 
     public void OnAnimationStarted()

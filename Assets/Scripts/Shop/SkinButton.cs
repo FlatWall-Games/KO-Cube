@@ -88,6 +88,7 @@ public class SkinButton : MonoBehaviour, IPurchaseButton
             skin.AcquireSkin(true);
             Debug.Log($"Comprada la skin: {skin.GetName()}.");
             SetActiveButton();
+            GameObject.FindObjectOfType<SFXManager>().PlaySFX(2, 1);
             SkinManager.Instance.UpdateData(SkinShop.Instance.index);
         }
     }

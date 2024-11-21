@@ -27,6 +27,7 @@ public class MoneyButton : MonoBehaviour, IPurchaseButton
         Debug.Log($"Compradas {moneyAmount} monedas");
         PlayerDataManager.Instance.AddCoins(moneyAmount);
         MoneyText.Instance.UpdateMoney();
+        GameObject.FindObjectOfType<SFXManager>().PlaySFX(2, 1);
         StartCoroutine(InstantiateCoins());
     }
 

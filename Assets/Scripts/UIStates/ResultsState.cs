@@ -26,6 +26,8 @@ public class ResultsState : AUIState
                 UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/PersonalStats/Kills/KillsText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetKills().ToString();
                 UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/PersonalStats/Deaths/DeathsText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetDeaths().ToString();
                 UIManager.Instance.Canvas.transform.Find("ResultsScreenMenu/MatchResultLabel/FinalResultText").GetComponent<TextMeshProUGUI>().text = player.GetComponent<MatchStatsManager>().GetResults();
+                if (player.GetComponent<MatchStatsManager>().GetResults().Equals("Victoria")) GameObject.FindObjectOfType<MusicManager>().PlaySong(3, 50, false);
+                else GameObject.FindObjectOfType<MusicManager>().PlaySong(4, 50, false);
             }
         }
         

@@ -48,7 +48,7 @@ public class AGameManager : NetworkBehaviour
                 {
                     EnterResultsAfterDelayClientRpc("Empate");
                 }
-                UIEnablerClientRpc(false);
+                Invoke("DisableUIClientRpc", 1.5f);
             }
         }
     }
@@ -66,7 +66,7 @@ public class AGameManager : NetworkBehaviour
             {
                 StablishPlayersMovementClientRpc(false);
                 EnterResultsAfterDelayClientRpc("Team1");
-                UIEnablerClientRpc(false);
+                Invoke("DisableUIClientRpc", 1.5f);
             }
         }
         else
@@ -75,7 +75,7 @@ public class AGameManager : NetworkBehaviour
             {
                 StablishPlayersMovementClientRpc(false);
                 EnterResultsAfterDelayClientRpc("Team2");
-                UIEnablerClientRpc(false);
+                Invoke("DisableUIClientRpc", 1.5f);
             }
         }
         UpdatePointsClientRpc(pointsTeam1, pointsTeam2);
@@ -178,6 +178,15 @@ public class AGameManager : NetworkBehaviour
         pointsT2Text.gameObject.SetActive(state);
         timeLeftText.gameObject.SetActive(state);
         GameObject.FindObjectOfType<UIManager>().gui_visible = false; //Deberá estar desactivado en todos los casos, al comenzar y acabar la partida
+    }
+
+    [ClientRpc] 
+    private void DisableUIClientRpc()
+    {
+        gameModeUiText.gameObject.SetActive(false);
+        pointsT1Text.gameObject.SetActive(false);
+        pointsT2Text.gameObject.SetActive(false);
+        timeLeftText.gameObject.SetActive(false);
     }
 
     //////////////////////SÍNCRONIZACIÓN DE LOS ESPECTADORES:

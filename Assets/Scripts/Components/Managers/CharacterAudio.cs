@@ -14,7 +14,7 @@ public class CharacterAudio : MonoBehaviour
     {
         transform.parent.GetComponent<HealthManager>().OnDead += PlayKilledAudio;
         transform.parent.GetComponent<HealthManager>().OnDamaged += PlayDamagedAudio;
-        transform.parent.GetComponent<AttackManager>().onAttack += PlayBasicAudio;
+        transform.parent.GetComponent<AttackManager>().OnAttack += PlayBasicAudio;
     }
 
     private void PlayKilledAudio(object s, string tag)
@@ -28,7 +28,7 @@ public class CharacterAudio : MonoBehaviour
 
     private void PlayDamagedAudio(object s, float damage)
     {
-        damagedSource.Play();
+        //damagedSource.Play();
     }
 
     private void PlayBasicAudio(object s, string attackType)
