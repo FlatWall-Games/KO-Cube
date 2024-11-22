@@ -10,6 +10,7 @@ public class ModeButton : MonoBehaviour
     private void Awake()
     {
         buttons = GameObject.FindObjectsOfType<ModeButton>();
+        if (modeIndex == 0) MakeSelectionVisual();
     }
 
     private void OnEnable()
@@ -28,9 +29,9 @@ public class ModeButton : MonoBehaviour
         foreach(ModeButton button in buttons)
         {
             button.transform.localScale = new Vector3(1, 1, 1);
-            button.GetComponent<Image>().color = Color.white;
+            button.GetComponent<Image>().color = new Color(0.4f, 0.4f, 0.4f, 1);
         }
         this.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-        this.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+        this.GetComponent<Image>().color = Color.white;
     }
 }

@@ -172,7 +172,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     public void DeleteData()
     {
         PlayerPrefs.DeleteAll();
-        UIManager.Instance.EndGameSession();
+        //UIManager.Instance.EndGameSession();
     }
 
     //////////////////////// Metodos privados que guardan los datos localmente con PlayerPrefs //////////////////////// 

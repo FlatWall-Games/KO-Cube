@@ -5442,7 +5442,7 @@ RectTransform:
   m_GameObject: {fileID: 129218353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.221, y: 1.221, z: 1.221}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1060125886}
@@ -5451,7 +5451,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -895.30066, y: -65}
+  m_AnchoredPosition: {x: -1089.24, y: -19}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &132481047
@@ -8803,7 +8803,7 @@ Animator:
   m_GameObject: {fileID: 243779333}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5a74e2c83d4e27746a2be74d94596cbd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7397fa0c770bd0e439a2c501abd0bee5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -13998,7 +13998,7 @@ Animator:
   m_GameObject: {fileID: 388127235}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f1752c9a98d09bf479150768283405f8, type: 2}
+  m_Controller: {fileID: 9100000, guid: f274abefc543bec459f603aa78b2a7be, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -17390,7 +17390,7 @@ Animator:
   m_GameObject: {fileID: 477833754}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 410a5e113525d5048b572fe6fb5f944d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ef60dccb6fd14d4c8a9d801f3e08354, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -30034,6 +30034,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerDataManager, Assembly-CSharp
         m_MethodName: DeleteData
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 548453129}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1560601837}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -48839,7 +48863,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -72}
+  m_AnchoredPosition: {x: 10, y: -39.000034}
   m_SizeDelta: {x: 459.5, y: 122.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299599681
@@ -62076,7 +62100,7 @@ Animator:
   m_GameObject: {fileID: 1702646144}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 25b0d4486cddf4f40bd1068ab3ba545c, type: 2}
+  m_Controller: {fileID: 9100000, guid: e32a6c72e5dcee64e85eaa8262e7c759, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -79914,7 +79938,7 @@ Animator:
   m_GameObject: {fileID: 2134412121}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1a375cce6325f1b4491ca6e054c82969, type: 2}
+  m_Controller: {fileID: 9100000, guid: 83a524980e658a04e95acf9013ca7351, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -80447,7 +80471,7 @@ Animator:
   m_GameObject: {fileID: 3345367469018441542}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1a375cce6325f1b4491ca6e054c82969, type: 2}
+  m_Controller: {fileID: 9100000, guid: 83a524980e658a04e95acf9013ca7351, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -80468,7 +80492,7 @@ Animator:
   m_GameObject: {fileID: 3345367469372521338}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 25b0d4486cddf4f40bd1068ab3ba545c, type: 2}
+  m_Controller: {fileID: 9100000, guid: e32a6c72e5dcee64e85eaa8262e7c759, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -80489,7 +80513,7 @@ Animator:
   m_GameObject: {fileID: 3345367469990661839}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 410a5e113525d5048b572fe6fb5f944d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ef60dccb6fd14d4c8a9d801f3e08354, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -80510,7 +80534,7 @@ Animator:
   m_GameObject: {fileID: 3345367470448037224}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f1752c9a98d09bf479150768283405f8, type: 2}
+  m_Controller: {fileID: 9100000, guid: f274abefc543bec459f603aa78b2a7be, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -83000,7 +83024,7 @@ Animator:
   m_GameObject: {fileID: 3345367469418806971}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5a74e2c83d4e27746a2be74d94596cbd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7397fa0c770bd0e439a2c501abd0bee5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -13,6 +13,7 @@ public class MapButton: MonoBehaviour
     private void Awake()
     {
         buttons = GameObject.FindObjectsOfType<MapButton>();
+        if (mapIndex == 0) MakeSelectionVisual();
     }
 
     private void OnEnable()
@@ -40,13 +41,13 @@ public class MapButton: MonoBehaviour
         if (selected)
         {
             button.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-            button.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            button.GetComponent<Image>().color = Color.white;
             GameObject.FindObjectOfType<MapSelector>().SetMap(mapIndex);
         }
         else
         {
             button.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-            button.GetComponent<Image>().color = Color.white;
+            button.GetComponent<Image>().color = new Color(0.4f, 0.4f, 0.4f, 1);
         }
     }
 
