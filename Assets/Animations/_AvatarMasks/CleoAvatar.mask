@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CleoAvatar
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Bone
+    m_Weight: 1
+  - m_Path: Bone/Bone.001
+    m_Weight: 1
+  - m_Path: Bone/Bone.001/Bufanda
+    m_Weight: 1
+  - m_Path: Bone/Bone.001/Cabeza
+    m_Weight: 1
+  - m_Path: Bone/Bone.001/Ceja D
+    m_Weight: 1
+  - m_Path: Bone/Bone.001/Ceja I
+    m_Weight: 1
+  - m_Path: Bone/Bone.001/Ojo D
+    m_Weight: 1
+  - m_Path: Bone/Bone.001/Ojo I
+    m_Weight: 1
+  - m_Path: Bone/Bone.003
+    m_Weight: 1
+  - m_Path: Bone/Bone.003/Cola
+    m_Weight: 1
+  - m_Path: Bone/Bone.004.L
+    m_Weight: 0
+  - m_Path: Bone/Bone.004.L/Bone.005.L
+    m_Weight: 0
+  - m_Path: Bone/Bone.004.L/Bone.005.L/Pierna R Abajo
+    m_Weight: 0
+  - m_Path: Bone/Bone.004.L/Pierna R
+    m_Weight: 0
+  - m_Path: Bone/Bone.004.R
+    m_Weight: 0
+  - m_Path: Bone/Bone.004.R/Bone.005.R
+    m_Weight: 0
+  - m_Path: Bone/Bone.004.R/Bone.005.R/Pierna L Abajo
+    m_Weight: 0
+  - m_Path: Bone/Bone.004.R/Pierna L
+    m_Weight: 0
+  - m_Path: Bone/Bone.006.L
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/ Brazo Arriba D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.009.L
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.009.L/Dedo2 D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.010.L
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.010.L/Dedo4 D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.011.L
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.011.L/Dedo5 D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.012.L
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.012.L/Dedo3 D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.013.L
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Bone.013.L/Dedo1 D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Bone.008.L/Mano D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Bone.007.L/Brazo Abajo D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.L/Manga D
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/ Brazo Arriba I
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.009.R
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.009.R/Dedo2 I
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.010.R
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.010.R/Dedo4 I
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.011.R
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.011.R/Dedo5 I
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.012.R
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.012.R/Dedo3 I
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.013.R
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Bone.013.R/Dedo1 I
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Bone.008.R/Mano I
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Bone.007.R/Brazo Abajo I
+    m_Weight: 1
+  - m_Path: Bone/Bone.006.R/Manga I
+    m_Weight: 1
+  - m_Path: Bone/Cremallera
+    m_Weight: 1
+  - m_Path: Bone/Cuerpo
+    m_Weight: 1

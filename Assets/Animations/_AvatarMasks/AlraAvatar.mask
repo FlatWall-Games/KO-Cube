@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AlraAvatar
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Main_Bone
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.L/Forearm_Bone.L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.L/Forearm_Bone.L/Forearm_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.L/Forearm_Bone.L/Hand_Bone.L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.L/Forearm_Bone.L/Hand_Bone.L/Hand_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.L/Shoulder_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.L/Upperarm_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.R
+    m_Weight: 0
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.R/Forearm_Bone.R
+    m_Weight: 0
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.R/Forearm_Bone.R/Forearm_R
+    m_Weight: 0
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.R/Forearm_Bone.R/Hand_Bone.R
+    m_Weight: 0
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.R/Forearm_Bone.R/Hand_Bone.R/Hand_R
+    m_Weight: 0
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.R/Shoulder_R
+    m_Weight: 0
+  - m_Path: Main_Bone/Body_Bone/Arm_Bone.R/Upperarm_R
+    m_Weight: 0
+  - m_Path: Main_Bone/Body_Bone/Body
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Body.001
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Body.002
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Cap
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Ear_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Ear_R
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Eye_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Eye_R
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Eyebrow_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Eyebrow_R
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Head
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Head_Bone/Mask
+    m_Weight: 1
+  - m_Path: Main_Bone/Body_Bone/Pocket
+    m_Weight: 1
+  - m_Path: Main_Bone/Leg_Bone.L
+    m_Weight: 0
+  - m_Path: Main_Bone/Leg_Bone.L/Foot_Bone.L
+    m_Weight: 1
+  - m_Path: Main_Bone/Leg_Bone.L/Foot_Bone.L/Foot_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Leg_Bone.L/Foot_Bone.L/Leg_L.001
+    m_Weight: 1
+  - m_Path: Main_Bone/Leg_Bone.L/Leg_L
+    m_Weight: 1
+  - m_Path: Main_Bone/Leg_Bone.R
+    m_Weight: 0
+  - m_Path: Main_Bone/Leg_Bone.R/Foot_Bone.R
+    m_Weight: 1
+  - m_Path: Main_Bone/Leg_Bone.R/Foot_Bone.R/Foot_R
+    m_Weight: 1
+  - m_Path: Main_Bone/Leg_Bone.R/Foot_Bone.R/Leg_R.001
+    m_Weight: 1
+  - m_Path: Main_Bone/Leg_Bone.R/Leg_R
+    m_Weight: 1
+  - m_Path: Weapon_Bone
+    m_Weight: 1
+  - m_Path: Weapon_Bone/Weapon
+    m_Weight: 1

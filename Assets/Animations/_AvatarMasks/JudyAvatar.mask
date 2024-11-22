@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: JudyAvatar
+  m_Mask: 00000000000000000000000000000000000000000100000000000000010000000000000000000000000000000100000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: HatBone
+    m_Weight: 1
+  - m_Path: HatBone/Hat
+    m_Weight: 1
+  - m_Path: HatBone/HatBone_end
+    m_Weight: 1
+  - m_Path: TorsoBone
+    m_Weight: 1
+  - m_Path: TorsoBone/BowtieBone
+    m_Weight: 0
+  - m_Path: TorsoBone/BowtieBone/BowTie
+    m_Weight: 0
+  - m_Path: TorsoBone/BowtieBone/BowtieBone_end
+    m_Weight: 0
+  - m_Path: TorsoBone/CloackBone
+    m_Weight: 0
+  - m_Path: TorsoBone/CloackBone/Cloack
+    m_Weight: 0
+  - m_Path: TorsoBone/CloackBone/CloackBone_end
+    m_Weight: 0
+  - m_Path: TorsoBone/HeadBone
+    m_Weight: 0
+  - m_Path: TorsoBone/HeadBone/Head
+    m_Weight: 0
+  - m_Path: TorsoBone/HeadBone/HeadBone_end
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.L
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.L/FootBone.L
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.L/FootBone.L/FootBone.L_end
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.L/FootBone.L/FootL
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.L/LegL
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R/FootBone.R
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R/FootBone.R/FootBone.R_end
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R/FootBone.R/FootR
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R/LegR
+    m_Weight: 0
+  - m_Path: TorsoBone/Torso
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L/ForearmL
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L/HandBone.L
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L/HandBone.L/HandBone.L_end
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L/HandBone.L/HandL
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/UpperarmL
+    m_Weight: 0
+  - m_Path: TorsoBone/UpperarmBone.R
+    m_Weight: 0
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R
+    m_Weight: 0
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R/ForearmR
+    m_Weight: 0
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R/HandBone.R
+    m_Weight: 0
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R/HandBone.R/HandBone.R_end
+    m_Weight: 0
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R/HandBone.R/HandR
+    m_Weight: 0
+  - m_Path: TorsoBone/UpperarmBone.R/UpperarmR
+    m_Weight: 0

@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SadguyAvatar
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Body_Bone
+    m_Weight: 1
+  - m_Path: Body_Bone/Cuerpo
+    m_Weight: 1
+  - m_Path: Body_Bone/Cuerpo.001
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone/Boca
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone/Cabeza
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone/Ceja_L
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone/Ceja_R
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone/Lagrima_L
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone/Lagrima_R
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone/Ojo_L
+    m_Weight: 1
+  - m_Path: Body_Bone/Head_Bone/Ojo_R
+    m_Weight: 1
+  - m_Path: Body_Bone/Leg_Bone.L
+    m_Weight: 0
+  - m_Path: Body_Bone/Leg_Bone.L/Foot_Bone.L
+    m_Weight: 0
+  - m_Path: Body_Bone/Leg_Bone.L/Foot_Bone.L/Pierna_Inferior_L
+    m_Weight: 0
+  - m_Path: Body_Bone/Leg_Bone.L/Pierna_Superior_L
+    m_Weight: 0
+  - m_Path: Body_Bone/Leg_Bone.R
+    m_Weight: 0
+  - m_Path: Body_Bone/Leg_Bone.R/Foot_Bone.R
+    m_Weight: 0
+  - m_Path: Body_Bone/Leg_Bone.R/Foot_Bone.R/Pierna_Inferior_R
+    m_Weight: 0
+  - m_Path: Body_Bone/Leg_Bone.R/Pierna_Superior_R
+    m_Weight: 0
+  - m_Path: Body_Bone/Upper_Arm.L
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.L/Brazo_Superior_L
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.L/Brazo_Superior_L.001
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.L/Lower_Arm.L
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.L/Lower_Arm.L/Brazo_Inferior_L
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.L/Lower_Arm.L/Hand.L
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.L/Lower_Arm.L/Hand.L/Brazo_Inferior_L.001
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.R
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.R/Brazo_Superior_R
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.R/Brazo_Superior_R.001
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.R/Lower_Arm.R
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.R/Lower_Arm.R/Brazo_Inferior_R
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.R/Lower_Arm.R/Hand.R
+    m_Weight: 1
+  - m_Path: Body_Bone/Upper_Arm.R/Lower_Arm.R/Hand.R/Brazo_Inferior_R.001
+    m_Weight: 1
+  - m_Path: Tank_Bone
+    m_Weight: 1
+  - m_Path: Tank_Bone/Tanque
+    m_Weight: 1
+  - m_Path: Tank_Bone/Tanque.001
+    m_Weight: 1
+  - m_Path: Tank_Bone/Tanque.002
+    m_Weight: 1
+  - m_Path: Tank_Bone/Tanque.003
+    m_Weight: 1
+  - m_Path: Tank_Bone/Tanque.004
+    m_Weight: 1

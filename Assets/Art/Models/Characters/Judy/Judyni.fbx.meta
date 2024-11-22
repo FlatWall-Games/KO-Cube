@@ -131,7 +131,259 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|DEATH
+      takeName: Armature|DEATH
+      internalID: -7521072362091166453
+      firstFrame: 0
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: HatBone
+        weight: 1
+      - path: HatBone/Hat
+        weight: 1
+      - path: HatBone/HatBone_end
+        weight: 1
+      - path: TorsoBone
+        weight: 1
+      - path: TorsoBone/BowtieBone
+        weight: 1
+      - path: TorsoBone/BowtieBone/BowTie
+        weight: 1
+      - path: TorsoBone/BowtieBone/BowtieBone_end
+        weight: 1
+      - path: TorsoBone/CloackBone
+        weight: 1
+      - path: TorsoBone/CloackBone/Cloack
+        weight: 1
+      - path: TorsoBone/CloackBone/CloackBone_end
+        weight: 1
+      - path: TorsoBone/HeadBone
+        weight: 1
+      - path: TorsoBone/HeadBone/Head
+        weight: 1
+      - path: TorsoBone/HeadBone/HeadBone_end
+        weight: 1
+      - path: TorsoBone/LegBone.L
+        weight: 1
+      - path: TorsoBone/LegBone.L/FootBone.L
+        weight: 1
+      - path: TorsoBone/LegBone.L/FootBone.L/FootBone.L_end
+        weight: 1
+      - path: TorsoBone/LegBone.L/FootBone.L/FootL
+        weight: 1
+      - path: TorsoBone/LegBone.L/LegL
+        weight: 1
+      - path: TorsoBone/LegBone.R
+        weight: 1
+      - path: TorsoBone/LegBone.R/FootBone.R
+        weight: 1
+      - path: TorsoBone/LegBone.R/FootBone.R/FootBone.R_end
+        weight: 1
+      - path: TorsoBone/LegBone.R/FootBone.R/FootR
+        weight: 1
+      - path: TorsoBone/LegBone.R/LegR
+        weight: 1
+      - path: TorsoBone/Torso
+        weight: 1
+      - path: TorsoBone/UpperarmBone.L
+        weight: 1
+      - path: TorsoBone/UpperarmBone.L/ForearmBone.L
+        weight: 1
+      - path: TorsoBone/UpperarmBone.L/ForearmBone.L/ForearmL
+        weight: 1
+      - path: TorsoBone/UpperarmBone.L/ForearmBone.L/HandBone.L
+        weight: 1
+      - path: TorsoBone/UpperarmBone.L/ForearmBone.L/HandBone.L/HandBone.L_end
+        weight: 1
+      - path: TorsoBone/UpperarmBone.L/ForearmBone.L/HandBone.L/HandL
+        weight: 1
+      - path: TorsoBone/UpperarmBone.L/UpperarmL
+        weight: 1
+      - path: TorsoBone/UpperarmBone.R
+        weight: 1
+      - path: TorsoBone/UpperarmBone.R/ForearmBone.R
+        weight: 1
+      - path: TorsoBone/UpperarmBone.R/ForearmBone.R/ForearmR
+        weight: 1
+      - path: TorsoBone/UpperarmBone.R/ForearmBone.R/HandBone.R
+        weight: 1
+      - path: TorsoBone/UpperarmBone.R/ForearmBone.R/HandBone.R/HandBone.R_end
+        weight: 1
+      - path: TorsoBone/UpperarmBone.R/ForearmBone.R/HandBone.R/HandR
+        weight: 1
+      - path: TorsoBone/UpperarmBone.R/UpperarmR
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IDLE
+      takeName: Armature|IDLE
+      internalID: 2876981554226286365
+      firstFrame: 0
+      lastFrame: 450
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|SHOOT
+      takeName: Armature|SHOOT
+      internalID: 919276842658705846
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|TPose
+      takeName: Armature|TPose
+      internalID: 5152524018116331999
+      firstFrame: 0
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ULTIMATE
+      takeName: Armature|ULTIMATE
+      internalID: 8731258989755533029
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|WALK
+      takeName: Armature|WALK
+      internalID: 4540250025106317447
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -199,7 +451,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

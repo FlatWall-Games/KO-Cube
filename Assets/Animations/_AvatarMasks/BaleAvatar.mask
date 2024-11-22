@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BaleAvatar
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: RifleBone
+    m_Weight: 1
+  - m_Path: RifleBone/Rifle
+    m_Weight: 1
+  - m_Path: TorsoBone
+    m_Weight: 1
+  - m_Path: TorsoBone/HeadBone
+    m_Weight: 1
+  - m_Path: TorsoBone/HeadBone/Head
+    m_Weight: 1
+  - m_Path: TorsoBone/LegBone.L
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.L/FootBone.L
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.L/FootBone.L/FootL
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.L/LegL
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R/FootBone.R
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R/FootBone.R/FootR
+    m_Weight: 0
+  - m_Path: TorsoBone/LegBone.R/LegR
+    m_Weight: 0
+  - m_Path: TorsoBone/ShoulderPads
+    m_Weight: 1
+  - m_Path: TorsoBone/Torso
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L/ForearmL
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L/HandBone.L
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/ForearmBone.L/HandBone.L/HandL
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.L/UpperArmL
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.R
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R/ForearmR
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R/HandBone.R
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.R/ForearmBone.R/HandBone.R/HandR
+    m_Weight: 1
+  - m_Path: TorsoBone/UpperarmBone.R/UpperArmR
+    m_Weight: 1

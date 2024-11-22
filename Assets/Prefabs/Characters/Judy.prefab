@@ -833,7 +833,7 @@ Animator:
   m_GameObject: {fileID: 3345367470636222976}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5a74e2c83d4e27746a2be74d94596cbd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7397fa0c770bd0e439a2c501abd0bee5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -881,17 +881,52 @@ MonoBehaviour:
   TransitionStateInfoList:
   - IsCrossFadeExit: 0
     Layer: 0
+    OriginatingState: 2081823275
+    DestinationState: 186033351
+    TransitionDuration: 0
+    TriggerNameHash: -199737661
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 2081823275
+    DestinationState: 646380074
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1744665739
+    DestinationState: 186033351
+    TransitionDuration: 0.25
+    TriggerNameHash: -199737661
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1744665739
+    DestinationState: 646380074
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 186033351
+    DestinationState: 646380074
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 1
     OriginatingState: 753088835
     DestinationState: 1095371188
     TransitionDuration: 0
     TriggerNameHash: 621681159
     TransitionIndex: 0
   - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 753088835
-    DestinationState: -1473631627
+    Layer: 1
+    OriginatingState: 1095371188
+    DestinationState: 753088835
     TransitionDuration: 0
-    TriggerNameHash: -199737661
+    TriggerNameHash: 1293411866
     TransitionIndex: 1
   m_Animator: {fileID: 571336068098503327}
 --- !u!114 &7442144102207965242
