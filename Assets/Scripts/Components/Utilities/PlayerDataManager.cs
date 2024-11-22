@@ -92,15 +92,6 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         Debug.Log("Ruta de PlayerPrefs en este sistema operativo: " + Application.persistentDataPath);
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Alpha0))
-        {
-            Debug.Log("Eliminando Datos...");
-            DeleteData();
-        }
-    }
-
     //////////////////////// Metodos publicos para modificar datos desde otros scripts //////////////////////// 
 
     //Devuelve True si existen datos del usuario
@@ -181,6 +172,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     public void DeleteData()
     {
         PlayerPrefs.DeleteAll();
+        UIManager.Instance.EndGameSession();
     }
 
     //////////////////////// Metodos privados que guardan los datos localmente con PlayerPrefs //////////////////////// 

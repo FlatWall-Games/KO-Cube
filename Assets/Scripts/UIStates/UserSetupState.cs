@@ -11,6 +11,7 @@ public class UserSetupState : AUIState
     TextMeshProUGUI informationBoxText; //Referencia al texto que se muestra en la caja de avisos
     TMP_InputField nameInputField;  //Referencia al inputfield del nombre del jugador
     Button continueButton; //Referencia al boton de continuar
+    Button eraseDataButton;
 
     string searchingText = "Buscando datos del Usuario";
     string succesSearchText = "Datos encontrados.";
@@ -33,6 +34,7 @@ public class UserSetupState : AUIState
         informationBoxText = userSetupScreen.transform.Find("InformationBox/Text").gameObject.GetComponent<TextMeshProUGUI>();
         nameInputField = userSetupScreen.transform.Find("NameInputField").gameObject.GetComponent<TMP_InputField>();
         continueButton = userSetupScreen.transform.Find("ContinueButton").gameObject.GetComponent<Button>();
+        eraseDataButton = userSetupScreen.transform.Find("DeleteDataButton").gameObject.GetComponent <Button>();
         informationBoxText.text = searchingText;
 
         //Suscribimos el metodo Continue a la pulsacion del boton
@@ -70,6 +72,7 @@ public class UserSetupState : AUIState
                 canContinue = true;
                 informationBoxText.text = succesSearchText;
                 continueButton.gameObject.SetActive(true);
+                eraseDataButton.gameObject.SetActive(true);
             }
             else
             {

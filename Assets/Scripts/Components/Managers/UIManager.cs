@@ -122,7 +122,7 @@ public class UIManager : Singleton<UIManager>, IUI
     IEnumerator ReloadGame()
     {
         Destroy(NetworkManager.Singleton.gameObject);
-        yield return (0.2f);
+        yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene(0);
     }
 
