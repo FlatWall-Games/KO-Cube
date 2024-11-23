@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 7c2e0d0d4dc46ad48baeca0a4c423b0e
+guid: c63ba568f2ad9474f958d6f69f4d1438
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Flag
-    second: {fileID: 2100000, guid: 3029ff70831140b4f8207e692acc46b7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Gold
-    second: {fileID: 2100000, guid: db949331406969a40a350d0fb0bf4ef9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Poste
-    second: {fileID: 2100000, guid: 4dd7127dec0e9a748a17333d62ff0bf7, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
