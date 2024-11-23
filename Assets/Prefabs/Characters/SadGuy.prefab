@@ -1079,34 +1079,13 @@ MonoBehaviour:
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 2081823275
-    DestinationState: 186033351
-    TransitionDuration: 0
-    TriggerNameHash: -199737661
-    TransitionIndex: 1
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 2081823275
     DestinationState: 646380074
     TransitionDuration: 0
     TriggerNameHash: 1293411866
-    TransitionIndex: 2
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 1744665739
-    DestinationState: 186033351
-    TransitionDuration: 0.25
-    TriggerNameHash: -199737661
     TransitionIndex: 1
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 1744665739
-    DestinationState: 646380074
-    TransitionDuration: 0
-    TriggerNameHash: 1293411866
-    TransitionIndex: 2
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 186033351
     DestinationState: 646380074
     TransitionDuration: 0
     TriggerNameHash: 1293411866
@@ -1120,11 +1099,25 @@ MonoBehaviour:
     TransitionIndex: 0
   - IsCrossFadeExit: 0
     Layer: 1
+    OriginatingState: 753088835
+    DestinationState: -101447865
+    TransitionDuration: 0
+    TriggerNameHash: -199737661
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 1
     OriginatingState: 1095371188
     DestinationState: 753088835
     TransitionDuration: 0
     TriggerNameHash: 1293411866
     TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 1
+    OriginatingState: -101447865
+    DestinationState: 753088835
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
+    TransitionIndex: 0
   m_Animator: {fileID: 571336068098503327}
 --- !u!114 &7442144102207965242
 MonoBehaviour:
@@ -1695,7 +1688,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 94eb0b177690b2d4d931d75777aa39b3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1792,7 +1785,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: ca5e6eddb0fce024783bed251b3b70ae, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1889,7 +1882,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1986,7 +1979,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 1b7cf467b5553fb41be1faf44eb450ed, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
