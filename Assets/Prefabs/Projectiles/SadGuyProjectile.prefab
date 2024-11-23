@@ -149,13 +149,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   timeToDestroy: 120
-  damage: 50
+  damage: 40
   healing: 0
   isNetworkObject: 0
   explosionPrefab: {fileID: 7032379458201584044, guid: 2e5d306abf862c847ac1850886637f4b,
     type: 3}
   upwardForce: 0.5
   healthTank: {fileID: 0}
+  maxHealing: 0
 --- !u!1001 &4121008294184163553
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
-  timeToDestroy: 1.5
-  damage: 100
+  timeToDestroy: 1
+  damage: 125
   healing: 0
   isNetworkObject: 0
 --- !u!1001 &4235913711836086829

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   timeToDestroy: 5
-  damage: 200
+  damage: 175
   healing: 0
   isNetworkObject: 0
   lineRenderer: {fileID: 3498692300258138334}

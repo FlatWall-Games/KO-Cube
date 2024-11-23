@@ -10,7 +10,7 @@ public class SadGuyProjectile : AProjectile
     [SerializeField] float upwardForce = 2.5f;
     Vector3 characterVelocity;
     [HideInInspector] public HealthTankManager healthTank;
-    float maxHealing = 50f;
+    [SerializeField] float maxHealing;
 
     protected override void Awake()
     {
