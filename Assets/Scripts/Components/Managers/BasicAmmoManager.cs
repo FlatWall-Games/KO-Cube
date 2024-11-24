@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class BasicAmmoManager : MonoBehaviour
     [SerializeField] private RectTransform singleBar; //Barra de munición
     [SerializeField] private int maxAmmo; //Munición máxima
     [SerializeField] private float reloadTime; //Tiempo para recargar
-    [SerializeField] private AttackManager basicShoot; //Script de disparo gestionado por este AmmoManager
+    [SerializeField] private AttackManager attackManager; //Script de disparo gestionado por este AmmoManager
     private float timer = 0;
     private int currentAmmo; //Munición actual
     private Image[] bars; //Todas las barras de munición
@@ -23,7 +24,7 @@ public class BasicAmmoManager : MonoBehaviour
 
     private void Update() //Gestiona la recarga según el ReloadTime
     {
-        if (currentAmmo == maxAmmo || basicShoot.IsShooting()) return;
+        if (currentAmmo == maxAmmo || attackManager.IsShooting()) return;
         timer += Time.deltaTime;
         bars[currentAmmo].fillAmount = Mathf.Clamp(timer / reloadTime, 0, 1);
         if (bars[currentAmmo].fillAmount == 1)
@@ -35,7 +36,7 @@ public class BasicAmmoManager : MonoBehaviour
 
     public bool ShootRequested() //Cuando se le da al botón de disparar esta función comprueba si se puede o no y da el visto bueno
     {
-        if (basicShoot.IsShooting() || currentAmmo <= 0) return false;
+        if (attackManager.IsShooting() || currentAmmo <= 0) return false;
         return true;
     }
 
@@ -69,5 +70,15 @@ public class BasicAmmoManager : MonoBehaviour
     public void HideBars()
     {
         transform.Find("Background").gameObject.SetActive(false);
+    }
+
+    public void ResetAmmo()
+    {
+        foreach (Image bar in bars)
+        {
+            bar.fillAmount = 1;
+        }
+        timer = 0;
+        currentAmmo = maxAmmo;
     }
 }

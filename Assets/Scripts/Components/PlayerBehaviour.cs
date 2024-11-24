@@ -153,7 +153,7 @@ public class PlayerBehaviour : NetworkBehaviour
         this.transform.position = initTransform.position;
         this.transform.rotation = initTransform.rotation;
         GetComponent<CharacterController>().enabled = true;
-        ResetUltClientRpc();
+        ResetAttacksClientRpc();
     }
 
     [ClientRpc]
@@ -171,8 +171,9 @@ public class PlayerBehaviour : NetworkBehaviour
     }
 
     [ClientRpc]
-	private void ResetUltClientRpc()
+	private void ResetAttacksClientRpc()
     {
         transform.Find("UltManager").GetComponent<UltManager>().UpdateBar();
+        transform.Find("AmmoManager").GetComponent<BasicAmmoManager>().ResetAmmo();
     }
 }

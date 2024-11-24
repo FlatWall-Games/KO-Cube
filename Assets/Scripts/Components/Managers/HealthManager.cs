@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
 using System;
+using UnityEngine.InputSystem;
 
 public class HealthManager : NetworkBehaviour
 {
@@ -88,6 +89,7 @@ public class HealthManager : NetworkBehaviour
         healthBar.fillAmount = value;
         if (killed)
         {
+            if (IsOwner) GetComponent<PlayerInput>().enabled = false;
             matchStatsManager.AddDeath();
             OnDead?.Invoke(this.gameObject, this.tag);
         }
@@ -96,6 +98,7 @@ public class HealthManager : NetworkBehaviour
 
     public void RequestRespawn()
     {
+        if (IsOwner) GetComponent<PlayerInput>().enabled = true;
         if (!IsServer) return;
         GetComponent<AttackManager>().OnShootEnded();
         GetComponent<PlayerBehaviour>().InitializePosition();
