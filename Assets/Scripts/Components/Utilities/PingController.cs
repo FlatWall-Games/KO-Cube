@@ -51,6 +51,6 @@ public class PingController : NetworkBehaviour
     private void CalculateLagClientRpc(float timeStamp, ClientRpcParams clientParams)
     {
         float currentPing = (Time.realtimeSinceStartup - timeStamp) * 1000; //Se pasa a milisegundos 
-        anim.SetBool("Lagged", currentPing >= 150);
+        anim.SetBool("Lagged", currentPing >= 300);
     }
 }
