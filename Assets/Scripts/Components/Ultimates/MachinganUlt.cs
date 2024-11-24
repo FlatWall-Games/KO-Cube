@@ -6,8 +6,6 @@ using UnityEngine;
 public class MachinganUlt : AProjectile
 {
     private float health = 300;
-    [SerializeField] private Renderer shieldRenderer;
-    [SerializeField] private Material redMaterial;
 
     protected override void Awake()
     {
@@ -15,11 +13,6 @@ public class MachinganUlt : AProjectile
         base.Awake();
         rb.velocity = this.transform.forward * speed;
         this.transform.parent = null; //Se desvincula del padre para que no le afecte su movimiento
-    }
-
-    private void Start()
-    {
-        if (PlayerBehaviour.ownerTag != this.tag) shieldRenderer.material = redMaterial;
     }
 
     private void OnCollisionEnter(Collision collision)
