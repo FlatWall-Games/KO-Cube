@@ -97,17 +97,22 @@ public class HealthManager : NetworkBehaviour
     }
 
     public void RequestRespawn()
+    {        
+        if (!IsServer) return;
+        GetComponent<AttackManager>().OnShootEnded();
+        GetComponent<PlayerBehaviour>().InitializePosition();
+        currentHealth = maxHealth;
+        UpdateHealthClientRpc(currentHealth, false);
+        OnRespawnClientRpc();
+    }
+
+    [ClientRpc]
+    private void OnRespawnClientRpc()
     {
         if (IsOwner)
         {
             GetComponent<PlayerInput>().enabled = true;
             transform.GetComponentInChildren<BasicAmmoManager>().RestoreBarOnSpawn();
         }
-        
-        if (!IsServer) return;
-        GetComponent<AttackManager>().OnShootEnded();
-        GetComponent<PlayerBehaviour>().InitializePosition();
-        currentHealth = maxHealth;
-        UpdateHealthClientRpc(currentHealth, false);
     }
 }
