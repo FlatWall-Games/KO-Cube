@@ -16,12 +16,17 @@ public class AlraUlt : AProjectile
     {
         base.Awake();
         //Calculamos la diferencia de escala de la esfera
-        this.attacker.GetComponent<HealthManager>().OnDead += DestroyOnDead;
         float scaleChange = maxScale - inicialScale;
         //Calculamos cuanto hay que escalar la esfera por segundo aplicando (maxScale - initialScale) / duracion del escalada (en nuestro caso, el tiempo que dura viva la esfera)
         scaleRatio = (scaleChange / this.timeToDestroy) * 4;
 
         StartCoroutine(ResetTrigger());
+    }
+
+    public override void SetAttacker(PlayerBehaviour attacker)
+    {
+        base.SetAttacker(attacker);
+        this.attacker.GetComponent<HealthManager>().OnDead += DestroyOnDead;
     }
 
     protected void Update()

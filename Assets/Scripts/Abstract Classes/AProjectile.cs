@@ -46,7 +46,7 @@ public class AProjectile : MonoBehaviour, IAttack
         this.tag = tag;
     }
 
-    public void SetAttacker(PlayerBehaviour attacker)
+    public virtual void SetAttacker(PlayerBehaviour attacker)
     {
         this.attacker = attacker;
     }
