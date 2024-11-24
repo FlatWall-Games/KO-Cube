@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6042925578835332963}
   - component: {fileID: 5395069040001644676}
   - component: {fileID: 3179800134787666039}
+  - component: {fileID: 7650921031156992918}
+  - component: {fileID: 4077832051504174508}
   - component: {fileID: 2649422113022506931}
   - component: {fileID: 354945128864687016}
-  - component: {fileID: 7650921031156992918}
   - component: {fileID: 3969600416477036296}
   m_Layer: 0
   m_Name: MachinganUlt
@@ -116,46 +117,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &2649422113022506931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4150131388132305550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8492fe3e439d6024b8ec0419fee9d5df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  timeToDestroy: 12
-  damage: 0
-  healing: 0
-  isNetworkObject: 1
-  shieldRenderer: {fileID: 6427441483623780245}
-  redMaterial: {fileID: 2100000, guid: 4a87460ca876a4f4bb6b6fc11d8b52f8, type: 2}
---- !u!65 &354945128864687016
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4150131388132305550}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.194108, y: 1.313413, z: 0.82814956}
-  m_Center: {x: 0.008349381, y: 0.15670718, z: 1.532145}
 --- !u!114 &7650921031156992918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +138,58 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &4077832051504174508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150131388132305550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6531814b9158a6469286d63d41389e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldRenderer: {fileID: 6427441483623780245}
+  redMaterial: {fileID: 2100000, guid: 4a87460ca876a4f4bb6b6fc11d8b52f8, type: 2}
+--- !u!114 &2649422113022506931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150131388132305550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8492fe3e439d6024b8ec0419fee9d5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  timeToDestroy: 12
+  damage: 0
+  healing: 0
+  isNetworkObject: 1
+--- !u!65 &354945128864687016
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150131388132305550}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.194108, y: 1.313413, z: 0.82814956}
+  m_Center: {x: 0.008349381, y: 0.15670718, z: 1.532145}
 --- !u!114 &3969600416477036296
 MonoBehaviour:
   m_ObjectHideFlags: 0
