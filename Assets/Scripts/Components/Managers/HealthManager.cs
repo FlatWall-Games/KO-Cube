@@ -61,7 +61,6 @@ public class HealthManager : NetworkBehaviour
                 if (currentHealth <= 0) 
                 {
                     anim.SetTrigger("Dead");
-                    OnDead?.Invoke(this.gameObject, this.tag);
                     GetComponent<CharacterController>().enabled = false; //No queremos recibir más golpes estando muertos
                     if(deathMatch != null) deathMatch.PointScored(attack.GetAttacker().tag);
                     killed = true;
@@ -90,7 +89,7 @@ public class HealthManager : NetworkBehaviour
         if (killed)
         {
             matchStatsManager.AddDeath();
-            
+            OnDead?.Invoke(this.gameObject, this.tag);
         }
         healthBar.gameObject.SetActive(!killed); //Si muere se le desactiva la barra de vida y al reaparecer se vuelve a activar
     }

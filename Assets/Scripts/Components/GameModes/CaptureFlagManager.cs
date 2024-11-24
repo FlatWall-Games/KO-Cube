@@ -5,7 +5,7 @@ public class CaptureFlagManager : AGameManager
     protected override void Awake()
     {
         base.Awake();
-        gameModeUiText.text = $"¡Captura {maxPoints} banderas para ganar!";
+        gameModeUiText.text = $"Captura {maxPoints} banderas para ganar!";
     }
 
     protected override void Update()

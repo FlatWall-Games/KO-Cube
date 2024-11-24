@@ -107,7 +107,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4977344
+  m_Radius: 0.95
   m_Center: {x: 0, y: 0, z: 0.008928434}
 --- !u!54 &3179800134787666039
 Rigidbody:
@@ -166,7 +166,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: fbc7cae1e7ace244b8323e08bbd2132a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.74
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -175,9 +175,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 45
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -187,21 +187,21 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.48429412
+      outSlope: -0.48429412
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.5084579
     - serializedVersion: 3
-      time: 1
+      time: 0.616745
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.29308146
+      outSlope: -0.29308146
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.85311216
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -210,7 +210,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -225,7 +225,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0

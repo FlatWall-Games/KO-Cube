@@ -42,7 +42,7 @@ public class PlayersReadyManager : NetworkBehaviour
         yield return new WaitForSeconds(1);
         countDownText.text = "LA PARTIDA COMENZARÁ EN:\r\n1";
         yield return new WaitForSeconds(1);
-        countDownText.text = "¡QUE COMIENCE LA PARTIDA!";
+        countDownText.text = "QUE COMIENCE LA PARTIDA!";
         if(IsServer) GameObject.FindObjectOfType<AGameManager>().StartGame();
         GameObject.FindObjectOfType<MusicManager>().PlaySong(2, 50, true);
         GameObject.FindObjectOfType<MusicManager>().PlayAmbient(0, true);
@@ -58,7 +58,7 @@ public class PlayersReadyManager : NetworkBehaviour
     IEnumerator DisplayEndText()
     {
         countDownText.gameObject.SetActive(true);
-        countDownText.text = "¡FIN DE LA PARTIDA!";
+        countDownText.text = "FIN DE LA PARTIDA!";
         yield return new WaitForSeconds(1.5f);
         countDownText.gameObject.SetActive(false);
     }

@@ -10,7 +10,7 @@ public class HotZoneManager : AGameManager
     protected override void Awake()
     {
         base.Awake();
-        gameModeUiText.text = $"¡Controla las zonas para ganar!";
+        gameModeUiText.text = $"Controla las zonas para ganar!";
         pointsTeam1 = 50;
         pointsTeam2 = 50;
     }
