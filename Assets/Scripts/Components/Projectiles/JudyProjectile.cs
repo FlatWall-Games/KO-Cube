@@ -16,6 +16,6 @@ public class JudyProjectile : AProjectile
     {
         yield return new WaitForSeconds(effectiveTime);
         GetComponent<Collider>().enabled = false;
-        GetComponent<Renderer>().enabled = false;
+        GetComponentInChildren<Renderer>().enabled = false;
     }
 }
