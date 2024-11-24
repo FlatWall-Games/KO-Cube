@@ -11079,7 +11079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modes:
-  - {fileID: 0}
+  - {fileID: 1485558217}
   - {fileID: 373876957}
   - {fileID: 1651473958}
 --- !u!114 &263301936
@@ -61717,6 +61717,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485529762}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1485558217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8280224062848976085, guid: b069a582d177f73409f6ea679f763926,
+    type: 3}
+  m_PrefabInstance: {fileID: 8493383919928312037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1485688241
 GameObject:
   m_ObjectHideFlags: 0
