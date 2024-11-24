@@ -36,11 +36,11 @@ public class PlayersReadyManager : NetworkBehaviour
     {
         GameObject.FindObjectOfType<MusicManager>().PlaySong(1, 10, false);
         countDownText.gameObject.SetActive(true);
-        countDownText.text = "LA PARTIDA COMENZARÁ EN:\r\n3";
+        countDownText.text = "LA PARTIDA COMENZARA EN:\r\n3";
         yield return new WaitForSeconds(1);
-        countDownText.text = "LA PARTIDA COMENZARÁ EN:\r\n2";
+        countDownText.text = "LA PARTIDA COMENZARA EN:\r\n2";
         yield return new WaitForSeconds(1);
-        countDownText.text = "LA PARTIDA COMENZARÁ EN:\r\n1";
+        countDownText.text = "LA PARTIDA COMENZARA EN:\r\n1";
         yield return new WaitForSeconds(1);
         countDownText.text = "QUE COMIENCE LA PARTIDA!";
         if(IsServer) GameObject.FindObjectOfType<AGameManager>().StartGame();
