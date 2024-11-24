@@ -48,10 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  timeToDestroy: 0.3
+  timeToDestroy: 0.8
   damage: 50
   healing: 0
   isNetworkObject: 0
+  effectiveTime: 0.3
 --- !u!64 &6866852306910095116
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class JudyProjectile : AProjectile
 {
+    [SerializeField] private float effectiveTime = 0.3f;
+
     protected override void Awake()
     {
-    base.Awake();
-    Transform parent = transform.parent;
+        base.Awake();
+        StartCoroutine(HideAttack());
+    }
+
+    IEnumerator HideAttack()
+    {
+        yield return new WaitForSeconds(effectiveTime);
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Renderer>().enabled = false;
     }
 }
