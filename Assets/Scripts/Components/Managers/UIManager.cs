@@ -60,7 +60,7 @@ public class UIManager : Singleton<UIManager>, IUI
         //OnGUI se ejecuta en cada frame, a la hora de recargar la escena puede dar problemas si NetworkManger no existe todavia
         if (NetworkManager.Singleton == null) return;
 
-        GUILayout.BeginArea(new Rect(10, 10, 300, 300));
+        GUILayout.BeginArea(new Rect(10, 200, 300, 300));
         GUI.skin.label.fontSize = 25;
         if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsServer)
         {
@@ -73,9 +73,12 @@ public class UIManager : Singleton<UIManager>, IUI
     {
         var mode = NetworkManager.Singleton.IsHost ?
             "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
+        Rect areaRect = new Rect(0, 0, 200, 75);
 
-        GUILayout.Label("Transport: " +
-            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
+        // Dibujar el fondo gris
+        GUI.color = Color.grey; // Cambiar el color del fondo
+        GUI.Box(areaRect, GUIContent.none); // Dibujar el fondo vacío
+        GUI.color = Color.white; // Cambiar el color del texto
         GUILayout.Label("Mode: " + mode);
         GUILayout.Label("Room: " + _joinCode);
     }
