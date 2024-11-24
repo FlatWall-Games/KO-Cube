@@ -36,7 +36,6 @@ public class MusicManager : MonoBehaviour
         anim.speed = animationSpeed;
         currentSong = songIndex;
         anim.Rebind();
-        Debug.Log("Reproducida canción número: " + songIndex);
     }
 
     public void PlayAmbient(int ambientIndex, bool loop)
