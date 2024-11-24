@@ -54,9 +54,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _electricityScale: 1
-    - _electricityThickness: 10
-    - _power: 5
+    - _electricityThickness: 100
+    - _power: 150
     m_Colors:
-    - _electricitySpeed: {r: -100, g: 500, b: 0, a: 0}
-    - _noiseSpeed: {r: 100, g: -500, b: 0, a: 0}
+    - _electricitySpeed: {r: 0.5, g: 10, b: 0, a: 0}
+    - _noiseSpeed: {r: 500, g: 500, b: 0, a: 0}
   m_BuildTextureStacks: []
