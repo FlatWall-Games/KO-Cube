@@ -500,8 +500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   singleBar: {fileID: 8295462869004142893}
-  maxAmmo: 1
-  reloadTime: 3
+  maxAmmo: 2
+  reloadTime: 2.5
   attackManager: {fileID: 6742419832762531967}
 --- !u!1 &2639448853442658927
 GameObject:
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3222885b95a5b0d4f9dcf1f2de2a5333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7.5
+  speed: 7
 --- !u!114 &3764132138304378946
 MonoBehaviour:
   m_ObjectHideFlags: 0

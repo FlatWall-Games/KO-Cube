@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4235631485
+  GlobalObjectIdHash: 868684278
   InScenePlacedSourceGlobalObjectIdHash: 868684278
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3222885b95a5b0d4f9dcf1f2de2a5333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 6
 --- !u!114 &3764132138304378946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26740d4eab054b2429f2b6dfa4dc37f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 450
+  maxHealth: 400
   healthBar: {fileID: 5022041273119112242}
   matchStatsManager: {fileID: 0}
 --- !u!114 &5727310630616828594
