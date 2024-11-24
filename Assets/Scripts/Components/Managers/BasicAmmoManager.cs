@@ -20,6 +20,7 @@ public class BasicAmmoManager : MonoBehaviour
         bars[0] = singleBar.GetComponent<Image>();
         currentAmmo = maxAmmo;
         InitializeAmmoBars(); //Inicializa las barras de munición según la munición máxima
+        transform.parent.GetComponent<HealthManager>().OnDead += HideBarOnDeath;
     }
 
     private void Update() //Gestiona la recarga según el ReloadTime
@@ -80,5 +81,15 @@ public class BasicAmmoManager : MonoBehaviour
         }
         timer = 0;
         currentAmmo = maxAmmo;
+    }
+
+    private void HideBarOnDeath(object s, string d)
+    {
+        transform.Find("Background").gameObject.SetActive(false);
+    }
+
+    public void RestoreBarOnSpawn()
+    {
+        transform.Find("Background").gameObject.SetActive(true);
     }
 }

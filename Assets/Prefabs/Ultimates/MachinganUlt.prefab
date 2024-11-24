@@ -133,6 +133,8 @@ MonoBehaviour:
   damage: 0
   healing: 0
   isNetworkObject: 1
+  shieldRenderer: {fileID: 6427441483623780245}
+  redMaterial: {fileID: 2100000, guid: 4a87460ca876a4f4bb6b6fc11d8b52f8, type: 2}
 --- !u!65 &354945128864687016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2246942361
+  GlobalObjectIdHash: 3359586640
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -283,6 +285,12 @@ PrefabInstance:
 --- !u!4 &5294534575272146170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6874a66c11795294bbfce108b402350e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5688976896254268177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6427441483623780245 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 6874a66c11795294bbfce108b402350e,
     type: 3}
   m_PrefabInstance: {fileID: 5688976896254268177}
   m_PrefabAsset: {fileID: 0}

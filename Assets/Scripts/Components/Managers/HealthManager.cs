@@ -98,7 +98,12 @@ public class HealthManager : NetworkBehaviour
 
     public void RequestRespawn()
     {
-        if (IsOwner) GetComponent<PlayerInput>().enabled = true;
+        if (IsOwner)
+        {
+            GetComponent<PlayerInput>().enabled = true;
+            transform.GetComponentInChildren<BasicAmmoManager>().RestoreBarOnSpawn();
+        }
+        
         if (!IsServer) return;
         GetComponent<AttackManager>().OnShootEnded();
         GetComponent<PlayerBehaviour>().InitializePosition();
