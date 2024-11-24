@@ -2036,7 +2036,7 @@ MonoBehaviour:
   singleBar: {fileID: 4132456737329035074}
   maxAmmo: 5
   reloadTime: 2.5
-  basicShoot: {fileID: 6742419832762531967}
+  attackManager: {fileID: 6742419832762531967}
 --- !u!1 &8899337757942201569
 GameObject:
   m_ObjectHideFlags: 0
