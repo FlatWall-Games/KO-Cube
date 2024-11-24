@@ -31,6 +31,7 @@ public class MapSelector : NetworkBehaviour
         for (int i = 0; i < maps.Length; i++)
         {
             if (i != currentMapIndex) maps[i].SetActive(false);
+            else maps[i].transform.Find("Map").gameObject.SetActive(true);
         }
     }
 }
