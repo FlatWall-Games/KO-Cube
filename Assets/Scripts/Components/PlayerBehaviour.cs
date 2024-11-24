@@ -124,6 +124,7 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 player.transform.Find("ColorArea").GetComponent<TeamColorManager>().SetColor(Color.red);
             }
+            else player.transform.Find("ColorArea").GetComponent<TeamColorManager>().SetColor(Color.cyan);
         }
     }
 
