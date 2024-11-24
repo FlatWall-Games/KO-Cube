@@ -29,7 +29,6 @@ public class CharacterSelection : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc(1);
         if(IsOwner) previewManager.ForcePreview(0);
     }
 

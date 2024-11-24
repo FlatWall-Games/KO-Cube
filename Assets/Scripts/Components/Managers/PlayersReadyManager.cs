@@ -7,19 +7,12 @@ using TMPro;
 public class PlayersReadyManager : NetworkBehaviour
 {
     private int numPlayersReady = 0;
-    private int totalPlayers = 0;
     [SerializeField] private TextMeshProUGUI countDownText;
-
-    [ServerRpc(RequireOwnership = false)]
-    public void AddPlayerServerRpc(int i)
-    {
-        totalPlayers+=i;
-    }
 
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc()
     {
-        if (++numPlayersReady == totalPlayers)
+        if (++numPlayersReady == NetworkManager.Singleton.ConnectedClients.Count)
         {
             StartGameAfterCountClientRpc();
             GameObject.FindObjectOfType<AGameManager>().SetAcceptClients(false);
@@ -61,10 +54,5 @@ public class PlayersReadyManager : NetworkBehaviour
         countDownText.text = "FIN DE LA PARTIDA!";
         yield return new WaitForSeconds(1.5f);
         countDownText.gameObject.SetActive(false);
-    }
-
-    public void SelectionExited()
-    {
-        AddPlayerServerRpc(-1);
     }
 }
