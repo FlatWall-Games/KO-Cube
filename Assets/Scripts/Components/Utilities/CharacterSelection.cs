@@ -17,12 +17,11 @@ public class CharacterSelection : NetworkBehaviour
     private TextMeshProUGUI uiCharacterName;
     private TextMeshProUGUI uiCharacterDescription;
 
-    public bool isSpectator = true;
+    public bool isSpectator = false;
     public GameObject[] playerPrefabs; //Lista de prefabs de persooajes (Por si acaso, que su orden coincida con el de la lista del NetworkManager)
     
     private void Awake()
     {
-        isSpectator = true;
         uiCharacterName = transform.Find("UI/CharacterSelection/CharacterNamePanel/CharacterName").GetComponent<TextMeshProUGUI>();
         uiCharacterDescription = transform.Find("UI/CharacterSelection/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
     }
@@ -31,7 +30,7 @@ public class CharacterSelection : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         GameObject.FindObjectOfType<PlayersReadyManager>().AddPlayerServerRpc(1);
-        previewManager.ForcePreview(0);
+        if(IsOwner) previewManager.ForcePreview(0);
     }
 
     //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje
@@ -93,11 +92,11 @@ public class CharacterSelection : NetworkBehaviour
     {
         if (accepts)
         {
-            isSpectator = false;
             SpawnCharacterRequestServerRpc(arrayIndex);
         }
         else
         {
+            isSpectator = true;
             GameObject.FindWithTag("MainCamera").GetComponent<SpectatorCamera>().SetSpectate();
         }
     }
