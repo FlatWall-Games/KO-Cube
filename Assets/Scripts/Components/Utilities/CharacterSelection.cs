@@ -29,7 +29,6 @@ public class CharacterSelection : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        if(IsOwner) previewManager.ForcePreview(0);
     }
 
     //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje

@@ -17,6 +17,7 @@ public class SkinShop : MonoBehaviour
 
     private void OnEnable()
     {
+        previewManager.ForcePreview(index);
         Invoke("UpdateSkinButtons", 0.01f); //Sin este pequeño delay no funciona la primera vez que abres la tienda, por la cara
     }
 

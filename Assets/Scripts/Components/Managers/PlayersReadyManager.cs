@@ -45,6 +45,7 @@ public class PlayersReadyManager : NetworkBehaviour
 
     public void GameEnded()
     {
+        GameObject.FindObjectOfType<PreviewManager>().UpdateTeammatesPreview();
         StartCoroutine(DisplayEndText());
     }
 

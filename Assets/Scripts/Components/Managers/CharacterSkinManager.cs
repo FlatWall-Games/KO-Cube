@@ -37,4 +37,9 @@ public class CharacterSkinManager : NetworkBehaviour
         skins[skinIndex].SetActive(true);
         GetComponent<Animator>().Rebind();
     }
+
+    public int GetSkin()
+    {
+        return currentSkin;
+    }
 }
