@@ -52,6 +52,7 @@ MonoBehaviour:
   damage: 50
   healing: 0
   isNetworkObject: 0
+  isMele: 1
   effectiveTime: 0.3
 --- !u!64 &6866852306910095116
 MeshCollider:

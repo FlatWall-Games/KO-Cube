@@ -103,6 +103,7 @@ MonoBehaviour:
   damage: 40
   healing: 0
   isNetworkObject: 0
+  isMele: 1
 --- !u!135 &8010915332248796528
 SphereCollider:
   m_ObjectHideFlags: 0

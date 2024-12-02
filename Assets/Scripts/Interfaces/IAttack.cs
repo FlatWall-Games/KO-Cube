@@ -20,4 +20,6 @@ public interface IAttack
     public PlayerBehaviour GetAttacker();
 
     public bool IsNetworkObject();
+
+    public bool IsMele();
 }

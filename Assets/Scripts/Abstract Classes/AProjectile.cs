@@ -12,6 +12,7 @@ public class AProjectile : MonoBehaviour, IAttack
     [SerializeField] private bool isNetworkObject = false; //Si debe ser compartido como NetworkObject
     protected PlayerBehaviour attacker; //Jugador que lanzó el ataque
     protected Rigidbody rb;
+    [SerializeField] private bool isMele = false;
 
     protected virtual void Awake()
     {
@@ -59,5 +60,10 @@ public class AProjectile : MonoBehaviour, IAttack
     public bool IsNetworkObject()
     {
         return isNetworkObject;
+    }
+
+    public bool IsMele()
+    {
+        return isMele;
     }
 }

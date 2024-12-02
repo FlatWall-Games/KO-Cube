@@ -5,6 +5,8 @@ using Unity.Netcode;
 using UnityEngine.UI;
 using System;
 using UnityEngine.InputSystem;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class HealthManager : NetworkBehaviour
 {
@@ -30,7 +32,7 @@ public class HealthManager : NetworkBehaviour
     {
         if (!IsServer) return; //Sólo calcula daños el servidor
         IAttack attack = other.GetComponent<IAttack>();
-        ManageDamageAndHeal(attack);
+        if(attack != null && !IsWallBetween(attack)) ManageDamageAndHeal(attack);
     }
 
     public void OnRaycastHit(IAttack attack)
@@ -41,35 +43,31 @@ public class HealthManager : NetworkBehaviour
 
     public void ManageDamageAndHeal(IAttack attack)
     {
-        if (attack != null)
+        if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
+
+        bool killed = false;
+        if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
         {
-            if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
-
-            bool killed = false;
-            if (attack.GetTag().Equals(this.tag)) //Si es procedente del equipo el básico puede curar
+            currentHealth += attack.GetHealing();
+            if (currentHealth > maxHealth)
             {
-                currentHealth += attack.GetHealing();
-
-                if (currentHealth > maxHealth) 
-                { 
-                    currentHealth = maxHealth; 
-                }
+                currentHealth = maxHealth;
             }
-            else //Si no, dañan
-            {
-                currentHealth -= attack.GetDamage();
-                OnDamaged?.Invoke(this.gameObject, attack.GetDamage());
-                if (currentHealth <= 0) 
-                {
-                    anim.SetTrigger("Dead");
-                    GetComponent<CharacterController>().enabled = false; //No queremos recibir más golpes estando muertos
-                    if(deathMatch != null) deathMatch.PointScored(attack.GetAttacker().tag);
-                    killed = true;
-                    attack.GetAttacker().AddKillsClientRpc();
-                }
-            }
-            UpdateHealthClientRpc(currentHealth, killed); //Se actualiza la vida en todos los clientes
         }
+        else //Si no, dañan
+        {
+            currentHealth -= attack.GetDamage();
+            OnDamaged?.Invoke(this.gameObject, attack.GetDamage());
+            if (currentHealth <= 0)
+            {
+                anim.SetTrigger("Dead");
+                GetComponent<CharacterController>().enabled = false; //No queremos recibir más golpes estando muertos
+                if (deathMatch != null) deathMatch.PointScored(attack.GetAttacker().tag);
+                killed = true;
+                attack.GetAttacker().AddKillsClientRpc();
+            }
+        }
+        UpdateHealthClientRpc(currentHealth, killed); //Se actualiza la vida en todos los clientes
     }
 
     public void ForceHeal(float amount) //Permite la cura sin proyectil de por medio
@@ -114,5 +112,18 @@ public class HealthManager : NetworkBehaviour
             GetComponent<PlayerInput>().enabled = true;
             transform.GetComponentInChildren<BasicAmmoManager>().RestoreBarOnSpawn();
         }
+    }
+
+    private bool IsWallBetween(IAttack attack) //Comprueba si un ataque a melé se realiza a través de una pared o no
+    {
+        if (!attack.IsMele()) return false; //El problema sólo lo tienen los ataques a melé
+        //Se calcula dirección y distancia con el eje Y igualado:
+        Vector3 direction = attack.GetAttacker().transform.position - this.transform.position;
+        float distance = Vector3.Distance(attack.GetAttacker().transform.position, this.transform.position);
+        if(Physics.Raycast(this.transform.position, direction, distance, 1 << 0))
+        {
+            return true;
+        }
+        return false;
     }
 }
