@@ -23,6 +23,8 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     //Recibe un nombre que usara si no hay datos sobre el jugador
     public void CreateDataSystem(string name)
     {
+        DontDestroyOnLoad(Instance.gameObject);
+
         //Inicizaliacion de la estructura
         for (int i = 0; i < numberOfCharacters; i++)
         {
