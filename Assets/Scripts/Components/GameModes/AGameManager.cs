@@ -108,6 +108,7 @@ public class AGameManager : NetworkBehaviour
         foreach (PlayerBehaviour player in players)
         {
             if (player.IsOwner) player.GetComponent<PlayerInput>().enabled = movement;
+            if (!movement) player.GetComponent<CharacterController>().enabled = false;
         }
         if(!movement) GameObject.FindObjectOfType<PlayersReadyManager>().GameEnded();
     }

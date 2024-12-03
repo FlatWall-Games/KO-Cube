@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MachinganUlt : AProjectile
 {
-    private float health = 300;
+    [SerializeField] private float health = 300;
 
     protected override void Awake()
     {

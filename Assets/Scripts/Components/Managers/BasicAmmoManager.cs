@@ -56,7 +56,7 @@ public class BasicAmmoManager : MonoBehaviour
     private void InitializeAmmoBars()
     {
         singleBar.sizeDelta = new Vector2(singleBar.sizeDelta.x / maxAmmo, singleBar.sizeDelta.y); //Escalado de las barras
-        float barOffset = singleBar.sizeDelta.x / 100 * 2; //La distancia entre las barras es la longitud de la misma
+        float barOffset = singleBar.sizeDelta.x / 100 * 2.5f; //La distancia entre las barras es la longitud de la misma
         float initPos = 1 - barOffset/2; //Posición de la primera barra
         singleBar.anchoredPosition3D = new Vector3(singleBar.anchoredPosition3D.x + initPos, singleBar.anchoredPosition3D.y, singleBar.anchoredPosition3D.z);
         for (int i = 1; i < maxAmmo; i++) //Hay que contar que una barra ya existe
