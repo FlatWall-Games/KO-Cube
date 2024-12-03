@@ -39,9 +39,17 @@ public class UIManager : Singleton<UIManager>, IUI
 
     void Start()
     {
-        Debug.Log("start ejecutado");
         Canvas = GameObject.FindWithTag("MainCanvas");
-        State = new StartMenuState(this);
+
+        if (PlayerDataManager.Instance.GetName() != null)
+        {
+            PlayerDataManager.Instance.CreateDataSystem("");
+            GoMainMenu();
+        }
+        else
+        {
+            State = new StartMenuState(this);
+        }
     }
 
     void Update()
@@ -88,7 +96,6 @@ public class UIManager : Singleton<UIManager>, IUI
         //Debug.Log(PlayerDataManager.Instance.GetName());
         if (PlayerDataManager.Instance.GetName() != null)
         {
-            PlayerDataManager.Instance.CreateDataSystem("");
             GoMainMenu();
         }
         else
