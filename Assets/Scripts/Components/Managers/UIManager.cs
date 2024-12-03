@@ -88,6 +88,7 @@ public class UIManager : Singleton<UIManager>, IUI
         //Debug.Log(PlayerDataManager.Instance.GetName());
         if (PlayerDataManager.Instance.GetName() != null)
         {
+            PlayerDataManager.Instance.CreateDataSystem("");
             GoMainMenu();
         }
         else
