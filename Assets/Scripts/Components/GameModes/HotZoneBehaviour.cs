@@ -72,6 +72,15 @@ public class HotZoneBehaviour : NetworkBehaviour
         if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().Ulted -= PlayerDead;
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (numT1Inside == 0 || numT2Inside == 0)
+        {
+            if(other.CompareTag("Team1")) transform.Rotate(0, -0.5f, 0);
+            else if(other.CompareTag("Team2")) transform.Rotate(0, 0.5f, 0);
+        }
+    }
+
     private void PlayerDead(object s, string tag)
     {
         if (tag.Equals("Team1")) numT1Inside--;
@@ -86,7 +95,12 @@ public class HotZoneBehaviour : NetworkBehaviour
     {
         float factorT1 = 1 - (float)pointsT1 / maxPoints;
         float factorT2 = 1 - (float)pointsT2 / maxPoints;
-        if (PlayerBehaviour.ownerTag.Equals("Team1")) rend.material.color = new Color(factorT1, 0, factorT2, 0.7f);
-        else rend.material.color = new Color(factorT2, 0, factorT1, 0.7f);
+        Color newColor;
+        if (PlayerBehaviour.ownerTag.Equals("Team1")) newColor = new Color(factorT1, 0, factorT2, 0.7f);
+        else newColor = new Color(factorT2, 0, factorT1, 0.7f);
+        for(int i = 0; i < rend.materials.Length; i++)
+        {
+            rend.materials[i].color = newColor;
+        }
     }
 }

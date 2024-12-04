@@ -25,6 +25,8 @@ public class BasicAmmoManager : MonoBehaviour
 
     private void Update() //Gestiona la recarga según el ReloadTime
     {
+        if(currentAmmo == 0 || attackManager.IsShooting()) GameObject.Find("BasicAttackIcon").GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        else GameObject.Find("BasicAttackIcon").GetComponent<Image>().color = Color.white;
         if (currentAmmo == maxAmmo || attackManager.IsShooting()) return;
         timer += Time.deltaTime;
         bars[currentAmmo].fillAmount = Mathf.Clamp(timer / reloadTime, 0, 1);
