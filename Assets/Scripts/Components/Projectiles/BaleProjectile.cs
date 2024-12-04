@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BaleProjectile : AProjectile
 {
+    [Header("EFFECTS:")]
+    [SerializeField] private GameObject flashPrefab;
+
     protected override void Awake()
     {
         base.Awake();
-        Transform parent = transform.parent;
         rb.velocity = this.transform.forward * speed;
         this.transform.parent = null; //Se desvincula del padre para que no le afecte su movimiento
     }
@@ -25,5 +27,12 @@ public class BaleProjectile : AProjectile
             if (this.tag.Equals("Team1")) Destroy(this.gameObject);
         }
         else Destroy(this.gameObject);
+    }
+
+    public override void SetAttacker(PlayerBehaviour attacker)
+    {
+        base.SetAttacker(attacker);
+        GameObject flash = GameObject.Instantiate(flashPrefab, attacker.gameObject.transform.Find("BasicOrigin"));
+        Destroy(flash, 0.5f);
     }
 }

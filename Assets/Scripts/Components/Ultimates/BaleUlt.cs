@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class BaleUlt : AProjectile
 {
+    [Header("EFFECTS: ")]
+    [SerializeField] private GameObject flashPrefab;
 
     protected override void Awake()
     {
@@ -19,5 +21,12 @@ public class BaleUlt : AProjectile
         if (otherTag.Equals(this.tag))
             return;
         this.damage += 10; 
+    }
+
+    public override void SetAttacker(PlayerBehaviour attacker)
+    {
+        base.SetAttacker(attacker);
+        GameObject flash = GameObject.Instantiate(flashPrefab, attacker.gameObject.transform.Find("UltOrigin"));
+        Destroy(flash, 0.5f);
     }
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class MachinganProjectile : AProjectile
 {
+    [Header("EFFECTS:")]
+    [SerializeField] private GameObject flashPrefab;
+
     protected override void Awake()
     {
         base.Awake();
@@ -35,5 +38,12 @@ public class MachinganProjectile : AProjectile
             }
         }
         else Destroy(this.gameObject);
+    }
+
+    public override void SetAttacker(PlayerBehaviour attacker)
+    {
+        base.SetAttacker(attacker);
+        GameObject flash = GameObject.Instantiate(flashPrefab, attacker.gameObject.transform.Find("BasicOrigin"));
+        Destroy(flash, 0.5f);
     }
 }

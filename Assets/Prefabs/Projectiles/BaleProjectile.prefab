@@ -155,6 +155,9 @@ MonoBehaviour:
   damage: 125
   healing: 0
   isNetworkObject: 0
+  isMele: 0
+  flashPrefab: {fileID: 3771147964939225925, guid: e40658a99a609014a99c5c5360f0ce3f,
+    type: 3}
 --- !u!82 &3638918618356004271
 AudioSource:
   m_ObjectHideFlags: 0
