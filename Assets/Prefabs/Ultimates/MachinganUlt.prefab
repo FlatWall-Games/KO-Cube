@@ -169,6 +169,8 @@ MonoBehaviour:
   damage: 0
   healing: 0
   isNetworkObject: 1
+  isMele: 0
+  health: 300
 --- !u!65 &354945128864687016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -285,6 +287,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6874a66c11795294bbfce108b402350e,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6874a66c11795294bbfce108b402350e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7b179d1432606dc4b8f014f259745ced, type: 2}
     - target: {fileID: 919132149155446097, guid: 6874a66c11795294bbfce108b402350e,
         type: 3}
       propertyPath: m_Name

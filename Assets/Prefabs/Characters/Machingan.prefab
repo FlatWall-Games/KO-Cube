@@ -816,6 +816,7 @@ GameObject:
   - component: {fileID: 1345419098313639794}
   - component: {fileID: 7485432395281917653}
   - component: {fileID: 4183580641618201019}
+  - component: {fileID: 655415553311375252}
   m_Layer: 0
   m_Name: ColorArea
   m_TagString: Untagged
@@ -900,6 +901,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4586c64514eb7154381658f86c1a1917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &655415553311375252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430945045037154722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046c87bb438bdbe48988b9c4ec177dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3008699170680591583
