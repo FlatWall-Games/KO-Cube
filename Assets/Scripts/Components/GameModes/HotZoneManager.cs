@@ -10,7 +10,6 @@ public class HotZoneManager : AGameManager
     protected override void Awake()
     {
         base.Awake();
-        gameModeUiText.text = $"Controla las zonas para ganar!";
         pointsTeam1 = 50;
         pointsTeam2 = 50;
     }
@@ -39,5 +38,13 @@ public class HotZoneManager : AGameManager
     {
         if (inverted) return;
         base.InvertUI();
+    }
+
+    public override void StartGame()
+    {
+        base.StartGame();
+        int numZonas = GameObject.FindObjectsOfType<HotZoneBehaviour>().Length;
+        if (numZonas == 1) gameModeUiText.text = $"Controla 1 zona para ganar!";
+        else gameModeUiText.text = $"Controla {numZonas} zonas para ganar!";
     }
 }

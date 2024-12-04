@@ -93,7 +93,7 @@ public class AGameManager : NetworkBehaviour
         GameObject.FindObjectOfType<PlayersReadyManager>().PlayerReadyServerRpc();
     }
 
-    public void StartGame()
+    public virtual void StartGame()
     {
         StablishPlayersMovementClientRpc(true);
         UIEnablerClientRpc(true);

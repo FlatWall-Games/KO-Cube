@@ -150,14 +150,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  timeToDestroy: 1
+  timeToDestroy: 0.5
   damage: 8
   healing: 0
   isNetworkObject: 0
   isMele: 0
   flashPrefab: {fileID: 3771147964939225925, guid: b69b9787cfbe9a147abf3d4c1060a2c4,
     type: 3}
-  flashOrigin: {fileID: 3063178557523053996}
 --- !u!82 &-8503759840347439870
 AudioSource:
   m_ObjectHideFlags: 0

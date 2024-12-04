@@ -76,8 +76,8 @@ public class HotZoneBehaviour : NetworkBehaviour
     {
         if (numT1Inside == 0 || numT2Inside == 0)
         {
-            if(other.CompareTag("Team1")) transform.Rotate(0, -0.5f, 0);
-            else if(other.CompareTag("Team2")) transform.Rotate(0, 0.5f, 0);
+            if(other.CompareTag("Team1") && pointsT1 < maxPoints) transform.Rotate(0, -0.5f, 0);
+            else if(other.CompareTag("Team2") && pointsT2 < maxPoints) transform.Rotate(0, 0.5f, 0);
         }
     }
 
@@ -93,6 +93,8 @@ public class HotZoneBehaviour : NetworkBehaviour
     [ClientRpc]
     private void UpdateColorClientRpc(int pointsT1, int pointsT2)
     {
+        this.pointsT1 = pointsT1;
+        this.pointsT2 = pointsT2;
         float factorT1 = 1 - (float)pointsT1 / maxPoints;
         float factorT2 = 1 - (float)pointsT2 / maxPoints;
         Color newColor;
