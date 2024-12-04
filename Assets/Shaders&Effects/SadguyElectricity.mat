@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Electricity
+  m_Name: SadguyElectricity
   m_Shader: {fileID: -6465566751694194690, guid: 98a3686c8046b45419db8823ea676c73,
     type: 3}
   m_Parent: {fileID: 0}
@@ -53,9 +53,9 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _electricityScale: 1
-    - _electricityThickness: 100
-    - _power: 150
+    - _electricityScale: 17.1
+    - _electricityThickness: 377.81
+    - _power: 697.7
     m_Colors:
     - _electricitySpeed: {r: 0.5, g: 10, b: 0, a: 0}
     - _noiseSpeed: {r: 500, g: 500, b: 0, a: 0}

@@ -50,6 +50,7 @@ MonoBehaviour:
   damage: 175
   healing: 0
   isNetworkObject: 0
+  isMele: 0
   lineRenderer: {fileID: 3498692300258138334}
   projectileSize: 1
 --- !u!120 &3498692300258138334
@@ -73,7 +74,8 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64772f3f35dd3e64e95f3bbf3560bfdb, type: 2}
+  - {fileID: 2100000, guid: adef0e6316f013045812600736cbe98a, type: 2}
+  - {fileID: 2100000, guid: 29d34976905509544948e8d1c6996237, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
