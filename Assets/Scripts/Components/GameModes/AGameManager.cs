@@ -84,8 +84,8 @@ public class AGameManager : NetworkBehaviour
     [ClientRpc]
     protected void UpdatePointsClientRpc(int t1, int t2)
     {
-        pointsT1Text.text = t1.ToString();
-        pointsT2Text.text = t2.ToString();
+        pointsT1Text.text = $"{t1}/{maxPoints}";
+        pointsT2Text.text = $"{t2}/{maxPoints}";
     }
 
     public void PlayerReady()
@@ -204,7 +204,7 @@ public class AGameManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void RequestTimeAndPointsServerRpc(ServerRpcParams serverParams = default)
     {
-        AssignTimeAndPointsClientRpc(pointsTeam1, pointsTeam2, timeLeft,
+        AssignTimeAndPointsClientRpc(pointsTeam1, pointsTeam2, timeLeft, maxPoints,
            new ClientRpcParams
            {
                Send = new ClientRpcSendParams
@@ -215,11 +215,11 @@ public class AGameManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void AssignTimeAndPointsClientRpc(int p1, int p2, float time, ClientRpcParams clientParams = default)
+    private void AssignTimeAndPointsClientRpc(int p1, int p2, float time,int maxPoints, ClientRpcParams clientParams = default)
     {
         gameStarted = true;
-        pointsT1Text.text = p1.ToString();
-        pointsT2Text.text = p2.ToString();
+        pointsT1Text.text = $"{p1}/{maxPoints}";
+        pointsT2Text.text = $"{p2}/{maxPoints}";
         timeLeft = time;
     }
 }
