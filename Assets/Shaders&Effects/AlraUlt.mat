@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _intensity: 1.5
+    - _intensity: 0.85
     m_Colors:
     - _color: {r: 0, g: 1, b: 0.2980392, a: 1}
     - _colorMult: {r: 1, g: 1, b: 1, a: 1}
