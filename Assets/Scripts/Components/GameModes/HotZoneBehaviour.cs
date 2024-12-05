@@ -100,9 +100,7 @@ public class HotZoneBehaviour : NetworkBehaviour
         Color newColor;
         if (PlayerBehaviour.ownerTag.Equals("Team1")) newColor = new Color(factorT1, 0, factorT2, 0.7f);
         else newColor = new Color(factorT2, 0, factorT1, 0.7f);
-        for(int i = 0; i < rend.materials.Length; i++)
-        {
-            rend.materials[i].color = newColor;
-        }
+        rend.materials[0].color = newColor;
+        rend.materials[1].SetColor("_color", newColor);
     }
 }
