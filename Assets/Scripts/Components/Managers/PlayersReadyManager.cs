@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
+using System;
 
 public class PlayersReadyManager : NetworkBehaviour
 {
     private int numPlayersReady = 0;
     [SerializeField] private TextMeshProUGUI countDownText;
+
+    public int NumPlayersReady
+    {
+        get
+        {
+            return numPlayersReady;
+        }
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc()

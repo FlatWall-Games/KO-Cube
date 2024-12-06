@@ -37,6 +37,8 @@ public class UIManager : Singleton<UIManager>, IUI
     }
     public GameObject Canvas { get { return _canvas; } set { _canvas = value; } }
 
+    public string JoinCode { get { return _joinCode; } }
+
     void Start()
     {
         Canvas = GameObject.FindWithTag("MainCanvas");
@@ -62,20 +64,20 @@ public class UIManager : Singleton<UIManager>, IUI
         State.FixedUpdate();
     }
 
-    void OnGUI()
-    {
-        if (!gui_visible) return;
-        //OnGUI se ejecuta en cada frame, a la hora de recargar la escena puede dar problemas si NetworkManger no existe todavia
-        if (NetworkManager.Singleton == null) return;
+    //void OnGUI()
+    //{
+    //    if (!gui_visible) return;
+    //    //OnGUI se ejecuta en cada frame, a la hora de recargar la escena puede dar problemas si NetworkManger no existe todavia
+    //    if (NetworkManager.Singleton == null) return;
 
-        GUILayout.BeginArea(new Rect(10, 200, 300, 300));
-        GUI.skin.label.fontSize = 25;
-        if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsServer)
-        {
-            StatusLabels();
-        }
-        GUILayout.EndArea();
-    }
+    //    GUILayout.BeginArea(new Rect(10, 200, 300, 300));
+    //    GUI.skin.label.fontSize = 25;
+    //    if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsServer)
+    //    {
+    //        StatusLabels();
+    //    }
+    //    GUILayout.EndArea();
+    //}
 
     void StatusLabels()
     {

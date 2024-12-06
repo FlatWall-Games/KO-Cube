@@ -10,7 +10,7 @@ public class AGameManager : NetworkBehaviour
     [SerializeField] protected int maxPoints;
     [SerializeField] protected TextMeshProUGUI pointsT1Text;
     [SerializeField] protected TextMeshProUGUI pointsT2Text;
-    [SerializeField] protected Button startGameButton;
+    [SerializeField] protected GameObject LobbyUI;
     [SerializeField] protected TextMeshProUGUI timeLeftText;
     [SerializeField] protected float timeLeft = 120; //Duración de la partida en segundos
     [SerializeField] protected TextMeshProUGUI gameModeUiText; //Texto que aparece en la interfaz ingame sobrew este modo
@@ -55,7 +55,7 @@ public class AGameManager : NetworkBehaviour
 
     public void EnableButton()
     {
-        startGameButton.gameObject.SetActive(true);
+        LobbyUI.SetActive(true);
     }
 
     public virtual void PointScored(string team)
