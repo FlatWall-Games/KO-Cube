@@ -18,10 +18,15 @@ public class PlayersReadyManager : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void PlayerReadyServerRpc()
+    [ServerRpc]
+    public void PlayerReadyServerRpc(bool ready, ServerRpcParams rpcParams = default)
     {
-        if (++numPlayersReady == NetworkManager.Singleton.ConnectedClients.Count)
+        ulong clientId = rpcParams.Receive.SenderClientId;
+        NotifyClientStatusClientRpc(clientId, ready);
+
+        if (ready) { numPlayersReady++;} else { numPlayersReady--; }
+
+        if (numPlayersReady == NetworkManager.Singleton.ConnectedClients.Count)
         {
             StartGameAfterCountClientRpc();
             GameObject.FindObjectOfType<AGameManager>().SetAcceptClients(false);
@@ -29,8 +34,17 @@ public class PlayersReadyManager : NetworkBehaviour
     }
 
     [ClientRpc]
+    void NotifyClientStatusClientRpc(ulong clientId, bool ready)
+    {
+        var playerData = GameObject.FindAnyObjectByType<NetworkConnectionManager>().players[clientId];
+        playerData.readyStatus = ready;
+        GameObject.FindAnyObjectByType<NetworkConnectionManager>().players[clientId] = playerData;
+    }
+
+    [ClientRpc]
     private void StartGameAfterCountClientRpc()
     {
+        GameObject.FindObjectOfType<AGameManager>().transform.Find("Canvas/LobbyUI").gameObject.SetActive(false);
         StartCoroutine(CountDown());
     }
 

@@ -21,6 +21,9 @@ public class AGameManager : NetworkBehaviour
     protected bool acceptsClients = true;
     protected bool inverted = false;
 
+    private bool _ready = false;
+    [SerializeField] private GameObject readyButton;
+
     protected virtual void Awake()
     {
         Time.timeScale = 1;
@@ -88,9 +91,20 @@ public class AGameManager : NetworkBehaviour
         pointsT2Text.text = $"{t2}/{maxPoints}";
     }
 
-    public void PlayerReady()
+    public void ChangePlayerReadyStatus()
     {
-        GameObject.FindObjectOfType<PlayersReadyManager>().PlayerReadyServerRpc();
+        _ready = !_ready;
+        readyButton.GetComponentInChildren<TextMeshProUGUI>().text = _ready ? "No Listo" : "Listo";
+        readyButton.GetComponent<Button>().interactable = false;
+        StartCoroutine(SetInteractableTrue());
+
+        GameObject.FindObjectOfType<PlayersReadyManager>().PlayerReadyServerRpc(_ready);
+    }
+
+    IEnumerator SetInteractableTrue()
+    {
+        yield return new WaitForSeconds(1.5f);
+        readyButton.GetComponent<Button>().interactable = true;
     }
 
     public virtual void StartGame()
