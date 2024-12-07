@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4673477978996258473}
   - component: {fileID: -3723776035413958871}
   - component: {fileID: 369060080097024486}
+  - component: {fileID: 5426636908003189519}
   m_Layer: 6
   m_Name: CleoUlt
   m_TagString: Untagged
@@ -105,6 +106,7 @@ MonoBehaviour:
   damage: 35
   healing: 0
   isNetworkObject: 0
+  isMele: 0
 --- !u!135 &4673477978996258473
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -165,8 +167,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1103496913930654998, guid: 371f67f9aefe6d94eba2f6522521ea59,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 5a7bacdf97a206344bded0acf5b2ea18, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_PlayOnAwake: 0
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -210,7 +212,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -250,6 +252,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5426636908003189519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7032379458201584044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23523ca3694f50f4aa7abe3ee572ff4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5638073950069291402
 PrefabInstance:
   m_ObjectHideFlags: 0

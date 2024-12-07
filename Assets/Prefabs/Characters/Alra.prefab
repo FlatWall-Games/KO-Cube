@@ -1505,6 +1505,7 @@ MonoBehaviour:
   ultSource: {fileID: 7556253383329500998}
   damagedSource: {fileID: 5668626347484434174}
   killedSource: {fileID: 2253443821188768614}
+  maxDistance: 50
 --- !u!82 &7245746965512548237
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1562,7 +1563,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1659,7 +1660,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1756,7 +1757,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1853,7 +1854,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

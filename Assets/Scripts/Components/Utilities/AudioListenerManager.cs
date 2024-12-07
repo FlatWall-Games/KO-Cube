@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioListenerManager : MonoBehaviour
 {
-    private Transform targetTransform = null; //Posición del personaje del jugador, al que el AudioListener seguirá
+    [SerializeField] private Transform targetTransform = null; //Posición del personaje del jugador, al que el AudioListener seguirá
     
     void Update() 
     {

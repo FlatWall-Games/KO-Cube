@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -9090544539664303584}
   - component: {fileID: 6866852306910095116}
   - component: {fileID: 5390758326741430381}
+  - component: {fileID: 659579948937160892}
   m_Layer: 6
   m_Name: JudyProjectile
   m_TagString: Untagged
@@ -88,7 +89,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1103496913930654998, guid: 371f67f9aefe6d94eba2f6522521ea59,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 38053a738940e4c46898589f1152da7f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
@@ -133,7 +134,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -173,6 +174,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &659579948937160892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7032379458201584044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23523ca3694f50f4aa7abe3ee572ff4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5969270386104735142
 PrefabInstance:
   m_ObjectHideFlags: 0
