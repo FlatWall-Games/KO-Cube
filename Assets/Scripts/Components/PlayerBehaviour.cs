@@ -22,6 +22,11 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void Awake()
     {
+        if (IsOwner)
+        {
+            GameObject.FindObjectOfType<AGameManager>().EnableButton();
+        }
+
         characterController = GetComponent<CharacterController>();
         attackManager = GetComponent<AttackManager>();
         anim = GetComponent<Animator>();
@@ -43,7 +48,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (IsOwner)
         {
-            GameObject.FindObjectOfType<AGameManager>().EnableButton();
             GameObject.FindObjectOfType<AudioListenerManager>().SetTransform(this.transform);
         }
     }
