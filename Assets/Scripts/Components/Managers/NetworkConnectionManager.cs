@@ -71,7 +71,6 @@ public class NetworkConnectionManager : NetworkBehaviour
 
     void OnClientDisconnect(ulong clientId)
     {
-        Debug.Log("HOLAAAAAAAAAAAAAAAAAAAAAAAA");
         NotifyDisconnectionClientRpc(clientId);
     }
 

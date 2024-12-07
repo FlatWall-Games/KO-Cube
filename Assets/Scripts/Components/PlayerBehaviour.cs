@@ -22,11 +22,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void Awake()
     {
-        if (IsOwner)
-        {
-            GameObject.FindObjectOfType<AGameManager>().EnableButton();
-        }
-
         characterController = GetComponent<CharacterController>();
         attackManager = GetComponent<AttackManager>();
         anim = GetComponent<Animator>();
@@ -34,6 +29,11 @@ public class PlayerBehaviour : NetworkBehaviour
 
     void Start()
     {
+        if (IsOwner)
+        {
+            GameObject.FindObjectOfType<AGameManager>().EnableButton();
+        }
+
         if (IsServer)
         {
             this.tag = "Team" + (GameObject.FindObjectsOfType<PlayerBehaviour>().Length % 2 + 1).ToString(); //Se le asigna un equipo al entrar a la partida
