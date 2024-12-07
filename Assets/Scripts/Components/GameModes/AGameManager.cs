@@ -103,7 +103,7 @@ public class AGameManager : NetworkBehaviour
 
     IEnumerator SetInteractableTrue()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         readyButton.GetComponent<Button>().interactable = true;
     }
 

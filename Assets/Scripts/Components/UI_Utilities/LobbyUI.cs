@@ -47,5 +47,13 @@ public class LobbyUI : MonoBehaviour
             lobbyPlayers[i].transform.Find($"PlayerStatus{i + 1}").GetComponentInChildren<TextMeshProUGUI>().text = playerData.readyStatus ? "Listo" : "No listo";
             i++;
         }
+
+        while (i < lobbyPlayers.Count)
+        {
+            lobbyPlayers[i].transform.Find($"PlayerName{i + 1}").GetComponent<TextMeshProUGUI>().text = "";
+            lobbyPlayers[i].transform.Find($"PlayerStatus{i + 1}").gameObject.SetActive(false);
+            lobbyPlayers[i].transform.Find($"PlayerStatus{i + 1}").GetComponentInChildren<TextMeshProUGUI>().text = "";
+            i++;
+        }
     }
 }
