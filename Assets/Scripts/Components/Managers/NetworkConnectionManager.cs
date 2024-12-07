@@ -23,15 +23,12 @@ public class NetworkConnectionManager : NetworkBehaviour
             ClientConnectionServerRpc(Singleton<PlayerDataManager>.Instance.GetName());
         }
 
-        base.OnNetworkSpawn();
-    }
-
-    private void Start()
-    {
         if (IsServer)
         {
             NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
         }
+
+        base.OnNetworkSpawn();
     }
 
     [ServerRpc(RequireOwnership = false)]

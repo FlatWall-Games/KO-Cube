@@ -22,9 +22,10 @@ public class PlayersReadyManager : NetworkBehaviour
     public void PlayerReadyServerRpc(bool ready, ServerRpcParams rpcParams = default)
     {
         ulong clientId = rpcParams.Receive.SenderClientId;
-        NotifyClientStatusClientRpc(clientId, ready);
 
         if (ready) { numPlayersReady++;} else { numPlayersReady--; }
+
+        NotifyClientStatusClientRpc(clientId, ready, numPlayersReady);
 
         if (numPlayersReady == NetworkManager.Singleton.ConnectedClients.Count)
         {
@@ -34,8 +35,9 @@ public class PlayersReadyManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    void NotifyClientStatusClientRpc(ulong clientId, bool ready)
+    void NotifyClientStatusClientRpc(ulong clientId, bool ready, int numPlayersReady)
     {
+        this.numPlayersReady = numPlayersReady;
         var playerData = GameObject.FindAnyObjectByType<NetworkConnectionManager>().players[clientId];
         playerData.readyStatus = ready;
         GameObject.FindAnyObjectByType<NetworkConnectionManager>().players[clientId] = playerData;
