@@ -22,15 +22,19 @@ public class NetworkConnectionManager : NetworkBehaviour
             RequestClientsServerRpc();
             ClientConnectionServerRpc(Singleton<PlayerDataManager>.Instance.GetName());
         }
-        else
-        {
-            NetworkManager.Singleton.OnClientConnectedCallback += OnClientDisconnected;
-        }
 
         base.OnNetworkSpawn();
     }
 
-    [ServerRpc]
+    private void Start()
+    {
+        if (IsServer)
+        {
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
     private void RequestClientsServerRpc(ServerRpcParams rpcParams = default)
     {
         ulong clientId = rpcParams.Receive.SenderClientId;
@@ -55,7 +59,7 @@ public class NetworkConnectionManager : NetworkBehaviour
         players.Add(clientId, new PlayerData { name = name, readyStatus = readyStatus});
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     void ClientConnectionServerRpc(string name, ServerRpcParams rpcParams = default)
     {
         ulong clientId = rpcParams.Receive.SenderClientId;
@@ -68,8 +72,9 @@ public class NetworkConnectionManager : NetworkBehaviour
         players.Add(clientId, new PlayerData() { name = name, readyStatus = false });
     }
 
-    void OnClientDisconnected(ulong clientId)
+    void OnClientDisconnect(ulong clientId)
     {
+        Debug.Log("HOLAAAAAAAAAAAAAAAAAAAAAAAA");
         NotifyDisconnectionClientRpc(clientId);
     }
 
