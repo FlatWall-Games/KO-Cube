@@ -1066,7 +1066,7 @@ MonoBehaviour:
   timeLeftText: {fileID: 6268390223299895308}
   timeLeft: 180
   gameModeUiText: {fileID: 871971071564478328}
-  readyButton: {fileID: 0}
+  readyButton: {fileID: 1406016642674359931}
   slider: {fileID: 5119926589996178581}
 --- !u!1 &1406016642674359931
 GameObject:

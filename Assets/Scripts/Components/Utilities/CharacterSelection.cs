@@ -12,7 +12,7 @@ public class CharacterSelection : NetworkBehaviour
     public PreviewManager previewManager;
     public TextMeshProUGUI[] uiCharacterNames;
     public TextMeshProUGUI[] uiCharacterDescriptions;
-    private int arrayIndex = 0;
+    private int arrayIndex;
 
     private TextMeshProUGUI uiCharacterName;
     private TextMeshProUGUI uiCharacterDescription;
@@ -22,6 +22,7 @@ public class CharacterSelection : NetworkBehaviour
     
     private void Awake()
     {
+        arrayIndex = 0;
         uiCharacterName = transform.Find("UI/CharacterSelection/CharacterNamePanel/CharacterName").GetComponent<TextMeshProUGUI>();
         uiCharacterDescription = transform.Find("UI/CharacterSelection/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
     }
