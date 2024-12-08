@@ -23,4 +23,17 @@ public class DeathMatchManager : AGameManager
         if (inverted) return;
         base.InvertUI();
     }
+
+    public override void PointScored(string team)
+    {
+        if((pointsTeam1 == 5 && PlayerBehaviour.ownerTag.Equals("Team1")) || (pointsTeam2 == 5 && PlayerBehaviour.ownerTag.Equals("Team2")))
+        {
+            StartCoroutine(DisplayInformation("QUEDAN 5 BAJAS PARA GANAR"));
+        }
+        else if ((pointsTeam1 == 5 && PlayerBehaviour.ownerTag.Equals("Team2")) || (pointsTeam2 == 5 && PlayerBehaviour.ownerTag.Equals("Team1")))
+        {
+            StartCoroutine(DisplayInformation("QUEDAN 5 BAJAS PARA PERDER"));
+        }
+        base.PointScored(team);
+    }
 }

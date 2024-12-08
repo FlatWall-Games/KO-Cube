@@ -20,4 +20,17 @@ public class CaptureFlagManager : AGameManager
         foreach (FlagBehaviour f in flags) f.ToggleMaterial();
         base.InvertUI();
     }
+
+    public override void PointScored(string team)
+    {
+        if (team.Equals(PlayerBehaviour.ownerTag))
+        {
+            StartCoroutine(DisplayInformation("TU EQUIPO HA CAPTURADO UNA BANDERA"));
+        }
+        else
+        {
+            StartCoroutine(DisplayInformation("EL EQUIPO ENEMIGO HA CAPTURADO UNA BANDERA"));
+        }
+        base.PointScored(team);
+    }
 }

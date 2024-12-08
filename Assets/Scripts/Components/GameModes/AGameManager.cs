@@ -204,6 +204,13 @@ public class AGameManager : NetworkBehaviour
         timeLeftText.gameObject.SetActive(false);
     }
 
+    protected IEnumerator DisplayInformation(string information)
+    {
+        transform.Find("InformationText").GetComponent<TextMeshProUGUI>().text = information;
+        yield return new WaitForSeconds(3);
+        transform.Find("InformationText").GetComponent<TextMeshProUGUI>().text = "";
+    }
+
     //////////////////////SÍNCRONIZACIÓN DE LOS ESPECTADORES:
     ///
     public void SyncSpectatorData()

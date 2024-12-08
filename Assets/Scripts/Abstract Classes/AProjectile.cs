@@ -42,7 +42,7 @@ public class AProjectile : MonoBehaviour, IAttack
         return this.tag;
     }
 
-    public void SetTag(string tag)
+    public virtual void SetTag(string tag)
     {
         this.tag = tag;
     }

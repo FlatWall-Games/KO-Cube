@@ -34,4 +34,10 @@ public class MachinganUlt : AProjectile
         if (projectile != null) health -= projectile.GetDamage();
         if (health <= 0) Destroy(this.gameObject);
     }
+
+    public override void SetTag(string tag)
+    {
+        base.SetTag(tag);
+        GetComponent<ShieldColor>().UpdateColor();
+    }
 }
