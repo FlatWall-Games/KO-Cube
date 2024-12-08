@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class AGameManager : NetworkBehaviour
 {
@@ -14,6 +15,8 @@ public class AGameManager : NetworkBehaviour
     [SerializeField] protected TextMeshProUGUI timeLeftText;
     [SerializeField] protected float timeLeft = 120; //Duración de la partida en segundos
     [SerializeField] protected TextMeshProUGUI gameModeUiText; //Texto que aparece en la interfaz ingame sobrew este modo
+    [SerializeField] private TextMeshProUGUI infoText;
+    Coroutine infoCoroutine;
 
     protected int pointsTeam1 = 0;
     protected int pointsTeam2 = 0;
@@ -125,6 +128,8 @@ public class AGameManager : NetworkBehaviour
             if (!movement) player.GetComponent<CharacterController>().enabled = false;
         }
         if(!movement) GameObject.FindObjectOfType<PlayersReadyManager>().GameEnded();
+        StopAllCoroutines();
+        infoText.text = "";
     }
 
     [ClientRpc]
@@ -204,11 +209,21 @@ public class AGameManager : NetworkBehaviour
         timeLeftText.gameObject.SetActive(false);
     }
 
-    protected IEnumerator DisplayInformation(string information)
+    [ClientRpc]
+    protected void DisplayInformationClientRpc(string info, float speed = 1)
     {
-        transform.Find("InformationText").GetComponent<TextMeshProUGUI>().text = information;
+        if (!gameStarted) return; //No hay información antes o después de la partida
+        if(infoCoroutine == null) infoCoroutine = StartCoroutine(InfoWindow(info, speed));
+    }
+
+    private IEnumerator InfoWindow(string info, float speed)
+    {
+        infoText.text = info;
+        infoText.GetComponent<Animator>().speed = speed;
+        infoText.GetComponent<Animator>().Rebind();
         yield return new WaitForSeconds(3);
-        transform.Find("InformationText").GetComponent<TextMeshProUGUI>().text = "";
+        infoText.text = "";
+        infoCoroutine = null;
     }
 
     //////////////////////SÍNCRONIZACIÓN DE LOS ESPECTADORES:

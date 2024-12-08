@@ -23,14 +23,35 @@ public class CaptureFlagManager : AGameManager
 
     public override void PointScored(string team)
     {
-        if (team.Equals(PlayerBehaviour.ownerTag))
+        base.PointScored(team);
+        float currentTeamPoints;
+        if (team.Equals(PlayerBehaviour.ownerTag)) //Si es tu equipo
         {
-            StartCoroutine(DisplayInformation("TU EQUIPO HA CAPTURADO UNA BANDERA"));
+            if (team.Equals("Team1")) currentTeamPoints = pointsTeam1; //Se mira la puntuación perteneciente al equipo del jugador
+            else currentTeamPoints = pointsTeam2;
+            switch (currentTeamPoints)
+            {
+                case 1:
+                    DisplayInformationClientRpc("PRIMERA CAPTURA DE TU EQUIPO");
+                    break;
+                case 2:
+                    DisplayInformationClientRpc("UNA BANDERA MÁS PARA GANAR");
+                    break;
+            }
         }
         else
         {
-            StartCoroutine(DisplayInformation("EL EQUIPO ENEMIGO HA CAPTURADO UNA BANDERA"));
+            if (team.Equals("Team1")) currentTeamPoints = pointsTeam1; //Se mira la puntuación del equipo contrario
+            else currentTeamPoints = pointsTeam2;
+            switch (currentTeamPoints)
+            {
+                case 1:
+                    DisplayInformationClientRpc("PRIMERA CAPTURA DEL EQUIPO RIVAL");
+                    break;
+                case 2:
+                    DisplayInformationClientRpc("UNA BANDERA MÁS PARA PERDER");
+                    break;
+            }
         }
-        base.PointScored(team);
     }
 }

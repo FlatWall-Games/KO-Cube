@@ -62,7 +62,12 @@ public class HealthManager : NetworkBehaviour
             {
                 anim.SetTrigger("Dead");
                 GetComponent<CharacterController>().enabled = false; //No queremos recibir más golpes estando muertos
-                if (deathMatch != null) deathMatch.PointScored(attack.GetAttacker().tag);
+                if (deathMatch != null)
+                {
+                    deathMatch.PointScored(attack.GetAttacker().tag);
+                    Dictionary<ulong, PlayerData> players = GameObject.FindObjectOfType<NetworkConnectionManager>().players;
+                    deathMatch.DisplayKillInfo(players[attack.GetAttacker().NetworkObjectId].name, players[this.NetworkObjectId].name, attack.GetAttacker().tag);
+                }
                 killed = true;
                 attack.GetAttacker().AddKillsClientRpc();
             }

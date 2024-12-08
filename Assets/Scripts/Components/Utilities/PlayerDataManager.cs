@@ -9,7 +9,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     //Variable que indica el numero de personajes del juego
     const int numberOfCharacters = 6;
     const int numberOfSettings = 4;
-
+    
     //Atributos que se almacenaran
     string username;
     int coins;
