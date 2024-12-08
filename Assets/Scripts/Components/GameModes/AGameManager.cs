@@ -90,6 +90,8 @@ public class AGameManager : NetworkBehaviour
     [ClientRpc]
     protected void UpdatePointsClientRpc(int t1, int t2)
     {
+        pointsTeam1 = t1;
+        pointsTeam2 = t2;
         pointsT1Text.text = $"{t1}/{maxPoints}";
         pointsT2Text.text = $"{t2}/{maxPoints}";
     }
