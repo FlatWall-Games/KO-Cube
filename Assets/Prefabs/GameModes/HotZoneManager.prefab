@@ -236,8 +236,8 @@ RectTransform:
   m_GameObject: {fileID: 422243169064677415}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.1880674, y: 5.1880674, z: 5.1880674}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7977923041979221963}
   - {fileID: 8225929887371654456}
@@ -246,7 +246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1.0376034, y: -215.49338}
+  m_AnchoredPosition: {x: 0.000005722, y: -118.3}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5119926589996178581
@@ -538,15 +538,15 @@ RectTransform:
   m_GameObject: {fileID: 561734677061229062}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4166667, y: 0.4166667, z: 0.4166667}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3546548932960421691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -372.3, y: -539.9538}
-  m_SizeDelta: {x: 410.2, y: 64.5332}
+  m_AnchoredPosition: {x: -669.9, y: -970.6}
+  m_SizeDelta: {x: 300.22, y: 47.231}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6021000452193420447
 CanvasRenderer:
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.7
+  m_fontSize: 18.95
   m_fontSizeBase: 43.3
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1587,14 +1587,14 @@ RectTransform:
   m_GameObject: {fileID: 2763796048397626218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2745338, y: 0.2745338, z: 0.2745338}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.58, y: 0.58, z: 0.58}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3546548932960421691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -472.5, y: -100}
+  m_AnchoredPosition: {x: -850.4, y: -178.6}
   m_SizeDelta: {x: 131.3608, y: 84.4722}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3993169161722048142
@@ -1722,16 +1722,16 @@ RectTransform:
   m_GameObject: {fileID: 2834021245899785381}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.32222018, y: 0.32222018, z: 0.32222018}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7815875464578981585}
   m_Father: {fileID: 3546548932960421691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -49.400024}
-  m_SizeDelta: {x: 181.3278, y: 72.3217}
+  m_AnchoredPosition: {x: 0.000024796, y: -87.3}
+  m_SizeDelta: {x: 105.01, y: 41.8828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6260503677089169913
 CanvasRenderer:
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 41.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4042,14 +4042,14 @@ RectTransform:
   m_GameObject: {fileID: 7897429592243209660}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2745338, y: 0.2745338, z: 0.2745338}
+  m_LocalScale: {x: 0.58, y: 0.58, z: 0.58}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3546548932960421691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 472.5, y: -100}
+  m_AnchoredPosition: {x: 851.4, y: -178.6}
   m_SizeDelta: {x: 131.4234, y: 80.2662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8129976023078304989
