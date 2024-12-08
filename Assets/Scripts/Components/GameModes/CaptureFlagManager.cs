@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 public class CaptureFlagManager : AGameManager
@@ -24,6 +25,12 @@ public class CaptureFlagManager : AGameManager
     public override void PointScored(string team)
     {
         base.PointScored(team);
+        SetInfoClientRpc(team);
+    }
+
+    [ClientRpc]
+    private void SetInfoClientRpc(string team)
+    {
         float currentTeamPoints;
         if (team.Equals(PlayerBehaviour.ownerTag)) //Si es tu equipo
         {
@@ -32,10 +39,10 @@ public class CaptureFlagManager : AGameManager
             switch (currentTeamPoints)
             {
                 case 1:
-                    DisplayInformationClientRpc("PRIMERA CAPTURA DE TU EQUIPO");
+                    DisplayInformation("PRIMERA CAPTURA DE TU EQUIPO");
                     break;
                 case 2:
-                    DisplayInformationClientRpc("UNA BANDERA MÁS PARA GANAR");
+                    DisplayInformation("UNA BANDERA MÁS PARA GANAR");
                     break;
             }
         }
@@ -46,10 +53,10 @@ public class CaptureFlagManager : AGameManager
             switch (currentTeamPoints)
             {
                 case 1:
-                    DisplayInformationClientRpc("PRIMERA CAPTURA DEL EQUIPO RIVAL");
+                    DisplayInformation("PRIMERA CAPTURA DEL EQUIPO RIVAL");
                     break;
                 case 2:
-                    DisplayInformationClientRpc("UNA BANDERA MÁS PARA PERDER");
+                    DisplayInformation("UNA BANDERA MÁS PARA PERDER");
                     break;
             }
         }

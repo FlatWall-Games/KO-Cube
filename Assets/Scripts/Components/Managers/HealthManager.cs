@@ -65,8 +65,7 @@ public class HealthManager : NetworkBehaviour
                 if (deathMatch != null)
                 {
                     deathMatch.PointScored(attack.GetAttacker().tag);
-                    Dictionary<ulong, PlayerData> players = GameObject.FindObjectOfType<NetworkConnectionManager>().players;
-                    deathMatch.DisplayKillInfo(players[attack.GetAttacker().NetworkObjectId].name, players[this.NetworkObjectId].name, attack.GetAttacker().tag);
+                    deathMatch.DisplayKillInfoClientRpc(attack.GetAttacker().userName, GetComponent<PlayerBehaviour>().userName, attack.GetAttacker().tag);
                 }
                 killed = true;
                 attack.GetAttacker().AddKillsClientRpc();

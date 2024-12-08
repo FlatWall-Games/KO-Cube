@@ -48,10 +48,10 @@ public class HotZoneManager : AGameManager
         else gameModeUiText.text = $"Controla {numZonas} zonas para ganar!";
     }
 
-    public void ZoneControlled(string team)
+    [ClientRpc]
+    public void ZoneControlledClientRpc(string team)
     {
-        if (team.Equals(PlayerBehaviour.ownerTag)) DisplayInformationClientRpc("TU EQUIPO HA CONTROLADO UNA ZONA");
-        else DisplayInformationClientRpc("EL EQUIPO RIVAL HA CONTROLADO UNA ZONA");
-        
+        if (team.Equals(PlayerBehaviour.ownerTag)) DisplayInformation("TU EQUIPO HA CONTROLADO UNA ZONA");
+        else DisplayInformation("EL EQUIPO RIVAL HA CONTROLADO UNA ZONA");
     }
 }

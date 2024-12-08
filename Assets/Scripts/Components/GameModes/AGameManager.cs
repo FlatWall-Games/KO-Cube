@@ -209,8 +209,7 @@ public class AGameManager : NetworkBehaviour
         timeLeftText.gameObject.SetActive(false);
     }
 
-    [ClientRpc]
-    protected void DisplayInformationClientRpc(string info, float speed = 1)
+    protected void DisplayInformation(string info, float speed = 1)
     {
         if (!gameStarted) return; //No hay información antes o después de la partida
         if(infoCoroutine == null) infoCoroutine = StartCoroutine(InfoWindow(info, speed));

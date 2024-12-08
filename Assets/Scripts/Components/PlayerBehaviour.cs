@@ -9,6 +9,7 @@ public class PlayerBehaviour : NetworkBehaviour
     Animator anim;
     AttackManager attackManager;
     public static string ownerTag = "Untagged";
+    public string userName = "";
 
     float xMovement = 0;
     float yMovement = 0;
@@ -50,6 +51,8 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             GameObject.FindObjectOfType<AudioListenerManager>().SetTransform(this.transform);
         }
+
+        SetNameServerRpc(PlayerDataManager.Instance.username);
     }
 
     private void Update()
@@ -79,6 +82,12 @@ public class PlayerBehaviour : NetworkBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
         }
 
+    }
+
+    [ServerRpc] 
+    private void SetNameServerRpc(string name)
+    {
+        userName = name;
     }
 
     public void OnMove(InputAction.CallbackContext context)

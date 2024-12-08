@@ -37,7 +37,7 @@ public class HotZoneBehaviour : NetworkBehaviour
                 gameManager.PointScored("Team1");
                 pointsT1++;
                 pointsT2--;
-                if (pointsT1 == maxPoints) gameManager.ZoneControlled("Team1");
+                if (pointsT1 == maxPoints) gameManager.ZoneControlledClientRpc("Team1");
             }
         }
         else if(numT2Inside > 0 && numT1Inside == 0 && pointsT2 < maxPoints)
@@ -49,7 +49,7 @@ public class HotZoneBehaviour : NetworkBehaviour
                 gameManager.PointScored("Team2");
                 pointsT2++;
                 pointsT1--;
-                if (pointsT2 == maxPoints) gameManager.ZoneControlled("Team2");
+                if (pointsT2 == maxPoints) gameManager.ZoneControlledClientRpc("Team2");
             }
         }
 

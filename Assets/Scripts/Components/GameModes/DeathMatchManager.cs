@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 public class DeathMatchManager : AGameManager
@@ -19,11 +20,12 @@ public class DeathMatchManager : AGameManager
         base.InvertUI();
     }
 
-    public void DisplayKillInfo(string killerName, string killedName, string killerTag)
+    [ClientRpc]
+    public void DisplayKillInfoClientRpc(string killerName, string killedName, string killerTag)
     {
         string info;
         if (PlayerBehaviour.ownerTag.Equals(killerTag)) info = $"<color=cyan>{killerName}</color> ha eliminado a <color=red>{killedName}";
         else info = $"<color=red>{killerName}</color> ha eliminado a <color=cyan>{killedName}";
-        DisplayInformationClientRpc(info, 2);
+        DisplayInformation(info, 2);
     }
 }
