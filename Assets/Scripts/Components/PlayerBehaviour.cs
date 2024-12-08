@@ -33,6 +33,8 @@ public class PlayerBehaviour : NetworkBehaviour
         if (IsOwner)
         {
             GameObject.FindObjectOfType<AGameManager>().EnableButton();
+            GameObject.FindObjectOfType<AudioListenerManager>().SetTransform(this.transform);
+            SetNameServerRpc(PlayerDataManager.Instance.username);
         }
 
         if (IsServer)
@@ -46,13 +48,6 @@ public class PlayerBehaviour : NetworkBehaviour
             AssignTagClientRpc(this.tag);
         }
         else RequestTagServerRpc();
-
-        if (IsOwner)
-        {
-            GameObject.FindObjectOfType<AudioListenerManager>().SetTransform(this.transform);
-        }
-
-        SetNameServerRpc(PlayerDataManager.Instance.username);
     }
 
     private void Update()

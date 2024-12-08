@@ -24,7 +24,7 @@ public class DeathMatchManager : AGameManager
     public void DisplayKillInfoClientRpc(string killerName, string killedName, string killerTag)
     {
         string info;
-        if (PlayerBehaviour.ownerTag.Equals(killerTag)) info = $"<color=cyan>{killerName}</color> ha eliminado a <color=red>{killedName}";
+        if (PlayerBehaviour.ownerTag.Equals(killerTag)) info = $"<color=#00FFFF>{killerName}</color> ha eliminado a <color=red>{killedName}";
         else info = $"<color=red>{killerName}</color> ha eliminado a <color=cyan>{killedName}";
         DisplayInformation(info, 2);
     }

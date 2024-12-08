@@ -43,9 +43,7 @@ public class HotZoneManager : AGameManager
     public override void StartGame()
     {
         base.StartGame();
-        int numZonas = GameObject.FindObjectsOfType<HotZoneBehaviour>().Length;
-        if (numZonas == 1) gameModeUiText.text = $"Controla 1 zona para ganar!";
-        else gameModeUiText.text = $"Controla {numZonas} zonas para ganar!";
+        SetTextClientRpc();
     }
 
     [ClientRpc]
@@ -53,5 +51,13 @@ public class HotZoneManager : AGameManager
     {
         if (team.Equals(PlayerBehaviour.ownerTag)) DisplayInformation("TU EQUIPO HA CONTROLADO UNA ZONA");
         else DisplayInformation("EL EQUIPO RIVAL HA CONTROLADO UNA ZONA");
+    }
+
+    [ClientRpc]
+    private void SetTextClientRpc()
+    {
+        int numZonas = GameObject.FindObjectsOfType<HotZoneBehaviour>().Length;
+        if (numZonas == 1) gameModeUiText.text = $"Controla 1 zona para ganar!";
+        else gameModeUiText.text = $"Controla {numZonas} zonas para ganar!";
     }
 }

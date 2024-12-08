@@ -48,7 +48,7 @@ public class CaptureFlagManager : AGameManager
         }
         else
         {
-            if (team.Equals("Team1")) currentTeamPoints = pointsTeam1; //Se mira la puntuación del equipo contrario
+            if (team.Equals("Team2")) currentTeamPoints = pointsTeam1; //Se mira la puntuación del equipo contrario
             else currentTeamPoints = pointsTeam2;
             switch (currentTeamPoints)
             {
