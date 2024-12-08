@@ -11,7 +11,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     const int numberOfSettings = 4;
     
     //Atributos que se almacenaran
-    public string username;
+    string username;
     int coins;
     List<List<bool>> characterSkins = new List<List<bool>>(numberOfCharacters);
     int[] activeSkins = new int[numberOfCharacters];
@@ -226,5 +226,10 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     string CreateStringSkins(List<bool> skinList)
     {
         return string.Join(".", skinList);
+    }
+
+    public string GetUserName()
+    {
+        return username;
     }
 }

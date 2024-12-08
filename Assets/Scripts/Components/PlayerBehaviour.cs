@@ -34,7 +34,7 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             GameObject.FindObjectOfType<AGameManager>().EnableButton();
             GameObject.FindObjectOfType<AudioListenerManager>().SetTransform(this.transform);
-            SetNameServerRpc(PlayerDataManager.Instance.username);
+            SetNameServerRpc(PlayerDataManager.Instance.GetUserName());
         }
 
         if (IsServer)
