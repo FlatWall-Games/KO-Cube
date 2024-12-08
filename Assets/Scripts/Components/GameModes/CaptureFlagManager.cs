@@ -32,10 +32,11 @@ public class CaptureFlagManager : AGameManager
     private void SetInfoClientRpc(string team)
     {
         float currentTeamPoints;
+        if (team.Equals("Team1")) currentTeamPoints = pointsTeam1;
+        else currentTeamPoints = pointsTeam2;
+
         if (team.Equals(PlayerBehaviour.ownerTag)) //Si es tu equipo
         {
-            if (team.Equals("Team1")) currentTeamPoints = pointsTeam1; //Se mira la puntuación perteneciente al equipo del jugador
-            else currentTeamPoints = pointsTeam2;
             switch (currentTeamPoints)
             {
                 case 1:
@@ -44,12 +45,12 @@ public class CaptureFlagManager : AGameManager
                 case 2:
                     DisplayInformation("UNA BANDERA MÁS PARA GANAR");
                     break;
+                default:
+                    break;
             }
         }
         else
         {
-            if (team.Equals("Team2")) currentTeamPoints = pointsTeam2; //Se mira la puntuación del equipo contrario
-            else currentTeamPoints = pointsTeam2;
             switch (currentTeamPoints)
             {
                 case 1:
@@ -57,6 +58,8 @@ public class CaptureFlagManager : AGameManager
                     break;
                 case 2:
                     DisplayInformation("UNA BANDERA MÁS PARA PERDER");
+                    break;
+                default:
                     break;
             }
         }
