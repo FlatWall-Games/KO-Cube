@@ -20,13 +20,12 @@ public class CharacterSelection : NetworkBehaviour
     public bool isSpectator = false;
     public GameObject[] playerPrefabs; //Lista de prefabs de persooajes (Por si acaso, que su orden coincida con el de la lista del NetworkManager)
 
-    GameObject falseUI;
+    public GameObject falseUI;
     
     private void Awake()
     {
         uiCharacterName = transform.Find("UI/CharacterSelection/CharacterNamePanel/CharacterName").GetComponent<TextMeshProUGUI>();
         uiCharacterDescription = transform.Find("UI/CharacterSelection/CharacterDescriptionPanel/CharacterDescription").GetComponent<TextMeshProUGUI>();
-        falseUI = GameObject.Find("Canvas/CharacterSelectMenu/FalseUI");
     }
 
     public override void OnNetworkSpawn()

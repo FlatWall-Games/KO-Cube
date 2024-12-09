@@ -15,8 +15,8 @@ public class LobbyUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        falseUI = GameObject.Find("Canvas/CharacterSelectMenu/FalseUI");
-        joinCodeText.text = "Código: " + Singleton<UIManager>.Instance.JoinCode.ToString();
+        falseUI = GameObject.Find("Canvas/FalseUI");
+        joinCodeText.text = "Codigo: " + Singleton<UIManager>.Instance.JoinCode.ToString();
 
         int i = 0;
         foreach (PlayerData playerData in GameObject.FindAnyObjectByType<NetworkConnectionManager>().players.Values)
