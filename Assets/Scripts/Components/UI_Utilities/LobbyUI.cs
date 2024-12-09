@@ -10,10 +10,12 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playersReadyText;
     [SerializeField] private TextMeshProUGUI joinCodeText;
     [SerializeField] private List<GameObject> lobbyPlayers;
+    GameObject cameraPlane;
 
     // Start is called before the first frame update
     void Start()
     {
+        cameraPlane  = Camera.main.transform.Find("Plane").gameObject;
         joinCodeText.text = "Código: " + Singleton<UIManager>.Instance.JoinCode.ToString();
 
         int i = 0;
@@ -31,6 +33,7 @@ public class LobbyUI : MonoBehaviour
             lobbyPlayers[i].transform.Find($"PlayerStatus{i + 1}").GetComponentInChildren<TextMeshProUGUI>().text = "";
             i++;
         }
+        cameraPlane.SetActive(false);
     }
 
     // Update is called once per frame
