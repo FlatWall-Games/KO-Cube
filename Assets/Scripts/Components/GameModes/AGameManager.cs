@@ -186,11 +186,36 @@ public class AGameManager : NetworkBehaviour
     public virtual void InvertUI()
     {
         GameObject.FindWithTag("Reversible").transform.localScale = new Vector3(-1, 1, 1);
-        pointsT1Text.rectTransform.localPosition = new Vector3(-pointsT1Text.rectTransform.localPosition.x, pointsT1Text.rectTransform.localPosition.y, 0);
-        pointsT2Text.rectTransform.localPosition = new Vector3(-pointsT2Text.rectTransform.localPosition.x, pointsT2Text.rectTransform.localPosition.y, 0);
+        InvertReversibleUIPivots();
+        Vector2 inverseVec3 = new Vector2(-1, 1);
+        pointsT1Text.rectTransform.localScale *= inverseVec3;
+        pointsT2Text.rectTransform.localScale *= inverseVec3;
+
+
         inverted = true;
     }
+    private void InvertReversibleUIPivots()
+    {
+        RectTransform[] uiElements = GameObject.FindWithTag("Reversible").GetComponentsInChildren<RectTransform>();
 
+        foreach (var element in uiElements)
+        {
+            if (element.pivot == new Vector2(0, 1)) // Esquina superior izquierda
+            {
+                // Cambia al pivote a la esquina superior derecha
+                element.pivot = new Vector2(1, 1);
+                // Ajusta la posición
+                element.anchoredPosition += new Vector2(element.rect.width, 0);
+            }
+            else if (element.pivot == new Vector2(1, 1)) // Esquina superior derecha
+            {
+                // Cambia al pivote de la esquina superior izquierda
+                element.pivot = new Vector2(0, 1);
+                // Ajusta la posición
+                element.anchoredPosition -= new Vector2(element.rect.width, 0);
+            }
+        }
+    }
     [ClientRpc]
     private void UIEnablerClientRpc(bool state)
     {
