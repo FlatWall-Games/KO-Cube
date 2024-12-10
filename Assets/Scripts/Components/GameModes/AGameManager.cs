@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class AGameManager : NetworkBehaviour
 {
@@ -185,7 +186,10 @@ public class AGameManager : NetworkBehaviour
 
     public virtual void InvertUI()
     {
-        GameObject.FindWithTag("Reversible").transform.localScale = new Vector3(-1, 1, 1);
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Reversible")) 
+        { 
+            obj.transform.localScale = new Vector3(-1, 1, 1); 
+        }
         InvertReversibleUIPivots();
         Vector2 inverseVec3 = new Vector2(-1, 1);
         pointsT1Text.rectTransform.localScale *= inverseVec3;
@@ -196,7 +200,14 @@ public class AGameManager : NetworkBehaviour
     }
     private void InvertReversibleUIPivots()
     {
-        RectTransform[] uiElements = GameObject.FindWithTag("Reversible").GetComponentsInChildren<RectTransform>();
+        List<RectTransform> uiElements = new List<RectTransform>();
+        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Reversible"))
+        {
+            foreach (RectTransform rectTransform in obj.GetComponentsInChildren<RectTransform>())
+            {
+                uiElements.Add(rectTransform);
+            }
+        }
 
         foreach (var element in uiElements)
         {
