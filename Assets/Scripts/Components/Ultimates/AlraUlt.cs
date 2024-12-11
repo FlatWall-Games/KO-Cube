@@ -60,6 +60,6 @@ public class AlraUlt : AProjectile
     public override void SetTag(string tag)
     {
         base.SetTag(tag);
-        GetComponent<AlraUltColor>().UpdateColor();
+        GetComponent<AlraUltColor>().UpdateColor(tag);
     }
 }

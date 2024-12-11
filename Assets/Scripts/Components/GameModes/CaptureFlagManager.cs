@@ -43,7 +43,7 @@ public class CaptureFlagManager : AGameManager
                     DisplayInformation("PRIMERA CAPTURA DE TU EQUIPO");
                     break;
                 case 2:
-                    DisplayInformation("UNA BANDERA MÁS PARA GANAR");
+                    DisplayInformation("QUEDA UNA BANDERA PARA GANAR");
                     break;
                 default:
                     break;
@@ -57,7 +57,7 @@ public class CaptureFlagManager : AGameManager
                     DisplayInformation("PRIMERA CAPTURA DEL EQUIPO RIVAL");
                     break;
                 case 2:
-                    DisplayInformation("UNA BANDERA MÁS PARA PERDER");
+                    DisplayInformation("QUEDA UNA BANDERA PARA PERDER");
                     break;
                 default:
                     break;

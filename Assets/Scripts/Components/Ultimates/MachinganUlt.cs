@@ -38,6 +38,6 @@ public class MachinganUlt : AProjectile
     public override void SetTag(string tag)
     {
         base.SetTag(tag);
-        GetComponent<ShieldColor>().UpdateColor();
+        GetComponent<ShieldColor>().UpdateColor(tag);
     }
 }

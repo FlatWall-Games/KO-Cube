@@ -7,7 +7,7 @@ public class ShieldColor : MonoBehaviour
     [SerializeField] private Renderer shieldRenderer;
     [SerializeField] private Material redMaterial;
 
-    public void UpdateColor() //Llamado al hacer el SetTag en MachinganUlt
+    public void UpdateColor(string tag) //Llamado al hacer el SetTag en MachinganUlt
     {
         if (!PlayerBehaviour.ownerTag.Equals(tag))
         {
