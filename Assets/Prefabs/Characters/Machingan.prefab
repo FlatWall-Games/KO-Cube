@@ -1098,6 +1098,7 @@ GameObject:
   - component: {fileID: 7712783104728763439}
   - component: {fileID: 6556615135591681305}
   - component: {fileID: 7598029460632259647}
+  - component: {fileID: 4657670456821978051}
   m_Layer: 9
   m_Name: Machingan
   m_TagString: Untagged
@@ -1550,6 +1551,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedTime: 2
   speedMultiplier: 1.4
+--- !u!114 &4657670456821978051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345367470636222976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6531814b9158a6469286d63d41389e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyShield: {fileID: 4150131388132305550, guid: dd2647e6c0e5d6a469e298f765674eb5,
+    type: 3}
 --- !u!1 &4776824028582543387
 GameObject:
   m_ObjectHideFlags: 0

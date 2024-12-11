@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5395069040001644676}
   - component: {fileID: 3179800134787666039}
   - component: {fileID: 7650921031156992918}
-  - component: {fileID: 4077832051504174508}
   - component: {fileID: 2649422113022506931}
   - component: {fileID: 354945128864687016}
   - component: {fileID: 3969600416477036296}
@@ -138,20 +137,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &4077832051504174508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4150131388132305550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6531814b9158a6469286d63d41389e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shieldRenderer: {fileID: 6427441483623780245}
-  redMaterial: {fileID: 2100000, guid: 4a87460ca876a4f4bb6b6fc11d8b52f8, type: 2}
 --- !u!114 &2649422113022506931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,12 +295,6 @@ PrefabInstance:
 --- !u!4 &5294534575272146170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6874a66c11795294bbfce108b402350e,
-    type: 3}
-  m_PrefabInstance: {fileID: 5688976896254268177}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6427441483623780245 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 6874a66c11795294bbfce108b402350e,
     type: 3}
   m_PrefabInstance: {fileID: 5688976896254268177}
   m_PrefabAsset: {fileID: 0}

@@ -182,4 +182,9 @@ public class AttackManager : NetworkBehaviour
     {
         shooting = false;
     }
+
+    public void SetUlt(GameObject ult)
+    {
+        ultPrefab = ult;
+    }
 }

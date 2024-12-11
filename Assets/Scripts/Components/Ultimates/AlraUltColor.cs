@@ -9,7 +9,6 @@ public class AlraUltColor : MonoBehaviour
     [SerializeField] private Renderer rend;
     public void UpdateColor(string tag) //Llamado al hacer el SetTag en MachinganUlt
     {
-        Debug.Log($"{tag}, {PlayerBehaviour.ownerTag}");
         if (!PlayerBehaviour.ownerTag.Equals(tag))
         {
             rend.material = new Material(rend.material);
