@@ -56,4 +56,10 @@ public class AlraUlt : AProjectile
         this.attacker.GetComponent<HealthManager>().OnDead -= DestroyOnDead;
         Destroy(this.gameObject);
     }
+
+    public override void SetTag(string tag)
+    {
+        base.SetTag(tag);
+        GetComponent<AlraUltColor>().UpdateColor();
+    }
 }
