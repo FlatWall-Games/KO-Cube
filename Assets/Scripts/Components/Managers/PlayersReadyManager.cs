@@ -27,7 +27,7 @@ public class PlayersReadyManager : NetworkBehaviour
         base.OnNetworkSpawn();
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void RequestNumPlayersReadyServerRpc(ServerRpcParams rpcParams = default)
     {
         ulong clientId = rpcParams.Receive.SenderClientId;
