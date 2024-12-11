@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2649422113022506931}
   - component: {fileID: 354945128864687016}
   - component: {fileID: 3969600416477036296}
+  - component: {fileID: 4949420764393473422}
   m_Layer: 0
   m_Name: MachinganUlt
   m_TagString: Untagged
@@ -209,6 +210,20 @@ MonoBehaviour:
   Interpolate: 0
   SlerpPosition: 0
   StaleDataHandling: 1
+--- !u!114 &4949420764393473422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150131388132305550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6531814b9158a6469286d63d41389e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldRenderer: {fileID: 6427441483623780245}
+  redMaterial: {fileID: 2100000, guid: a955d1151113c87409fb7bab3a2d5a0b, type: 2}
 --- !u!1001 &5688976896254268177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -295,6 +310,12 @@ PrefabInstance:
 --- !u!4 &5294534575272146170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6874a66c11795294bbfce108b402350e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5688976896254268177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6427441483623780245 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 6874a66c11795294bbfce108b402350e,
     type: 3}
   m_PrefabInstance: {fileID: 5688976896254268177}
   m_PrefabAsset: {fileID: 0}

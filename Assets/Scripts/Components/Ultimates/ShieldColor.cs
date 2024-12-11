@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class ShieldColor : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyShield;
-    private AttackManager attackManager;
+    [SerializeField] private Renderer shieldRenderer;
+    [SerializeField] private Material redMaterial;
 
-    private void Awake()
+    public void UpdateColor(string tag)
     {
-        attackManager = GetComponent<AttackManager>();
-        StartCoroutine(GetTag());
-    }
-
-    IEnumerator GetTag()
-    {
-        while(tag.Equals("Untagged")) yield return new WaitForSeconds(0.01f);
-        if (tag.Equals(PlayerBehaviour.ownerTag)) attackManager.SetUlt(enemyShield);
+        if (!PlayerBehaviour.ownerTag.Equals(tag))
+        {
+            shieldRenderer.material = redMaterial;
+            shieldRenderer.materials[1] = new Material(shieldRenderer.materials[1]);
+            shieldRenderer.materials[1].SetColor("_color", Color.red);
+        }
     }
 }

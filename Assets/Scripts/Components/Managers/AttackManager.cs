@@ -160,10 +160,10 @@ public class AttackManager : NetworkBehaviour
     {
         if (ultPrefab.GetComponent<IAttack>().IsNetworkObject() && !IsServer) return;
         GameObject projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
+        if (IsServer && ultPrefab.GetComponent<IAttack>().IsNetworkObject()) projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
         IAttack projectile = projectileInstance.GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
         projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
-        if(IsServer && ultPrefab.GetComponent<IAttack>().IsNetworkObject()) projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
     }
 
     public bool IsShooting() //Llamado desde PlayerMovement para saber si rotar el jugador hacia donde mira o no
@@ -181,10 +181,5 @@ public class AttackManager : NetworkBehaviour
     private void OnShootEndedClientRpc()
     {
         shooting = false;
-    }
-
-    public void SetUlt(GameObject ult)
-    {
-        ultPrefab = ult;
     }
 }
