@@ -18,6 +18,37 @@ public class PlayersReadyManager : NetworkBehaviour
         }
     }
 
+    public override void OnNetworkSpawn()
+    {
+        if (IsClient)
+        {
+            RequestNumPlayersReadyServerRpc();
+        }
+        base.OnNetworkSpawn();
+    }
+
+    [ServerRpc]
+    private void RequestNumPlayersReadyServerRpc(ServerRpcParams rpcParams = default)
+    {
+        ulong clientId = rpcParams.Receive.SenderClientId;
+
+        var clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new ulong[] { clientId }
+            }
+        };
+
+        SendNumPlayersReadyClientRpc(numPlayersReady, clientRpcParams);
+    }
+
+    [ClientRpc]
+    private void SendNumPlayersReadyClientRpc(int numPlayersReady, ClientRpcParams rpcParams)
+    {
+        this.numPlayersReady = numPlayersReady;
+    }
+
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc(bool ready, ServerRpcParams rpcParams = default)
     {
