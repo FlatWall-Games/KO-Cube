@@ -16,7 +16,7 @@ public class LobbyUI : MonoBehaviour
     void Start()
     {
         falseUI = GameObject.Find("Canvas/FalseUI");
-        joinCodeText.text = "Codigo: " + Singleton<UIManager>.Instance.JoinCode.ToString();
+        joinCodeText.text = "Codigo: " + Singleton<UIManager>.Instance.JoinCode.ToString().ToUpper();
 
         int i = 0;
         foreach (PlayerData playerData in GameObject.FindAnyObjectByType<NetworkConnectionManager>().players.Values)
