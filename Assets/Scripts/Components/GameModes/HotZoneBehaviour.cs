@@ -8,6 +8,8 @@ public class HotZoneBehaviour : NetworkBehaviour
 {
     [SerializeField] private float controlSpeed = 1; //Velocidad a la que se suman puntos
     [SerializeField] private int maxPoints = 50; //Máximo de puntos que consigue cada equipo por zona (por si hay más de una)
+    private bool T1IsInside = false;//Indica si el equipo 1 está en la zona
+    private bool T2IsInside = false;//Indica si el equipo 2 está en la zona
     private int numT1Inside = 0; //Número de jugadores del equipo 1 en la zona
     private int numT2Inside = 0; //Número de jugadores del equipo 2 en la zona
     private float timerT1 = 0; //Temporizador que suma puntos al equipo 1 en función de la velocidad y el tiempo 
@@ -26,15 +28,19 @@ public class HotZoneBehaviour : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (numT1Inside == 0 && numT2Inside > 0)
+        if (T1IsInside || T2IsInside)
         {
-            if (pointsT2 < maxPoints) transform.Rotate(0, -0.5f, 0);
+            if (!T1IsInside)
+            {
+                if (pointsT2 < maxPoints) transform.Rotate(0, -0.5f, 0);
+            }
+            else if (!T2IsInside)
+            {
+                if (pointsT1 < maxPoints) transform.Rotate(0, 0.5f, 0);
+            }
+                T1IsInside = false;
+                T2IsInside = false;
         }
-        if (numT2Inside == 0 && numT1Inside > 0)
-        {
-            if (pointsT1 < maxPoints) transform.Rotate(0, 0.5f, 0);
-        }
-
         if (!IsServer) return;
         
         if(numT1Inside > 0 && numT2Inside == 0 && pointsT1 < maxPoints)
@@ -83,6 +89,19 @@ public class HotZoneBehaviour : NetworkBehaviour
         if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().Ulted -= PlayerDead;
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("T1: " + T1IsInside);
+        Debug.Log("T2: " + T2IsInside);
+        if (other.CompareTag("Team1"))
+        {
+            T1IsInside = true;
+        }
+        if (other.CompareTag("Team2"))
+        {
+            T2IsInside = true;
+        }
+    }
 
     private void PlayerDead(object s, string tag)
     {
