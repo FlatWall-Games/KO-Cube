@@ -76,11 +76,14 @@ public class HotZoneBehaviour : NetworkBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (numT1Inside == 0 || numT2Inside == 0)
+        if (numT1Inside == 0 && numT2Inside > 0)
         {
-            if(other.CompareTag("Team1") && pointsT1 < maxPoints) transform.Rotate(0, -0.5f, 0);
-            else if(other.CompareTag("Team2") && pointsT2 < maxPoints) transform.Rotate(0, 0.5f, 0);
+            if(pointsT2 < maxPoints) transform.Rotate(0, -0.5f, 0);
         }
+        if (numT2Inside == 0 && numT1Inside > 0)
+        {
+            if(pointsT1 < maxPoints) transform.Rotate(0, 0.5f, 0);
+        } 
     }
 
     private void PlayerDead(object s, string tag)
