@@ -41,6 +41,7 @@ public class HotZoneBehaviour : NetworkBehaviour
                 T1IsInside = false;
                 T2IsInside = false;
         }
+
         if (!IsServer) return;
         
         if(numT1Inside > 0 && numT2Inside == 0 && pointsT1 < maxPoints)
@@ -91,8 +92,6 @@ public class HotZoneBehaviour : NetworkBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("T1: " + T1IsInside);
-        Debug.Log("T2: " + T2IsInside);
         if (other.CompareTag("Team1"))
         {
             T1IsInside = true;
