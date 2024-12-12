@@ -14,6 +14,8 @@ public class CharacterSelection : NetworkBehaviour
     public TextMeshProUGUI[] uiCharacterDescriptions;
     private int arrayIndex = 0;
 
+    public Button confirmButton;
+
     private TextMeshProUGUI uiCharacterName;
     private TextMeshProUGUI uiCharacterDescription;
 
@@ -31,6 +33,7 @@ public class CharacterSelection : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        confirmButton.interactable = true;
     }
 
     //Metodo que actualiza toda la informacion de la interfaz cuando se cambia de personaje
@@ -77,20 +80,25 @@ public class CharacterSelection : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void RequestGameStartedServerRpc(ServerRpcParams serverRpcParams = default)
+    private void RequestGameStartedServerRpc(ServerRpcParams rpcParams = default)
     {
-        AssignGameStartedClientRpc(GameObject.FindObjectOfType<AGameManager>().AcceptsClients(),
-        new ClientRpcParams
+        ulong clientId = rpcParams.Receive.SenderClientId;
+
+        var clientRpcParams = new ClientRpcParams
         {
             Send = new ClientRpcSendParams
             {
-                TargetClientIds = new ulong[] { serverRpcParams.Receive.SenderClientId }
+                TargetClientIds = new ulong[] { clientId }
             }
-        });
+        };
+
+        bool acceptsClients = GameObject.FindObjectOfType<AGameManager>().AcceptsClients();
+
+        AssignGameStartedClientRpc(acceptsClients, clientRpcParams);
     }
 
     [ClientRpc] 
-    private void AssignGameStartedClientRpc(bool accepts, ClientRpcParams clientParams = default)
+    private void AssignGameStartedClientRpc(bool accepts, ClientRpcParams rpcParams)
     {
         if (accepts)
         {
@@ -105,9 +113,9 @@ public class CharacterSelection : NetworkBehaviour
 
     // ServerRpc para que el servidor reciba la solicitud del cliente
     [ServerRpc(RequireOwnership = false)]
-    public void SpawnCharacterRequestServerRpc(int characterIndex, ServerRpcParams serverRpcParams = default)
+    public void SpawnCharacterRequestServerRpc(int characterIndex, ServerRpcParams rpcParams = default)
     {
-        ulong clientId = serverRpcParams.Receive.SenderClientId;
+        ulong clientId = rpcParams.Receive.SenderClientId;
 
         // Asegurarse de que el índice es válido
         if (characterIndex >= 0 && characterIndex < playerPrefabs.Length)
