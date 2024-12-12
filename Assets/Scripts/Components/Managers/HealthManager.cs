@@ -102,7 +102,6 @@ public class HealthManager : NetworkBehaviour
         if (!IsServer) return;
         GetComponent<AttackManager>().OnShootEnded();
         GetComponent<PlayerBehaviour>().InitializePosition();
-        healthBar.gameObject.SetActive(true);
         currentHealth = maxHealth;
         UpdateHealthClientRpc(currentHealth, false);
         OnRespawnClientRpc();
@@ -111,6 +110,8 @@ public class HealthManager : NetworkBehaviour
     [ClientRpc]
     private void OnRespawnClientRpc()
     {
+        healthBar.gameObject.SetActive(true);
+        anim.Rebind();
         if (IsOwner)
         {
             GetComponent<PlayerInput>().enabled = true;
