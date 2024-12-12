@@ -13,10 +13,10 @@ public struct PlayerData
 public class NetworkConnectionManager : NetworkBehaviour
 {
     public Dictionary<ulong, PlayerData> players = new Dictionary<ulong, PlayerData>();
-    int numPlayersConnected;
 
     public override void OnNetworkSpawn()
     {
+        players.Clear();
         if (IsClient)
         {
             RequestClientsServerRpc();
