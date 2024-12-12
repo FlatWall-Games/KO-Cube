@@ -26,6 +26,15 @@ public class HotZoneBehaviour : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (numT1Inside == 0 && numT2Inside > 0)
+        {
+            if (pointsT2 < maxPoints) transform.Rotate(0, -0.5f, 0);
+        }
+        if (numT2Inside == 0 && numT1Inside > 0)
+        {
+            if (pointsT1 < maxPoints) transform.Rotate(0, 0.5f, 0);
+        }
+
         if (!IsServer) return;
         
         if(numT1Inside > 0 && numT2Inside == 0 && pointsT1 < maxPoints)
@@ -74,17 +83,6 @@ public class HotZoneBehaviour : NetworkBehaviour
         if (other.GetComponent<CharacterInfo>().characterID == 1) other.GetComponent<AttackManager>().Ulted -= PlayerDead;
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (numT1Inside == 0 && numT2Inside > 0)
-        {
-            if(pointsT2 < maxPoints) transform.Rotate(0, -0.5f, 0);
-        }
-        if (numT2Inside == 0 && numT1Inside > 0)
-        {
-            if(pointsT1 < maxPoints) transform.Rotate(0, 0.5f, 0);
-        } 
-    }
 
     private void PlayerDead(object s, string tag)
     {

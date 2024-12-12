@@ -902,13 +902,6 @@ MonoBehaviour:
     TransitionIndex: 1
   - IsCrossFadeExit: 0
     Layer: 0
-    OriginatingState: 2081823275
-    DestinationState: 646380074
-    TransitionDuration: 0
-    TriggerNameHash: 1293411866
-    TransitionIndex: 2
-  - IsCrossFadeExit: 0
-    Layer: 0
     OriginatingState: 1744665739
     DestinationState: 186033351
     TransitionDuration: 0.25
@@ -916,15 +909,8 @@ MonoBehaviour:
     TransitionIndex: 1
   - IsCrossFadeExit: 0
     Layer: 0
-    OriginatingState: 1744665739
-    DestinationState: 646380074
-    TransitionDuration: 0
-    TriggerNameHash: 1293411866
-    TransitionIndex: 2
-  - IsCrossFadeExit: 0
-    Layer: 0
     OriginatingState: 186033351
-    DestinationState: 646380074
+    DestinationState: 2081823275
     TransitionDuration: 0
     TriggerNameHash: 1293411866
     TransitionIndex: 1
@@ -942,6 +928,13 @@ MonoBehaviour:
     TransitionDuration: 0
     TriggerNameHash: 1293411866
     TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 2
+    OriginatingState: 753088835
+    DestinationState: 646380074
+    TransitionDuration: 0
+    TriggerNameHash: 1293411866
+    TransitionIndex: 0
   m_Animator: {fileID: 571336068098503327}
 --- !u!114 &7442144102207965242
 MonoBehaviour:
@@ -967,7 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26740d4eab054b2429f2b6dfa4dc37f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
+  maxHealth: 250
   healthBar: {fileID: 2224870828423726934}
   matchStatsManager: {fileID: 0}
 --- !u!114 &6976965157318431768
