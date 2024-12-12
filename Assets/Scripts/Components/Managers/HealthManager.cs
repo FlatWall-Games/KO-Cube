@@ -5,8 +5,6 @@ using Unity.Netcode;
 using UnityEngine.UI;
 using System;
 using UnityEngine.InputSystem;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.Collections.LowLevel.Unsafe;
 
 public class HealthManager : NetworkBehaviour
 {
@@ -41,7 +39,7 @@ public class HealthManager : NetworkBehaviour
         ManageDamageAndHeal(attack);
     }
 
-    public void ManageDamageAndHeal(IAttack attack)
+    private void ManageDamageAndHeal(IAttack attack)
     {
         if (attack.GetAttacker() == GetComponent<PlayerBehaviour>()) return; //Los propios básicos no afectan a uno mismo
 
@@ -61,6 +59,7 @@ public class HealthManager : NetworkBehaviour
             if (currentHealth <= 0)
             {
                 anim.SetTrigger("Dead");
+                Invoke("RequestRespawn", 3);
                 GetComponent<CharacterController>().enabled = false; //No queremos recibir más golpes estando muertos
                 if (deathMatch != null)
                 {
@@ -93,16 +92,17 @@ public class HealthManager : NetworkBehaviour
         {
             if (IsOwner) GetComponent<PlayerInput>().enabled = false;
             matchStatsManager.AddDeath();
+            healthBar.gameObject.SetActive(false);
             OnDead?.Invoke(this.gameObject, this.tag);
         }
-        healthBar.gameObject.SetActive(!killed); //Si muere se le desactiva la barra de vida y al reaparecer se vuelve a activar
     }
 
-    public void RequestRespawn()
+    private void RequestRespawn()
     {        
         if (!IsServer) return;
         GetComponent<AttackManager>().OnShootEnded();
         GetComponent<PlayerBehaviour>().InitializePosition();
+        healthBar.gameObject.SetActive(true);
         currentHealth = maxHealth;
         UpdateHealthClientRpc(currentHealth, false);
         OnRespawnClientRpc();
