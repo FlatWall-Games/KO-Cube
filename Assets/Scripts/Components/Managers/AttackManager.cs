@@ -153,17 +153,24 @@ public class AttackManager : NetworkBehaviour
         IAttack projectile = projectileInstance.GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
         projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
-        if (IsServer && basicPrefab.GetComponent<IAttack>().IsNetworkObject()) projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+        if (IsServer && basicPrefab.GetComponent<IAttack>().IsNetworkObject())
+        {
+            projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+        }
     }
 
     public void ShootSingleUltProjectile() //Llamado desde la animación de disparo
     {
         if (ultPrefab.GetComponent<IAttack>().IsNetworkObject() && !IsServer) return;
         GameObject projectileInstance = GameObject.Instantiate(ultPrefab, ultOrigin);
-        if (IsServer && ultPrefab.GetComponent<IAttack>().IsNetworkObject()) projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
         IAttack projectile = projectileInstance.GetComponent<IAttack>();
         projectile.SetTag(this.tag); //Le pone tag para que gestione colisiones, daño y curas
         projectile.SetAttacker(GetComponent<PlayerBehaviour>()); //Se configura para que sepa quién lanzó el ataque
+        if (IsServer && ultPrefab.GetComponent<IAttack>().IsNetworkObject())
+        {
+            projectileInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(OwnerClientId);
+            UpdateShieldColorClientRpc(projectileInstance.GetComponent<NetworkObject>().NetworkObjectId, tag);
+        }
     }
 
     public bool IsShooting() //Llamado desde PlayerMovement para saber si rotar el jugador hacia donde mira o no
@@ -182,4 +189,12 @@ public class AttackManager : NetworkBehaviour
     {
         shooting = false;
     }
+
+    [ClientRpc]
+    private void UpdateShieldColorClientRpc(ulong projID, string tag)
+    {
+        var networkObject = NetworkManager.Singleton.SpawnManager.SpawnedObjects[projID];
+        GameObject proj = networkObject.gameObject;
+        proj.GetComponent<ShieldColor>().UpdateColor(tag);
+    } 
 }
