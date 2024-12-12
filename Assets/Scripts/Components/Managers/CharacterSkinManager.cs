@@ -32,6 +32,7 @@ public class CharacterSkinManager : NetworkBehaviour
     [ClientRpc]
     public void SetSkinClientRpc(int skinIndex)
     {
+        currentSkin = skinIndex;
         skins[skinIndex].transform.SetAsFirstSibling();
         skins[skinIndex].name = rootName;
         skins[skinIndex].SetActive(true);
