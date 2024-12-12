@@ -41,6 +41,11 @@ public class AlraUlt : AProjectile
         }
     }
 
+    private void OnDestroy()
+    {
+        this.attacker.GetComponent<HealthManager>().OnDead -= DestroyOnDead;
+    }
+
     IEnumerator ResetTrigger()
     {
         while (true)
@@ -53,7 +58,6 @@ public class AlraUlt : AProjectile
 
     private void DestroyOnDead(object s, string t)
     {
-        this.attacker.GetComponent<HealthManager>().OnDead -= DestroyOnDead;
         Destroy(this.gameObject);
     }
 
